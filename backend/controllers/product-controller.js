@@ -22,8 +22,31 @@ const addProducts = async (req, res) => {
     }
 }
 
-module.exports ={
+const getProductById = async (req, res) => {
+  const productId = req.params.id;
+  try {
+    const result = await Product.findById(productId);
+    console.log(result);
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+const getProductByCategory = async (req, res) => {
+  const pCategory = req.params.categoryName;
+  try {
+    const result = await Product.find({ category: pCategory });
+    res.json(result);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+module.exports = {
   getProducts,
   addProducts,
+  getProductById,
+  getProductByCategory,
 };
 
