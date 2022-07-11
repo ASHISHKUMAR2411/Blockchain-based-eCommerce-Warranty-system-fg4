@@ -2,34 +2,37 @@ var mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-const userSchema = mongoose.Schema({
-  first_name: {
-    type: String,
-    required: true,
-  },
-  last_name: {
-    type: String,
-    required: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-  phone: {
-    type: Number,   
-    required: true,
-    unique: true
-  },
-  gender:String,
-  email:String,
-  tokens:[
-    {
-        token:{
-            type:String,
+const userSchema = mongoose.Schema(
+  {
+    first_name: {
+      type: String,
+      required: true,
+    },
+    last_name: {
+      type: String,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: Number,
+      required: true,
+      unique: true,
+    },
+    gender: String,
+    email: String,
+    tokens: [
+      {
+        token: {
+          type: String,
         },
-    }
-  ]
-},{ collection: 'flipkart_grid'});
+      },
+    ],
+  },
+  {collection: "users" }
+);
 
 userSchema.pre("save", async function (next) {
   if (this.isModified("password")) {
