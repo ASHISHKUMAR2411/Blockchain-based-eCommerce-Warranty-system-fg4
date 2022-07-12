@@ -23,6 +23,10 @@ const userSchema = mongoose.Schema(
     },
     gender: String,
     email: String,
+    role:{
+      type: String,
+      enum:["user","seller"]
+    },
     tokens: [
       {
         token: {

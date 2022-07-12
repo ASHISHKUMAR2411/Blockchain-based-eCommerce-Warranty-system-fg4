@@ -6,7 +6,7 @@ const signin = async (req, res) => {
   const user = new User(req.body);
   try {
     const token = await user.generateAuthenticationToken();
-    user.role = "user";
+    user.role = "seller";
     await user.save();
     res.cookie("auth_token", token, {
       maxAge: 2629800000,
@@ -37,10 +37,11 @@ const login = async (req, res) => {
         maxAge: 2629800000,
         httpOnly: true,
       });
-      if (userLogin.role != "user") {
+
+      if (userLogin.role != "seller") {
         return res.status(401).json({
           isLogin: false,
-          message: "login/invalid-not-user",
+          message: "login/invalid-not-seller",
         });
       }
       res.json({ isLogin: true, message: "User Login Successfully" });
@@ -56,10 +57,10 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-    // console.log("Logout");
+  // console.log("Logout");
   try {
     const token = req.cookies.auth_token;
-    
+
     if (token) {
       //get user id from jwt token
       const checkToken = jwt.verify(token, process.env.SECRET_KEY);
@@ -108,7 +109,7 @@ const authentication = async (req, res) => {
 
       //get Result
       const user = userInfo._doc;
-      if(user.role != "user"){
+      if (user.role != "seller") {
         throw new error();
       }
       res.status(200).json({
@@ -135,6 +136,7 @@ const authentication = async (req, res) => {
     });
   }
 };
+
 
 module.exports = {
   signin,
