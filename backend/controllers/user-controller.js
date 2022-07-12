@@ -95,8 +95,50 @@ const logout = async (req, res) => {
   }
 };
 
+const authentication = async (req, res) => {
+  try {
+    //get token from cookies
+    const token = req.cookies.auth_token;
+    if (token) {
+      const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+      const userInfo = await User.findOne(
+        { _id: verifyToken._id, "tokens.token": token },
+        { password: 0, tokens: 0 }
+      );
+
+      //get Result
+      const user = userInfo._doc;
+      if(user.role != "user"){
+        throw new error();
+      }
+      res.status(200).json({
+        code: 200,
+        isAuthenticate: true,
+        user: {
+          ...user,
+          _id: user._id.toString(),
+        },
+      });
+    } else {
+      res.status(401).json({
+        code: 401,
+        isAuthenticate: false,
+        message: "invalid provided token. Test",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      code: 401,
+      isAuthenticate: false,
+      message: "invalid provided token.",
+    });
+  }
+};
+
 module.exports = {
   signin,
   login,
   logout,
+  authentication,
 };
