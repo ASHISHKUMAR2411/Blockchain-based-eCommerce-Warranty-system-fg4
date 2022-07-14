@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Box, Divider, makeStyles, Typography } from "@material-ui/core";
 import Menu from "@material-ui/core/Menu";
@@ -33,7 +32,7 @@ const useStyles = makeStyles({
 
 function ProfileMenu({ logout }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const { user } = useSelector((state) => state.userReducer);
+  const [user, setUser] = React.useState({});
   const classes = useStyles();
   const history = useNavigate();
 
@@ -44,13 +43,14 @@ function ProfileMenu({ logout }) {
   const handleClose = (e) => {
     switch (e.target.id) {
       case "account":
-        history.push("/account");
+        console.log("Account page");
+        history("/accounts");
         break;
       case "wishlist":
-        history.push("/wishlist");
+        history("/wishlist");
         break;
       case "orders":
-        history.push("/orders");
+        history("/orders");
         break;
       default:
         break;
@@ -86,6 +86,7 @@ function ProfileMenu({ logout }) {
         }}
         className={classes.container}
       >
+
         <MenuItem
           id="account"
           className={classes.menuItem}
@@ -95,8 +96,16 @@ function ProfileMenu({ logout }) {
           My Profile
         </MenuItem>
         <Divider className={classes.divider} />
-        <MenuItem id="orders" className={classes.menuItem} onClick={handleClose}>
-          <img src="/order-icon.svg" style={{marginRight:15}} className={classes.menuIcon} />
+        <MenuItem
+          id="orders"
+          className={classes.menuItem}
+          onClick={handleClose}
+        >
+          <img
+            src="/order-icon.svg"
+            style={{ marginRight: 15 }}
+            className={classes.menuIcon}
+          />
           Orders
         </MenuItem>
         <Divider className={classes.divider} />

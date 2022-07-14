@@ -10,23 +10,15 @@ import {
   DialogContent,
 } from "@material-ui/core";
 import { Link, useLocation } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 
-import {
-  modalClose,
-  modalOpen,
-  setIsAuthenticate,
-  setPopupLogin,
-  setUserInfo,
-} from "../../actions/userActions";
 import authentication from "../../adapters/authentication";
-import toastMessage from "../../utils/toastMessage";
+// import toastMessage from "../../utils/toastMessage";
 
 import AuthPage from "../../pages/AuthPage";
 import ProfileMenu from "./ProfileMenu";
-import { clearCart } from "../../actions/cartActions";
+// import { clearCart } from "../../actions/cartActions";
 
 const useStyles = makeStyles((theme) => ({
   headerMenu: {
@@ -68,50 +60,61 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function HeaderMenu() {
+function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cartItems}) {
   const [open, setOpen] = useState(false);
+  const [popupLogin, setPopupLogin] = useState(true); //opens login popup box
+  // const [isAuthenticate, setIsAuthenticate] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [cartItems, setcartItems] = useState({});
+  // const [userInfo, setUserInfo] = useState({});
 
-  const { popupLogin, isAuthenticate, isModalOpen } = useSelector(
-    (state) => state.userReducer
-  );
-  const { cartItems } = useSelector((state) => state.cartReducer);
-
+  function updateOpen(value) {
+    setOpen(value);
+  }
+  function updatePopupLogin(value) {
+    setPopupLogin(value);
+  }
+  // function updateIsAuthenticate(value) {
+  //   setIsAuthenticate(value);
+  // }
+  function updateIsModalOpen(value) {
+    setIsModalOpen(value);
+  }
   const location = useLocation();
-  const dispatch = useDispatch();
   useEffect(() => {
     if (location.pathname === "/login") {
-      dispatch(setPopupLogin(false));
+      setPopupLogin(false);
     } else {
-      dispatch(setPopupLogin(true));
+      setPopupLogin(true);
     }
     if (!isAuthenticate) {
       authentication().then((res) => {
-        dispatch(setIsAuthenticate(res.isAuth));
-        dispatch(setUserInfo(res.user));
+        updateIsAuthenticate(res.isAuth);
+        updateUserInfo(res.user);
       });
     }
   }, [location.pathname, isAuthenticate]);
+
   const classes = useStyles();
 
   const logout = async () => {
     try {
-      await axios.get("/accounts/logout", {
+      await axios.get("/users/logout", {
         withCredentials: true,
       });
-      dispatch(setUserInfo({}));
-      dispatch(setIsAuthenticate(false));
-      dispatch(clearCart());
+      updateUserInfo({});
+      updateIsAuthenticate(false);
       window.location.replace("/");
     } catch (error) {
-      toastMessage("Something went wrong. Please try again later", "error");
+      //   toastMessage("Something went wrong. Please try again later", "error");
     }
   };
 
   const handleClickOpen = () => {
-    dispatch(modalOpen());
+    setIsModalOpen(true);
   };
   const handleClose = () => {
-    dispatch(modalClose());
+    setIsModalOpen(false);
   };
 
   return (
@@ -150,10 +153,15 @@ function HeaderMenu() {
       {/* ########## Login Dialog Box  #########*/}
       <Dialog onClose={handleClose} open={isModalOpen}>
         <DialogContent style={{ width: "100%" }}>
-          <AuthPage popup={true} />
+          <AuthPage
+            popup={true}
+            updateIsAuthenticate={updateIsAuthenticate}
+            updateIsModalOpen={updateIsModalOpen}
+            isAuthenticate={isAuthenticate}
+            updateUserInfo={updateUserInfo}
+          />
         </DialogContent>
       </Dialog>
-
     </Box>
   );
 }

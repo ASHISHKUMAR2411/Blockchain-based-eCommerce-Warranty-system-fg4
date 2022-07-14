@@ -27,6 +27,7 @@ function Navbar() {
   const classes = useStyle();
   return (
     <Box className={classes.navbar} boxShadow={2}>
+      {/* <h1>navbar</h1> */}
       {navData.map((data, i) => (
         <Link to={``} id={i} key={i}>
           <Box className={classes.nav_item}>

@@ -1,8 +1,9 @@
 import React from "react";
 import { Box, makeStyles } from "@material-ui/core";
 import Navbar from "../components/Navbar";
-import { featuredBrandLinks, posterLinks, sidePosterLink  } from "../constants/data";
+
 import "../styles/HomePage.css";
+// import HomeBanner from "../components/header/HomeBanner";
 import ProductRow from "../components/product/ProductRow";
 import Footer from "../components/footer/Footer";
 
@@ -18,21 +19,23 @@ function HomePage() {
   return (
     <Box className={classes.homePage}>
       <Navbar />
-      <div className="first_productRow">
-        {/* <ProductRow
-          isFirstRow={true}
-          categoryName="mobile"
-          title="Top Offers"
-          subTitle="Deals Refresh Every 24 Hours"
-        /> */}
-        <div style={{ padding: 1, backgroundColor: "#ffffff", cursor:"pointer" }}>
-          <img
-            src={sidePosterLink}
-            alt="Ads"
-            className="ads_banner"
-          />
-        </div>
-      </div>
+      <ProductRow
+        // isFirstRow={true}
+        categoryName="mobile"
+        title="mobile"
+        subTitle="Deals Refresh Every 24 Hours"
+      />
+      <ProductRow
+        // isFirstRow={true}
+        categoryName="Laptop"
+        title="Laptop"
+        subTitle="Deals Refresh Every 24 Hours"
+      />
+      <ProductRow
+        title="Top Deals"
+        categoryName="moblie"
+        subTitle="Daily crazy deals"
+      />
       <Footer />
     </Box>
   );

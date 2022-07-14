@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+
+import { Link } from "react-router-dom";
 import {
   makeStyles,
   InputBase,
@@ -12,7 +13,7 @@ import {
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
-// import { getProducts } from "../../actions/productActions";
+import { getProducts } from "../../actions/productActions";
 // import { makeShortText } from "../../utils/makeShortText";
 
 const useStyles = makeStyles((theme) => ({
@@ -70,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
     margin: "0px 10px",
     color: "#000",
     [theme.breakpoints.down("md")]: {
-     fontSize:14,
+      fontSize: 14,
     },
   },
   productAvatar: {
@@ -83,21 +84,24 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
 function SearchBar() {
   const classes = useStyles();
-//   const dispatch = useDispatch();
-//   const { products } = useSelector((state) => state.productReducer);
-//   const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [products, setProducts] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
 
-//   useEffect(() => {
-//     dispatch(getProducts());
-//   }, [dispatch]);
+  const handleSearchInput = (e) => {
+    setSearchText(e.target.value);
+    setIsOpen(true);
+    
+  };
 
-//   const handleSearchInput = (e) => {
-//     setSearchText(e.target.value);
-//     setIsOpen(true);
-//   };
+  useEffect(() => {
+    getProducts(searchText).then((data) => {
+      setProducts(data);
+    });
+  }, [searchText])
 
   const closeSearchBox = () => {
     setTimeout(() => {
@@ -116,14 +120,14 @@ function SearchBar() {
               input: classes.inputInput,
             }}
             inputProps={{ "aria-label": "search" }}
-            // value={searchText}
-            // onChange={handleSearchInput}
+            value={searchText}
+            onChange={handleSearchInput}
           />
           <div className={classes.searchIcon}>
             <SearchIcon />
           </div>
         </div>
-        {/* {searchText && isOpen && (
+        {searchText && isOpen && (
           <Box boxShadow={4} className={classes.listComponent}>
             <List>
               {products
@@ -133,7 +137,7 @@ function SearchBar() {
                     .includes(searchText.toLowerCase())
                 )
                 ?.map((product) => (
-                  <a href={`/product/${product._id}`}>
+                  <Link to={`/product/${product._id}`}>
                     <ListItem className={classes.listItem}>
                       <ListItemAvatar className={classes.listAvatar}>
                         <img
@@ -143,15 +147,15 @@ function SearchBar() {
                       </ListItemAvatar>
                       <ListItemText>
                         <Typography className={classes.listText}>
-                          {makeShortText(product.title.longTitle)}
+                          {product.title.longTitle}
                         </Typography>
                       </ListItemText>
                     </ListItem>
-                  </a>
+                  </Link>
                 ))}
             </List>
           </Box>
-        )} */}
+        )}
       </div>
     </div>
   );

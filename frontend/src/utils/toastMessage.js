@@ -15,7 +15,7 @@ const toastStyle = {
 const toastMessage = (msg, type) => {
   switch (type) {
     case "info":
-      toast.info(msg, toastStyle );
+      toast.info(msg, toastStyle);
       break;
     case "error":
       toast.error(msg, toastStyle);

@@ -1,27 +1,101 @@
-import React from "react";
+import {React, useState, useEffect} from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { isMobile, isDesktop, isTablet, deviceType,    } from 'react-device-detect';
 import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
+import ProductPage from "./pages/ProductPage";
+import AccountPage from "./pages/MyAccountsPage";
+import CartPage from "./pages/CartPage";
 import Header from "./components/header/Header";
+import authentication from "./adapters/authentication";
+import { getCartItems } from "./actions/cartActions";
+
 //css
 import "./App.css";
 
 
 function App() { 
+  
+  const [isAuthenticate, setIsAuthenticate] = useState(false);
+  const [cartItems, setcartItems] = useState([]);
+  const [userInfo, setUserInfo] = useState({});
+  function updateIsAuthenticate(value) {
+    setIsAuthenticate(value);
+  }
+  function updateCartItems(value) {
+    setcartItems(value);
+  }
+  function updateUserInfo(value) {
+    setUserInfo(value);
+  }
+
+  useEffect(() => {
+    if (!isAuthenticate) {
+      authentication().then((res) => {
+        setIsAuthenticate(res.isAuth);
+        setUserInfo(res.user);
+      });
+    }
+  }, [isAuthenticate]);
+  useEffect(() => {
+    if (isAuthenticate) {
+      getCartItems(isAuthenticate, cartItems, userInfo, updateCartItems);
+    }
+  }, [userInfo, cartItems, isAuthenticate]);
   return (
     <div className="app">
-      
       {isDesktop ? (
         <>
-         <Header />
           <BrowserRouter>
+            <Header
+              updateIsAuthenticate={updateIsAuthenticate}
+              isAuthenticate={isAuthenticate}
+              updateUserInfo={updateUserInfo}
+              cartItems={cartItems}
+            />
             <Routes>
-              <Route exact path="/" element={<HomePage/>} />
-              <Route element={ErrorPage} />
+              <Route exact path="/" element={<HomePage />} />
+              <Route
+                exact
+                path="/product/:id"
+                element={
+                  <ProductPage
+                    isAuthenticate={isAuthenticate}
+                    user={userInfo}
+                    cartItems={cartItems}
+                  />
+                }
+              />
+              <Route
+                exact
+                path="/accounts"
+                element={
+                  <AccountPage
+                    isAuthenticate={isAuthenticate}
+                    userInfo={userInfo}
+                    updateIsAuthenticate={updateIsAuthenticate}
+                    updateUserInfo={updateUserInfo}
+                  />
+                }
+              />
+              <Route
+                exact
+                path="/cart"
+                element={
+                  <CartPage
+                    isAuthenticate={isAuthenticate}
+                    updateCartItems={updateCartItems}
+                    cartItems={cartItems}
+                    userInfo={userInfo}
+                    updateIsAuthenticate={updateIsAuthenticate}
+                    updateUserInfo={updateUserInfo}
+                  />
+                }
+              />
+              <Route component={ErrorPage} />
             </Routes>
           </BrowserRouter>
-          </>
+        </>
       ) : (
         <div className="container">
           <img className="img" src="/monitors-laptop.png" alt="Mobile Laptop" />

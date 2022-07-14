@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -16,24 +15,10 @@ import TextField from "@material-ui/core/TextField";
 import Visibility from "@material-ui/icons/Visibility";
 import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { CircularProgress } from "@material-ui/core";
-
+import toastMessage from "../../utils/toastMessage";
 import useQuery from "../../hooks/useQuery";
 
-import {
-  modalClose,
-  setIsAuthenticate,
-  setIsLogin,
-  setMobileNumber,
-  setOTPResult,
-  setUserInfo,
-} from "../../actions/userActions";
-
-import toastMessage from "../../utils/toastMessage";
-//import sendOtp from "../../utils/sendOTP";
-
-//import OTPVerify from "./OTPVerify";
 import authentication from "../../adapters/authentication";
-
 
 const useStyles = makeStyles((theme) => ({
   inputs: {
@@ -65,7 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Login() {
+
+function Login({
+  updateIsAuthenticate,
+  updateIsModalOpen,
+  updateIsLogin,
+  updateUserInfo,
+}) {
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
     phone: "",
@@ -80,11 +71,11 @@ function Login() {
     phone: "",
     password: "",
   });
-
   const [loading, setLoading] = useState(false);
   const [requestBtnLoading, setRequestBtnLoading] = useState(false);
   const [submitCount, setSubmitCount] = useState(0);
   const [isLoginComponent, setIsLoginComponent] = useState(true);
+  const [popupLogin, setPopupLogin] = useState(true);
 
   const initial = useRef(true);
 
@@ -105,12 +96,9 @@ function Login() {
   }, [submitCount]);
 
   const classes = useStyles();
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const history = useNavigate();
   const query = useQuery();
 
-  const { popupLogin } = useSelector((state) => state.userReducer);
-  
   const regNumeric = /^[0-9\b]+$/;
   const regPhone = /^[6-9]\d{9}$/;
 
@@ -181,7 +169,7 @@ function Login() {
   const completeLogin = async () => {
     setLoading(true);
     try {
-      const res = await axios.post("/accounts/check-phone", {
+      const res = await axios.post("/users/check-phone", {
         phone: values.phone,
       });
       const isRegistered = res.data.isExist;
@@ -189,24 +177,17 @@ function Login() {
         setLoading(false);
         toastMessage("You are not registered. Please Signup", "info");
       } else {
-        const { data } = await axios.post("/accounts/login", {
+        const { data } = await axios.post("/users/login", {
           phone: values.phone,
           password: values.password,
         });
+        console.log(data);
         const { isAuth, user } = await authentication();
-        dispatch(setIsAuthenticate(isAuth));
-        dispatch(setUserInfo(user));
-
+        updateIsAuthenticate(isAuth);
+        updateUserInfo(user);
         //Modal Close
-        if(popupLogin){
-          dispatch(modalClose());
-        }
-
-        if (query.get("ref")) {
-          let routeString = query.get("ref");
-          navigate.replace(`/${routeString}`);
-        } else {
-          navigate.replace("/");
+        if (popupLogin) {
+          updateIsModalOpen(false);
         }
       }
     } catch (error) {
@@ -239,43 +220,28 @@ function Login() {
     //checkout useEffect
   };
 
-  // const loginWithMobileNumber = async () => {
-  //   const validatedPhone = validatePhone(values.phone);
+  const loginWithMobileNumber = async () => {
+    const validatedPhone = validatePhone(values.phone);
 
-  //   //Set Error Status
-  //   setErrorMsg({
-  //     phone: validatedPhone.errorMsg,
-  //   });
-  //   setErrors({
-  //     phone: validatedPhone.isError,
-  //   });
+    //Set Error Status
+    setErrorMsg({
+      phone: validatedPhone.errorMsg,
+    });
+    setErrors({
+      phone: validatedPhone.isError,
+    });
 
-  //   if (!validatedPhone.isError) {
-  //     setRequestBtnLoading(true);
-  //     try {
-  //       const res = await axios.post("/accounts/check-phone", {
-  //         phone: values.phone,
-  //       });
-  //       const isRegistered = res.data.isExist;
-  //       if (isRegistered) {
-  //         const confirmationResult = await sendOtp(values.phone);
-  //         dispatch(setOTPResult(confirmationResult));
-  //         dispatch(setMobileNumber(values.phone));
-  //         setRequestBtnLoading(false);
-  //         setIsLoginComponent(false);
-  //       } else {
-  //         setRequestBtnLoading(false);
-  //         toastMessage(
-  //           "You are not registered with us. Please signup.",
-  //           "info"
-  //         );
-  //       }
-  //     } catch (error) {
-  //       setRequestBtnLoading(false);
-  //       toastMessage("Something went wrong.", "error");
-  //     }
-  //   }
-  // };
+    if (!validatedPhone.isError) {
+      setRequestBtnLoading(true);
+      try {
+        setRequestBtnLoading(false);
+        setIsLoginComponent(false);
+      } catch (error) {
+        setRequestBtnLoading(false);
+        toastMessage("Something went wrong.", "error");
+      }
+    }
+  };
 
   return (
     <>
@@ -357,31 +323,12 @@ function Login() {
               "Login"
             )}
           </Button>
-          <span style={{ textAlign: "center", margin: "20px auto" }}>OR</span>
-          <Button
-            id="sign-in-button"
-            variant="contained"
-            className={classes.btn}
-            disabled={requestBtnLoading}
-            style={{ background: "#fff", color: "#2874f0" }}
-            color="primary"
-            // onClick={loginWithMobileNumber}
-          >
-            {requestBtnLoading ? (
-              <CircularProgress size={24} className={classes.reqBtnProgress} />
-            ) : (
-              "Request OTP"
-            )}
-          </Button>
-          <a
-            className="signup_text"
-            onClick={() => dispatch(setIsLogin(false))}
-          >
+          <a className="signup_text" onClick={() => updateIsLogin(false)}>
             New to Flipkart? Create an account
           </a>
         </>
       ) : (
-        <p>hello</p>
+        <h1>otp</h1>
       )}
     </>
   );

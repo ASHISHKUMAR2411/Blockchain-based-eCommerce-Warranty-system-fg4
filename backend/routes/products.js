@@ -7,7 +7,7 @@ const {
   getProductByCategory,
 } = require("../controllers/product-controller");
 
-router.get("/get-products",getProducts);
+router.get("/get-products-by-key/:key",getProducts);
 router.post("/add-products", addProducts);
 router.get("/get-product/:id", getProductById);
 router.get("/get-products/:categoryName", getProductByCategory);

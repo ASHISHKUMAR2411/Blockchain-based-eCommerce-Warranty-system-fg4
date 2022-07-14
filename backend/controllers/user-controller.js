@@ -136,9 +136,35 @@ const authentication = async (req, res) => {
   }
 };
 
+const checkphone = async (req, res) => {
+  try {
+    const { phone } = req.body;
+    const userInfo = await User.findOne({ phone: phone });
+    if(!userInfo){
+      res.status(401).json({
+        code: 401,
+        isExist: false,
+        message: "User not registered. Please sign up first.",
+      });
+    }else{
+      res.status(200).json({
+        code: 200,
+        isExist: true,
+        message: "User registered..",
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      code: 401,
+      message: "invalid provided token.",
+    });
+  }
+};
 module.exports = {
   signin,
   login,
   logout,
   authentication,
+  checkphone,
 };

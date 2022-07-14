@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect, useState, useCallback } from "react";
 import { useNavigate } from "react-router";
 import Backdrop from "@material-ui/core/Backdrop";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import { makeStyles } from "@material-ui/core/styles";
 
-import { setIsAuthenticate, setUserInfo } from "../actions/userActions";
+// import { setIsAuthenticate, setUserInfo } from "../actions/userActions";
 import authentication from "../adapters/authentication";
 
-import Login from "../components/auth/Login";
-import Signup from "../components/auth/Signup";
-import ToastMessageContainer from "../components/ToastMessageContainer";
 
-// import "../styles/AuthPage.css";
+import Login from "../components/auth/Login";
+// import Signup from "../components/auth/Signup";
+// import ToastMessageContainer from "../components/ToastMessageContainer";
+
+import "../styles/AuthPage.css";
 
 const useStyles = makeStyles((theme) => ({
   backdrop: {
@@ -21,21 +21,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function AuthPage({ popup = false }) {
-  const [isOpen, setIsOpen] = useState(true);
-  const { isLogin } = useSelector((state) => state.userReducer);
-  const { isAuthenticate } = useSelector((state) => state.userReducer);
+function AuthPage({
+  popup = false,
+  updateIsAuthenticate,
+  updateIsModalOpen,
+  isAuthenticate,
+  updateUserInfo,
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
+  // const [isAuthenticate, setIsAuthenticate] = useState(false);
+  // const [userInfo, setUserInfo] = useState({});
   const history = useNavigate();
-  const dispatch = useDispatch();
   const classes = useStyles();
+
+  function updateIsLogin(value) {
+    setIsLogin(value);
+  }
 
   useEffect(() => {
     if (!isAuthenticate) {
       setIsOpen(true);
+
       authentication()
         .then((res) => {
-          dispatch(setIsAuthenticate(res.isAuth));
-          dispatch(setUserInfo(res.user));
+          updateIsAuthenticate(res.isAuth);
+          updateUserInfo(res.user);
           setIsOpen(false);
           history.push("/");
         })
@@ -44,6 +55,11 @@ function AuthPage({ popup = false }) {
         });
     }
   }, [isAuthenticate]);
+
+  const handleChange = React.useCallback((isLoginNew) => {
+    console.log("Logged In");
+    popup = true;
+  }, []);
 
   return (
     <div className={popup ? "login_popup" : "login"}>
@@ -59,11 +75,23 @@ function AuthPage({ popup = false }) {
           </p>
         </div>
       </div>
-      <div className="container_right">{isLogin ? <Login /> : <Signup />}</div>
+      <div className="container_right">
+        {isLogin ? (
+          <Login
+            // onLogin={handleChange}
+            updateIsAuthenticate={updateIsAuthenticate}
+            updateIsModalOpen={updateIsModalOpen}
+            updateIsLogin={updateIsLogin}
+            updateUserInfo={updateUserInfo}
+          />
+        ) : (
+          <Login />
+        )}
+      </div>
       <Backdrop className={classes.backdrop} open={isOpen}>
         <CircularProgress color="inherit" />
       </Backdrop>
-      <ToastMessageContainer />
+      {/* <ToastMessageContainer /> */}
     </div>
   );
 }

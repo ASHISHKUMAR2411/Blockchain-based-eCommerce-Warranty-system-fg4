@@ -155,11 +155,11 @@ function ProductRow({ isFirstRow = false, categoryName, title }) {
               {loadedProducts?.map((product, index) => (
                 <Box key={index}>
                   <Link to={`product/${product._id}`}>
-                    {/* <img
+                    <img
                       className={`product_img ${isFirstRow && "reduce_margin"}`}
-                      src={product.url}
+                      src={"https://rukminim1.flixcart.com/flap/128/128/image/e2b2795ad9e97a57.png?q=100"}
                       alt="banner"
-                    /> */}
+                    />
                     <Typography className={classes.product_title}>
                       {product.title.shortTitle}
                     </Typography>
