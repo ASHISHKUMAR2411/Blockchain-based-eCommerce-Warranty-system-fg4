@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Grid, makeStyles } from "@material-ui/core";
 import { Route, Switch, useNavigate } from "react-router";
 
-// import Wishlist from "../components/wishlist/Wishlist";
-// import Sidebar from "../components/account/Sidebar";
-// import PersonalInfo from "../components/account/PersonalInfo";
-// import ManageAddresses from "../components/address/ManageAddresses";
 import LoaderSpinner from "../components/LoaderSpinner";
 import ToastMessageContainer from "../components/ToastMessageContainer";
 import authentication from "../adapters/authentication";
@@ -25,19 +21,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function MyAccountsPage({ isAuthenticate, userInfo,updateIsAuthenticate, updateUserInfo }) {
+function MyAccountsPage({
+  isAuthenticate,
+  userInfo,
+  updateIsAuthenticate,
+  updateUserInfo,
+  cartItems,
+}) {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
-  //   const { isAuthenticate } = useSelector((state) => state.userReducer);
   const history = useNavigate();
   useEffect(() => {
-    if (!isAuthenticate) {
-      authentication().then((res) => {
-        updateIsAuthenticate(res.isAuth);
-        updateUserInfo(res.user);
-      });
-    }
     setIsLoading(false);
+    console.log(isAuthenticate);
   }, [isAuthenticate]);
 
   return isLoading ? (
@@ -55,6 +51,8 @@ function MyAccountsPage({ isAuthenticate, userInfo,updateIsAuthenticate, updateU
         >
           <h1>My accounts page</h1>
           <h2>{userInfo._id}</h2>
+          <h2>{isAuthenticate}</h2>
+          {/* <h2>{cartItems}</h2> */}
           {/* <Sidebar /> */}
         </Grid>
         {/* <Grid style={{ background: "#fff" }} item lg={9} md={9} sm={12} xs={12}>

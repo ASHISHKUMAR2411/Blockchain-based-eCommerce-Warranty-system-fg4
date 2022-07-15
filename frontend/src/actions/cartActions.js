@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const addToCart = async (item, isAuthenticate, user, cartItems) => {
   const existItem = cartItems.find((product) => product._id === item._id);
-
+  
   if (!existItem) {
     if (isAuthenticate) {
       try {
@@ -54,8 +54,7 @@ export const addToCart = async (item, isAuthenticate, user, cartItems) => {
 //   });
 // };
 
-export const getCartItems = async (isAuthenticate, cartItems, userId, updateCartItems) => {
-  if (isAuthenticate) {
+export const getCartItems = async (isAuthenticate, cartItems, userId) => {
     try {
       const { data } = await axios.get(`/cart/get-items/${userId._id}`);
       if (data.length > 0) {
@@ -70,15 +69,12 @@ export const getCartItems = async (isAuthenticate, cartItems, userId, updateCart
             cartItems.push(value.productDetails[0]);
           }
         });
-        updateCartItems(cartItems);
+        return cartItems;
       }
     } catch (error) {
       console.log(error);
-      updateCartItems(cartItems);
+      return cartItems;
     }
-  }else{
-    console.log("Not Authenticated");
-  }
 };
 
 export const updateQty = (productId, qty) => {

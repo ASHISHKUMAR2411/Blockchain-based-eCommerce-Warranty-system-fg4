@@ -67,6 +67,7 @@ const useStyles = makeStyles({
   },
 });
 
+
 function ProductRow({ isFirstRow = false, categoryName, title }) {
   useEffect(() => {
     getProductsByCategory(categoryName).then((data) => {
@@ -123,13 +124,6 @@ function ProductRow({ isFirstRow = false, categoryName, title }) {
       <Box className={classes.row_container}>
         <Box className={classes.leftContainer}>
           <h2 className={classes.row_title}>{title}</h2>
-          <Button
-            style={{ backgroundColor: "#2874f0", marginTop: 20 }}
-            variant="contained"
-            color="primary"
-          >
-            View All
-          </Button>
         </Box>
         <Box className={classes.products_wrapper} textAlign="center">
           {isLoading ? (

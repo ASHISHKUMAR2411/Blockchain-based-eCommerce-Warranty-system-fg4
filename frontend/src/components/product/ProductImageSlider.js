@@ -85,7 +85,7 @@ const ProductImageSlider = ({
     addToCart(product, isAuthenticate, user, cartItems);
     history("/cart");
   };
-
+  
   return (
     <Box className={classes.leftContainer}>
       <Box className={classes.imageBox}>

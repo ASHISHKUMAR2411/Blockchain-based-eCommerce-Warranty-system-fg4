@@ -62,11 +62,8 @@ const useStyles = makeStyles((theme) => ({
 
 function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cartItems}) {
   const [open, setOpen] = useState(false);
-  const [popupLogin, setPopupLogin] = useState(true); //opens login popup box
-  // const [isAuthenticate, setIsAuthenticate] = useState(false);
+  const [popupLogin, setPopupLogin] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const [cartItems, setcartItems] = useState({});
-  // const [userInfo, setUserInfo] = useState({});
 
   function updateOpen(value) {
     setOpen(value);
@@ -74,9 +71,6 @@ function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cart
   function updatePopupLogin(value) {
     setPopupLogin(value);
   }
-  // function updateIsAuthenticate(value) {
-  //   setIsAuthenticate(value);
-  // }
   function updateIsModalOpen(value) {
     setIsModalOpen(value);
   }
@@ -94,6 +88,14 @@ function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cart
       });
     }
   }, [location.pathname, isAuthenticate]);
+
+  // useEffect(() => {
+  //   if (isAuthenticate) {
+  //     getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
+  //       setcartItems(data);
+  //     });
+  //   }
+  // }, [userInfo, isAuthenticate]);
 
   const classes = useStyles();
 

@@ -140,17 +140,17 @@ const checkphone = async (req, res) => {
   try {
     const { phone } = req.body;
     const userInfo = await User.findOne({ phone: phone });
-    if(!userInfo){
-      res.status(401).json({
-        code: 401,
-        isExist: false,
-        message: "User not registered. Please sign up first.",
-      });
-    }else{
+    if(userInfo){
       res.status(200).json({
         code: 200,
         isExist: true,
         message: "User registered..",
+      });
+    }else{
+      res.status(200).json({
+        code: 200,
+        isExist: false,
+        message: "User not registered. Please sign up first.",
       });
     }
   } catch (error) {

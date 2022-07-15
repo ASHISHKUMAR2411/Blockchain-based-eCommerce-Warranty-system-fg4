@@ -85,7 +85,7 @@ function AuthPage({
             updateUserInfo={updateUserInfo}
           />
         ) : (
-          <Login />
+          <h1>Sign up kar bsdk</h1>
         )}
       </div>
       <Backdrop className={classes.backdrop} open={isOpen}>

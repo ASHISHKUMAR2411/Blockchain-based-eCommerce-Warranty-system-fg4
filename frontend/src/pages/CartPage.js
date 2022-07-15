@@ -48,11 +48,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Cart = ({
   isAuthenticate,
-  updateCartItems,
   cartItems,
-  userInfo,
-  updateIsAuthenticate,
-  updateUserInfo,
 }) => {
   const classes = useStyle();
   const [isLoading, setIsLoading] = useState(true);
@@ -62,18 +58,10 @@ const Cart = ({
       setIsLoading(false);
     }, 500);
 
-    // if (!isAuthenticate) {
-    //   authentication().then((res) => {
-    //     updateIsAuthenticate(res.isAuth);
-    //     updateUserInfo(res.user);
-    //   });
-    // }
   }, [isAuthenticate]);
-// useEffect(() => {
-//   if (isAuthenticate) {
-//     getCartItems(isAuthenticate, cartItems, userInfo, updateCartItems);
-//   }
-// }, [userInfo]);
+
+  
+
   const placeOrder = () => {
     window.location.replace("/checkout?init=true");
   };

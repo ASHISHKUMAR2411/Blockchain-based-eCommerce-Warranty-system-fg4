@@ -16,18 +16,20 @@ const useStyle = makeStyles({
 
 const GroupedButton = ({ product }) => {
   const classes = useStyle();
-  const [counter, setCounter] = useState(product.qty);
+  const [counter, setCounter] = useState(1);
 
 //   const dispatch = useDispatch();
 
   const handleIncrement = () => {
-    if (counter + 1 <= 5) {
+    if (counter + 1 <= 5 && counter - 1 >=0) {
       setCounter((counter) => counter + 1);
     //   dispatch(updateQty(product._id, counter + 1));
       toastMessage(
         `You've changed ${product.title.longTitle} QUANTITY to ${counter + 1}`,
         "success"
       );
+    }else if (counter - 1 >= 0) {
+      setCounter(1);
     } else {
       toastMessage(
         "We're sorry! Only 5 unit(s) allowed in each order",

@@ -22,7 +22,7 @@ function HomePage() {
       <ProductRow
         // isFirstRow={true}
         categoryName="mobile"
-        title="mobile"
+        title="Mobile"
         subTitle="Deals Refresh Every 24 Hours"
       />
       <ProductRow

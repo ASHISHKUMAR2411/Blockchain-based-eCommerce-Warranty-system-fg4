@@ -76,6 +76,7 @@ function Login({
   const [submitCount, setSubmitCount] = useState(0);
   const [isLoginComponent, setIsLoginComponent] = useState(true);
   const [popupLogin, setPopupLogin] = useState(true);
+  const [seller, setSeller] = useState(false);
 
   const initial = useRef(true);
 
@@ -175,7 +176,7 @@ function Login({
       const isRegistered = res.data.isExist;
       if (!isRegistered) {
         setLoading(false);
-        toastMessage("You are not registered. Please Signup", "info");
+        alert("You are not registered. Please Signup", "info");
       } else {
         const { data } = await axios.post("/users/login", {
           phone: values.phone,
@@ -320,7 +321,21 @@ function Login({
             {loading ? (
               <CircularProgress size={24} className={classes.buttonProgress} />
             ) : (
-              "Login"
+              "Login as user"
+            )}
+          </Button><br />
+          <Button
+            variant="contained"
+            className={classes.btn}
+            style={{ background: "#fb641b", color: "#fff" }}
+            color="primary"
+            disabled={loading}
+            onClick={onLoginClick}
+          >
+            {loading ? (
+              <CircularProgress size={24} className={classes.buttonProgress} />
+            ) : (
+              "Login as seller"
             )}
           </Button>
           <a className="signup_text" onClick={() => updateIsLogin(false)}>

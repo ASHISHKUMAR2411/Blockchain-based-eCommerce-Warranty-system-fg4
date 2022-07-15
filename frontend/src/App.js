@@ -28,20 +28,26 @@ function App() {
   function updateUserInfo(value) {
     setUserInfo(value);
   }
+  
+  
+  // useEffect(() => {
+  //   if (!isAuthenticate) {
+  //     authentication().then((res) => {
+  //       setIsAuthenticate(res.isAuth);
+  //       setUserInfo(res.user);
+  //     });
+  //   }
+  // }, [isAuthenticate]);
 
   useEffect(() => {
-    if (!isAuthenticate) {
-      authentication().then((res) => {
-        setIsAuthenticate(res.isAuth);
-        setUserInfo(res.user);
+    if(isAuthenticate){
+      getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
+        setcartItems(data);
       });
     }
-  }, [isAuthenticate]);
-  useEffect(() => {
-    if (isAuthenticate) {
-      getCartItems(isAuthenticate, cartItems, userInfo, updateCartItems);
-    }
-  }, [userInfo, cartItems, isAuthenticate]);
+  }, [userInfo, isAuthenticate]);
+  
+
   return (
     <div className="app">
       {isDesktop ? (
@@ -75,6 +81,7 @@ function App() {
                     userInfo={userInfo}
                     updateIsAuthenticate={updateIsAuthenticate}
                     updateUserInfo={updateUserInfo}
+                    cartItems={cartItems}
                   />
                 }
               />
@@ -84,11 +91,9 @@ function App() {
                 element={
                   <CartPage
                     isAuthenticate={isAuthenticate}
-                    updateCartItems={updateCartItems}
                     cartItems={cartItems}
                     userInfo={userInfo}
                     updateIsAuthenticate={updateIsAuthenticate}
-                    updateUserInfo={updateUserInfo}
                   />
                 }
               />
