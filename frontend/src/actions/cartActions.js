@@ -55,6 +55,9 @@ export const addToCart = async (item, isAuthenticate, user, cartItems) => {
 // };
 
 export const getCartItems = async (isAuthenticate, cartItems, userId) => {
+  console.log(isAuthenticate);
+  console.log(cartItems);
+  console.log(userId);
     try {
       const { data } = await axios.get(`/cart/get-items/${userId._id}`);
       if (data.length > 0) {

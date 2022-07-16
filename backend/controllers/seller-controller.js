@@ -44,7 +44,7 @@ const login = async (req, res) => {
           message: "login/invalid-not-seller",
         });
       }
-      res.json({ isLogin: true, message: "User Login Successfully" });
+      res.json({ isLogin: true, message: "Seller Login Successfully" });
     } else {
       res
         .status(401)
@@ -109,9 +109,13 @@ const authentication = async (req, res) => {
 
       //get Result
       const user = userInfo._doc;
-      if (user.role != "seller") {
-        throw new error();
-      }
+      // if (user.role != "seller") {
+      //   res.status(401).json({
+      //     code: 401,
+      //     isAuthenticate: false,
+      //     message: "not seller. Please login first",
+      //   });
+      // }
       res.status(200).json({
         code: 200,
         isAuthenticate: true,
@@ -137,10 +141,36 @@ const authentication = async (req, res) => {
   }
 };
 
+const checkphone = async (req, res) => {
+  try {
+    const { phone } = req.body;
+    const userInfo = await User.findOne({ phone: phone });
+      if (userInfo && userInfo.role == "seller") {
+        res.status(200).json({
+          code: 200,
+          isExist: true,
+          message: "Seller registered..",
+        });
+      } else {
+        res.status(200).json({
+          code: 200,
+          isExist: false,
+          message: "Seller not registered. Please sign up first.",
+        });
+      }
+  } catch (error) {
+    console.log(error);
+    res.status(401).json({
+      code: 401,
+      message: "invalid provided token.",
+    });
+  }
+};
 
 module.exports = {
   signin,
   login,
   logout,
   authentication,
+  checkphone,
 };

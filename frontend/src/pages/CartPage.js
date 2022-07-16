@@ -57,7 +57,7 @@ const Cart = ({
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
-
+    
   }, [isAuthenticate]);
 
   

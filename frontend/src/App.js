@@ -8,7 +8,7 @@ import AccountPage from "./pages/MyAccountsPage";
 import CartPage from "./pages/CartPage";
 import Header from "./components/header/Header";
 import authentication from "./adapters/authentication";
-import { getCartItems } from "./actions/cartActions";
+
 
 //css
 import "./App.css";
@@ -17,6 +17,7 @@ import "./App.css";
 function App() { 
   
   const [isAuthenticate, setIsAuthenticate] = useState(false);
+  const [isUser, setIsUser] = useState(true);
   const [cartItems, setcartItems] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   function updateIsAuthenticate(value) {
@@ -28,78 +29,87 @@ function App() {
   function updateUserInfo(value) {
     setUserInfo(value);
   }
+  function updateIsUser(value) {
+    setIsUser(value);
+  }
   
-  
-  // useEffect(() => {
-  //   if (!isAuthenticate) {
-  //     authentication().then((res) => {
-  //       setIsAuthenticate(res.isAuth);
-  //       setUserInfo(res.user);
-  //     });
-  //   }
-  // }, [isAuthenticate]);
-
   useEffect(() => {
-    if(isAuthenticate){
-      getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
-        setcartItems(data);
+    if (!isAuthenticate) {
+      authentication().then((res) => {
+        setIsAuthenticate(res.isAuth);
+        setUserInfo(res.user);
       });
     }
-  }, [userInfo, isAuthenticate]);
+    // getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
+    //   setcartItems(data);
+    // });
+    console.log(isUser);
+  }, [userInfo,isAuthenticate]);
+
+  // useEffect(() => {
+  //   if(isAuthenticate){
+      
+  //   }
+  // }, [userInfo, isAuthenticate]);
   
 
   return (
     <div className="app">
-      {isDesktop ? (
+      {isUser ? (
         <>
-          <BrowserRouter>
-            <Header
-              updateIsAuthenticate={updateIsAuthenticate}
-              isAuthenticate={isAuthenticate}
-              updateUserInfo={updateUserInfo}
-              cartItems={cartItems}
-            />
-            <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route
-                exact
-                path="/product/:id"
-                element={
-                  <ProductPage
-                    isAuthenticate={isAuthenticate}
-                    user={userInfo}
-                    cartItems={cartItems}
-                  />
-                }
+          {
+            <BrowserRouter>
+              <Header
+                updateIsAuthenticate={updateIsAuthenticate}
+                isAuthenticate={isAuthenticate}
+                updateUserInfo={updateUserInfo}
+                cartItems={cartItems}
+                updateIsUser={updateIsUser}
+                userInfo={userInfo}
+                updateCartItems={updateCartItems}
               />
-              <Route
-                exact
-                path="/accounts"
-                element={
-                  <AccountPage
-                    isAuthenticate={isAuthenticate}
-                    userInfo={userInfo}
-                    updateIsAuthenticate={updateIsAuthenticate}
-                    updateUserInfo={updateUserInfo}
-                    cartItems={cartItems}
-                  />
-                }
-              />
-              <Route
-                exact
-                path="/cart"
-                element={
-                  <CartPage
-                    isAuthenticate={isAuthenticate}
-                    cartItems={cartItems}
-                    userInfo={userInfo}
-                    updateIsAuthenticate={updateIsAuthenticate}
-                  />
-                }
-              />
-              <Route component={ErrorPage} />
-            </Routes>
-          </BrowserRouter>
+              <Routes>
+                <Route exact path="/" element={<HomePage />} />
+                <Route
+                  exact
+                  path="/product/:id"
+                  element={
+                    <ProductPage
+                      isAuthenticate={isAuthenticate}
+                      user={userInfo}
+                      cartItems={cartItems}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/accounts"
+                  element={
+                    <AccountPage
+                      isAuthenticate={isAuthenticate}
+                      userInfo={userInfo}
+                      updateIsAuthenticate={updateIsAuthenticate}
+                      updateUserInfo={updateUserInfo}
+                      cartItems={cartItems}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/cart"
+                  element={
+                    <CartPage
+                      isAuthenticate={isAuthenticate}
+                      cartItems={cartItems}
+                      userInfo={userInfo}
+                      updateIsAuthenticate={updateIsAuthenticate}
+                    />
+                  }
+                />
+                <Route component={ErrorPage} />
+              </Routes>
+            </BrowserRouter>
+          }
         </>
       ) : (
         <div className="container">

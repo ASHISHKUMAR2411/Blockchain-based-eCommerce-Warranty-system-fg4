@@ -108,9 +108,13 @@ const authentication = async (req, res) => {
 
       //get Result
       const user = userInfo._doc;
-      if(user.role != "user"){
-        throw new error();
-      }
+      // if(user.role != "user"){
+      //   res.status(401).json({
+      //     code: 401,
+      //     isAuthenticate: false,
+      //     message: "Not user. Please sign in first",
+      //   });
+      // }
       res.status(200).json({
         code: 200,
         isAuthenticate: true,
@@ -140,7 +144,7 @@ const checkphone = async (req, res) => {
   try {
     const { phone } = req.body;
     const userInfo = await User.findOne({ phone: phone });
-    if(userInfo){
+    if(userInfo && userInfo.role == "user"){
       res.status(200).json({
         code: 200,
         isExist: true,
@@ -161,6 +165,7 @@ const checkphone = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   signin,
   login,

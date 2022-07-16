@@ -12,7 +12,7 @@ import {
 import { Link, useLocation } from "react-router-dom";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-
+import { getCartItems } from "../../actions/cartActions";
 import authentication from "../../adapters/authentication";
 // import toastMessage from "../../utils/toastMessage";
 
@@ -60,10 +60,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cartItems}) {
+function HeaderMenu({
+  updateIsAuthenticate,
+  isAuthenticate,
+  updateUserInfo,
+  cartItems,
+  updateIsUser,
+  userInfo,
+  updateCartItems,
+}) {
   const [open, setOpen] = useState(false);
   const [popupLogin, setPopupLogin] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cartLength, setCartLength] = useState(0);
 
   function updateOpen(value) {
     setOpen(value);
@@ -81,21 +90,23 @@ function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cart
     } else {
       setPopupLogin(true);
     }
-    if (!isAuthenticate) {
-      authentication().then((res) => {
-        updateIsAuthenticate(res.isAuth);
-        updateUserInfo(res.user);
-      });
-    }
+    // if (!isAuthenticate) {
+    //   authentication().then((res) => {
+    //     updateIsAuthenticate(res.isAuth);
+    //     updateUserInfo(res.user);
+    //   });
+    // }
   }, [location.pathname, isAuthenticate]);
 
-  // useEffect(() => {
-  //   if (isAuthenticate) {
-  //     getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
-  //       setcartItems(data);
-  //     });
-  //   }
-  // }, [userInfo, isAuthenticate]);
+  useEffect(() => {
+    if (isAuthenticate) {
+      getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
+        updateCartItems(data);
+        setCartLength(data.length);
+      });
+      
+    }
+  }, [userInfo]);
 
   const classes = useStyles();
 
@@ -145,7 +156,7 @@ function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cart
       <Link to="/cart">
         <Box className={classes.menu_link}>
           <ShoppingCartIcon />
-          {cartItems.length > 0 && (
+          {cartLength > 0 && (
             <Badge badgeContent={cartItems.length} color="secondary"></Badge>
           )}
           <Typography className={classes.menu_cart}>Cart</Typography>
@@ -161,6 +172,10 @@ function HeaderMenu({ updateIsAuthenticate, isAuthenticate, updateUserInfo ,cart
             updateIsModalOpen={updateIsModalOpen}
             isAuthenticate={isAuthenticate}
             updateUserInfo={updateUserInfo}
+            updateIsUser={updateIsUser}
+            userInfo={userInfo}
+            updateCartItems={updateCartItems}
+            cartItems={cartItems}
           />
         </DialogContent>
       </Dialog>

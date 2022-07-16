@@ -17,8 +17,9 @@ import VisibilityOff from "@material-ui/icons/VisibilityOff";
 import { CircularProgress } from "@material-ui/core";
 import toastMessage from "../../utils/toastMessage";
 import useQuery from "../../hooks/useQuery";
-
+import { getCartItems } from "../../actions/cartActions";
 import authentication from "../../adapters/authentication";
+import sellerauthentication  from "../../adapters/authentication";
 
 const useStyles = makeStyles((theme) => ({
   inputs: {
@@ -56,6 +57,10 @@ function Login({
   updateIsModalOpen,
   updateIsLogin,
   updateUserInfo,
+  updateIsUser,
+  userInfo,
+  updateCartItems,
+  cartItems,
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
@@ -72,29 +77,13 @@ function Login({
     password: "",
   });
   const [loading, setLoading] = useState(false);
+  const [loading2, setLoading2] = useState(false);
   const [requestBtnLoading, setRequestBtnLoading] = useState(false);
   const [submitCount, setSubmitCount] = useState(0);
+  const [submitCount2, setSubmitCount2] = useState(0);
   const [isLoginComponent, setIsLoginComponent] = useState(true);
   const [popupLogin, setPopupLogin] = useState(true);
   const [seller, setSeller] = useState(false);
-
-  const initial = useRef(true);
-
-  useEffect(() => {
-    if (initial.current === true) {
-      initial.current = false;
-    } else {
-      let formError = false;
-      const errorValues = Object.values(errors);
-      errorValues.forEach((value) => {
-        if (value) formError = true;
-      });
-      if (!formError) {
-        setLoading(true);
-        completeLogin();
-      }
-    }
-  }, [submitCount]);
 
   const classes = useStyles();
   const history = useNavigate();
@@ -183,16 +172,59 @@ function Login({
           password: values.password,
         });
         console.log(data);
-        const { isAuth, user } = await authentication();
+        const { isAuth, user } = await authentication(false);
         updateIsAuthenticate(isAuth);
         updateUserInfo(user);
+        updateIsUser(true);
+        // getCartItems(isAuth, cartItems, user).then((data) => {
+        //   updateCartItems(data);
+        // });
+        //Modal Close
+        if (popupLogin) {
+          updateIsModalOpen(false);
+        }
+        window.location.replace("/");
+      }
+    } catch (error) {
+      setLoading(false);
+      const { data } = error.response;
+      //console.log(data);
+      if (data.message === "login/invalid-phone-or-password") {
+        toastMessage("Invalid Mobile Number or Password.", "info");
+      } else {
+        toastMessage("Something went wrong. Please login later.", "error");
+      }
+    }
+  };
+
+  const completeLogin2 = async () => {
+    setLoading2(true);
+    try {
+      const res = await axios.post("/sellers/check-phone", {
+        phone: values.phone,
+      });
+      const isRegistered = res.data.isExist;
+      if (!isRegistered) {
+        setLoading2(false);
+        alert("You are not registered. Please Signup", "info");
+      } else {
+        const { data } = await axios.post("/sellers/login", {
+          phone: values.phone,
+          password: values.password,
+        });
+        console.log(data);
+        const { isAuth, user } = await sellerauthentication();
+        updateIsAuthenticate(isAuth);
+        updateUserInfo(user);
+        updateIsUser(false);
+
         //Modal Close
         if (popupLogin) {
           updateIsModalOpen(false);
         }
       }
     } catch (error) {
-      setLoading(false);
+      setLoading2(false);
       const { data } = error.response;
       //console.log(data);
       if (data.message === "login/invalid-phone-or-password") {
@@ -217,7 +249,43 @@ function Login({
       phone: validatedPhone.isError,
       password: validatedPassword.isError,
     });
-    setSubmitCount((cnt) => cnt + 1);
+    let formError = false;
+    const errorValues = Object.values(errors);
+    errorValues.forEach((value) => {
+      if (value) formError = true;
+    });
+    if (!formError) {
+      setLoading(true);
+      completeLogin();
+    }
+    // setSubmitCount((cnt) => cnt + 1);
+    //checkout useEffect
+  };
+
+  const onLoginClick2 = () => {
+    const validatedPhone = validatePhone(values.phone);
+    const validatedPassword = validatePassword(values.password);
+
+    //Set Error
+    setErrorMsg({
+      phone: validatedPhone.errorMsg,
+      password: validatedPassword.errorMsg,
+    });
+
+    setErrors({
+      phone: validatedPhone.isError,
+      password: validatedPassword.isError,
+    });
+    let formError = false;
+    const errorValues = Object.values(errors);
+    errorValues.forEach((value) => {
+      if (value) formError = true;
+    });
+    if (!formError) {
+      setLoading2(true);
+      completeLogin2();
+    }
+    // setSubmitCount2((cnt) => cnt + 1);
     //checkout useEffect
   };
 
@@ -323,16 +391,17 @@ function Login({
             ) : (
               "Login as user"
             )}
-          </Button><br />
+          </Button>
+          <br />
           <Button
             variant="contained"
             className={classes.btn}
             style={{ background: "#fb641b", color: "#fff" }}
             color="primary"
-            disabled={loading}
-            onClick={onLoginClick}
+            disabled={loading2}
+            onClick={onLoginClick2}
           >
-            {loading ? (
+            {loading2 ? (
               <CircularProgress size={24} className={classes.buttonProgress} />
             ) : (
               "Login as seller"

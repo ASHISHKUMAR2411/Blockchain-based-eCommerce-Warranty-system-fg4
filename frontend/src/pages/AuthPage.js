@@ -27,6 +27,7 @@ function AuthPage({
   updateIsModalOpen,
   isAuthenticate,
   updateUserInfo,
+  updateIsUser,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
@@ -83,6 +84,7 @@ function AuthPage({
             updateIsModalOpen={updateIsModalOpen}
             updateIsLogin={updateIsLogin}
             updateUserInfo={updateUserInfo}
+            updateIsUser={updateIsUser}
           />
         ) : (
           <h1>Sign up kar bsdk</h1>
