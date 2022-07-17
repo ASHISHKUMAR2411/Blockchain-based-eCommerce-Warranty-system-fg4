@@ -1,11 +1,12 @@
 import { Card, makeStyles, Box, Typography, Button } from "@material-ui/core";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
-// import { makeShortText } from "../../utils/makeShortText";
+import { removeFromCart } from "../../actions/cartActions";
 import { fassured } from "../../constants/data";
 import GroupButton from "./GroupButton";
 // import AlertDialogBox from "../AlertDialgBox";
 import { useState } from "react";
+
 
 const useStyle = makeStyles({
   component: {
@@ -51,7 +52,7 @@ const useStyle = makeStyles({
   },
 });
 
-const CartItem = ({ item }) => {
+const CartItem = ({ item, isAuthenticate, userInfo }) => {
   const classes = useStyle();
   const [isOpenDialog, setIsOpenDialog] = useState(false);
 
@@ -62,7 +63,7 @@ const CartItem = ({ item }) => {
   const dialogOpen = () => {
     setIsOpenDialog(true);
   };
-
+  
   return (
     <>
       <Card className={classes.component}>
@@ -98,7 +99,10 @@ const CartItem = ({ item }) => {
               </span>
             </Typography>
           </Link>
-          <Button className={classes.remove} onClick={dialogOpen}>
+          <Button
+            className={classes.remove}
+            onClick={removeFromCart(isAuthenticate, userInfo, item._id)}
+          >
             Remove
           </Button>
         </Box>

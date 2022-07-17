@@ -104,7 +104,6 @@ function HeaderMenu({
         updateCartItems(data);
         setCartLength(data.length);
       });
-      
     }
   }, [userInfo]);
 

@@ -8,6 +8,7 @@ import AccountPage from "./pages/MyAccountsPage";
 import CartPage from "./pages/CartPage";
 import Header from "./components/header/Header";
 import authentication from "./adapters/authentication";
+import { getCartItems } from "./actions/cartActions";
 
 
 //css
@@ -46,7 +47,6 @@ function App() {
         setUserInfo(res.user);
       });
     }
-    console.log(isUser);
   }, [userInfo,isAuthenticate]);
 
   return (
@@ -98,7 +98,6 @@ function App() {
                       isAuthenticate={isAuthenticate}
                       cartItems={cartItems}
                       userInfo={userInfo}
-                      updateIsAuthenticate={updateIsAuthenticate}
                     />
                   }
                 />

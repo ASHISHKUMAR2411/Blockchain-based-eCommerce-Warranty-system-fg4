@@ -16,25 +16,20 @@ export const addToCart = async (item, isAuthenticate, user, cartItems) => {
   }
 };
 
-// export const removeFromCart = (id) => async (dispatch, getState) => {
-//   const { isAuthenticate, user } = getState().userReducer;
-//   if (isAuthenticate) {
-//     try {
-//       await axios.delete("/cart/remove-item", {
-//         data: {
-//           userId: user._id,
-//           productId: id,
-//         },
-//       });
-//     } catch (error) {}
-//   }
-//   dispatch({
-//     type: actionType.REMOVE_FROM_CART,
-//     payload: {
-//       id: id,
-//     },
-//   });
-// };
+export const removeFromCart = async (isAuthenticate, user,id) => {
+  if (isAuthenticate) {
+    console.log("Starting");
+    try {
+      await axios.delete("/cart/remove-item", {
+        data: {
+          userId: user._id,
+          productId: id,
+        },
+      });
+      return "Deleted"
+    } catch (error) {}
+  }
+};
 
 // export const clearCart = () => async (dispatch, getState) => {
 //   const { isAuthenticate, user } = getState().userReducer;
@@ -55,9 +50,6 @@ export const addToCart = async (item, isAuthenticate, user, cartItems) => {
 // };
 
 export const getCartItems = async (isAuthenticate, cartItems, userId) => {
-  console.log(isAuthenticate);
-  console.log(cartItems);
-  console.log(userId);
     try {
       const { data } = await axios.get(`/cart/get-items/${userId._id}`);
       if (data.length > 0) {
@@ -73,6 +65,8 @@ export const getCartItems = async (isAuthenticate, cartItems, userId) => {
           }
         });
         return cartItems;
+      }else{
+        return [];
       }
     } catch (error) {
       console.log(error);
@@ -80,8 +74,8 @@ export const getCartItems = async (isAuthenticate, cartItems, userId) => {
     }
 };
 
-export const updateQty = (productId, qty) => {
-  return {
+// export const updateQty = (productId, qty) => {
+//   return {
     
-  };
-};
+//   };
+// };

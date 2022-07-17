@@ -46,10 +46,7 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Cart = ({
-  isAuthenticate,
-  cartItems,
-}) => {
+const Cart = ({ isAuthenticate, cartItems, userInfo }) => {
   const classes = useStyle();
   const [isLoading, setIsLoading] = useState(true);
   const history = useNavigate();
@@ -57,10 +54,13 @@ const Cart = ({
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
-    
+    // if (isAuthenticate) {
+    //   getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
+    //     updateCartItems(data);
+    //     setCartLength(data.length);
+    //   });
+    // }
   }, [isAuthenticate]);
-
-  
 
   const placeOrder = () => {
     window.location.replace("/checkout?init=true");
@@ -86,7 +86,11 @@ const Cart = ({
               </Typography>
             </Box>
             {cartItems.map((item) => (
-              <CartItem item={item} />
+              <CartItem
+                item={item}
+                isAuthenticate={isAuthenticate}
+                userInfo={userInfo}
+              />
             ))}
             <Box className={classes.bottom}>
               <Button
