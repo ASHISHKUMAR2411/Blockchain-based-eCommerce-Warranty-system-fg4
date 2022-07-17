@@ -36,6 +36,7 @@ function App() {
   useEffect(() => {
     if (!isAuthenticate) {
       authentication().then((res) => {
+        console.log(res.role);
         if(res.role == "user"){
           setIsUser(true);
         }else{

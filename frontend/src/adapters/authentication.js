@@ -8,6 +8,7 @@ const authentication = async () => {
     return {
       isAuth: data.isAuthenticate,
       user: data.user,
+      role: data.role,
     };
   } catch (error) {
     throw error;
