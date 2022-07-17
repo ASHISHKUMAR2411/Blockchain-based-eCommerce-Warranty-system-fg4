@@ -56,10 +56,10 @@ const login = async (req, res) => {
 };
 
 const logout = async (req, res) => {
-    // console.log("Logout");
+  // console.log("Logout");
   try {
     const token = req.cookies.auth_token;
-    
+
     if (token) {
       //get user id from jwt token
       const checkToken = jwt.verify(token, process.env.SECRET_KEY);
@@ -115,9 +115,11 @@ const authentication = async (req, res) => {
       //     message: "Not user. Please sign in first",
       //   });
       // }
+      const role = user.role;
       res.status(200).json({
         code: 200,
         isAuthenticate: true,
+        role: role,
         user: {
           ...user,
           _id: user._id.toString(),
@@ -144,13 +146,13 @@ const checkphone = async (req, res) => {
   try {
     const { phone } = req.body;
     const userInfo = await User.findOne({ phone: phone });
-    if(userInfo && userInfo.role == "user"){
+    if (userInfo && userInfo.role == "user") {
       res.status(200).json({
         code: 200,
         isExist: true,
         message: "User registered..",
       });
-    }else{
+    } else {
       res.status(200).json({
         code: 200,
         isExist: false,

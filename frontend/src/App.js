@@ -36,22 +36,17 @@ function App() {
   useEffect(() => {
     if (!isAuthenticate) {
       authentication().then((res) => {
+        if(res.role == "user"){
+          setIsUser(true);
+        }else{
+          setIsUser(false);
+        }
         setIsAuthenticate(res.isAuth);
         setUserInfo(res.user);
       });
     }
-    // getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
-    //   setcartItems(data);
-    // });
     console.log(isUser);
   }, [userInfo,isAuthenticate]);
-
-  // useEffect(() => {
-  //   if(isAuthenticate){
-      
-  //   }
-  // }, [userInfo, isAuthenticate]);
-  
 
   return (
     <div className="app">
@@ -113,12 +108,11 @@ function App() {
         </>
       ) : (
         <div className="container">
-          <img className="img" src="/monitors-laptop.png" alt="Mobile Laptop" />
+          {/* <img className="img" src="/monitors-laptop.png" alt="Mobile Laptop" /> */}
           <div className="text-container">
-            <h2 className="heading">Please use Laptop or desktop</h2>
+            <h2 className="heading">Please login as user</h2>
             <p className="para">
-              We don't support small screen yet. Please use laptop or desktop
-              for the best experience.
+              We are building sellers page
             </p>
           </div>
         </div>
