@@ -68,11 +68,13 @@ function HeaderMenu({
   updateIsUser,
   userInfo,
   updateCartItems,
+  cartLength,
+  updateCartLength,
 }) {
   const [open, setOpen] = useState(false);
   const [popupLogin, setPopupLogin] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [cartLength, setCartLength] = useState(0);
+  // const [cartLength, setCartLength] = useState(0);
 
   function updateOpen(value) {
     setOpen(value);
@@ -102,7 +104,7 @@ function HeaderMenu({
     if (isAuthenticate) {
       getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
         updateCartItems(data);
-        setCartLength(data.length);
+        updateCartLength(data.length);
       });
     }
   }, [userInfo]);

@@ -46,7 +46,12 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const Cart = ({ isAuthenticate, cartItems, userInfo }) => {
+const Cart = ({
+  isAuthenticate,
+  cartItems,
+  userInfo,
+  updateCart,
+}) => {
   const classes = useStyle();
   const [isLoading, setIsLoading] = useState(true);
   const history = useNavigate();
@@ -54,12 +59,6 @@ const Cart = ({ isAuthenticate, cartItems, userInfo }) => {
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
-    // if (isAuthenticate) {
-    //   getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
-    //     updateCartItems(data);
-    //     setCartLength(data.length);
-    //   });
-    // }
   }, [isAuthenticate]);
 
   const placeOrder = () => {
@@ -90,6 +89,7 @@ const Cart = ({ isAuthenticate, cartItems, userInfo }) => {
                 item={item}
                 isAuthenticate={isAuthenticate}
                 userInfo={userInfo}
+                updateCart={updateCart}
               />
             ))}
             <Box className={classes.bottom}>

@@ -53,7 +53,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ProductPage({ setIsAuthenticate, isAuthenticate, user, cartItems }) {
+function ProductPage({
+  setIsAuthenticate,
+  isAuthenticate,
+  user,
+  cartItems,
+  updateCart,
+}) {
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(true);
   const [product, setProducts] = useState([]);
@@ -87,6 +93,7 @@ function ProductPage({ setIsAuthenticate, isAuthenticate, user, cartItems }) {
               isAuthenticate={isAuthenticate}
               user={user}
               cartItems={cartItems}
+              updateCart={updateCart}
             />
           </Grid>
           <Grid

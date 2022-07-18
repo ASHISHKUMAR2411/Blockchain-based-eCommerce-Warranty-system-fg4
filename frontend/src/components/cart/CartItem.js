@@ -52,7 +52,12 @@ const useStyle = makeStyles({
   },
 });
 
-const CartItem = ({ item, isAuthenticate, userInfo }) => {
+const CartItem = ({
+  item,
+  isAuthenticate,
+  userInfo,
+  updateCart,
+}) => {
   const classes = useStyle();
   const [isOpenDialog, setIsOpenDialog] = useState(false);
 
@@ -63,7 +68,12 @@ const CartItem = ({ item, isAuthenticate, userInfo }) => {
   const dialogOpen = () => {
     setIsOpenDialog(true);
   };
-  
+
+  const remove = (isAuthenticate, userInfo, item) => {
+    removeFromCart(isAuthenticate, userInfo, item._id);
+    updateCart();
+  };
+
   return (
     <>
       <Card className={classes.component}>
@@ -101,18 +111,12 @@ const CartItem = ({ item, isAuthenticate, userInfo }) => {
           </Link>
           <Button
             className={classes.remove}
-            onClick={removeFromCart(isAuthenticate, userInfo, item._id)}
+            onClick={(event) => remove(isAuthenticate, userInfo, item)}
           >
             Remove
           </Button>
         </Box>
       </Card>
-      {/* <AlertDialogBox
-        isOpenDialog={isOpenDialog}
-        handleClose={dialogClose}
-        itemId={item._id}
-        type="cart"
-      /> */}
     </>
   );
 };

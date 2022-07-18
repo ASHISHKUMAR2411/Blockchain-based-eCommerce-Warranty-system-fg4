@@ -67,6 +67,8 @@ function Header({
   updateIsUser,
   userInfo,
   updateCartItems,
+  cartLength,
+  updateCartLength,
 }) {
   const classes = useStyle();
 
@@ -125,6 +127,8 @@ function Header({
             updateIsUser={updateIsUser}
             userInfo={userInfo}
             updateCartItems={updateCartItems}
+            cartLength={cartLength}
+            updateCartLength={updateCartLength}
           />
         </Toolbar>
       </AppBar>

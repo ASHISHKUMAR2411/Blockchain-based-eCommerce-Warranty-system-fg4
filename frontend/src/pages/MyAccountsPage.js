@@ -50,6 +50,7 @@ function MyAccountsPage({
           className={classes.leftComponent}
         >
           <h1>My accounts page</h1>
+          <h2>Anurag Sharma</h2>
           <h2>{userInfo._id}</h2>
           <h2>{isAuthenticate}</h2>
           {/* <h2>{cartItems}</h2> */}

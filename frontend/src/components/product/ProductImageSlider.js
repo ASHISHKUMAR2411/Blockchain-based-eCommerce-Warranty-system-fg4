@@ -75,6 +75,7 @@ const ProductImageSlider = ({
   isAuthenticate,
   user,
   cartItems,
+  updateCart,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const classes = useStyle();
@@ -83,9 +84,10 @@ const ProductImageSlider = ({
 
   const addItemToCart = () => {
     addToCart(product, isAuthenticate, user, cartItems);
+    updateCart();
     history("/cart");
   };
-  
+
   return (
     <Box className={classes.leftContainer}>
       <Box className={classes.imageBox}>
@@ -95,7 +97,7 @@ const ProductImageSlider = ({
           alt={product.title.longTitle}
         />
       </Box>
-      <br />  
+      <br />
       <Button
         onClick={() => addItemToCart()}
         className={clsx(classes.button, classes.addToCart)}

@@ -21,6 +21,8 @@ function App() {
   const [isUser, setIsUser] = useState(true);
   const [cartItems, setcartItems] = useState([]);
   const [userInfo, setUserInfo] = useState({});
+  const [cartLength, setCartLength] = useState(0);
+
   function updateIsAuthenticate(value) {
     setIsAuthenticate(value);
   }
@@ -32,6 +34,16 @@ function App() {
   }
   function updateIsUser(value) {
     setIsUser(value);
+  }
+  function updateCartLength(value) {
+    setCartLength(value);
+  }
+
+  const updateCart = () => {
+    getCartItems(isAuthenticate, cartItems, userInfo).then((data) => {
+      updateCartItems(data);
+      setCartLength(data.length);
+    });
   }
   
   useEffect(() => {
@@ -63,6 +75,8 @@ function App() {
                 updateIsUser={updateIsUser}
                 userInfo={userInfo}
                 updateCartItems={updateCartItems}
+                cartLength={cartLength}
+                updateCartLength={updateCartLength}
               />
               <Routes>
                 <Route exact path="/" element={<HomePage />} />
@@ -74,6 +88,7 @@ function App() {
                       isAuthenticate={isAuthenticate}
                       user={userInfo}
                       cartItems={cartItems}
+                      updateCart={updateCart}
                     />
                   }
                 />
@@ -98,6 +113,7 @@ function App() {
                       isAuthenticate={isAuthenticate}
                       cartItems={cartItems}
                       userInfo={userInfo}
+                      updateCart={updateCart}
                     />
                   }
                 />
@@ -111,9 +127,7 @@ function App() {
           {/* <img className="img" src="/monitors-laptop.png" alt="Mobile Laptop" /> */}
           <div className="text-container">
             <h2 className="heading">Please login as user</h2>
-            <p className="para">
-              We are building sellers page
-            </p>
+            <p className="para">We are building sellers page</p>
           </div>
         </div>
       )}
