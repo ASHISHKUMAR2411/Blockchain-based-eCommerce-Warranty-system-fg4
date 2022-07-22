@@ -44,7 +44,7 @@ function ProfileMenu({ logout }) {
     switch (e.target.id) {
       case "account":
         console.log("Account page");
-        history("/accounts");
+        history("/account");
         break;
       case "wishlist":
         history("/wishlist");

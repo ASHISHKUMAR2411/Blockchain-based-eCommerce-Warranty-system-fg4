@@ -94,7 +94,7 @@ function App() {
                 />
                 <Route
                   exact
-                  path="/accounts"
+                  path="/account"
                   element={
                     <AccountPage
                       isAuthenticate={isAuthenticate}

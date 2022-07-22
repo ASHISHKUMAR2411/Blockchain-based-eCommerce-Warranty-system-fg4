@@ -6,6 +6,8 @@ import { fassured } from "../../constants/data";
 import GroupButton from "./GroupButton";
 // import AlertDialogBox from "../AlertDialgBox";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+
 
 
 const useStyle = makeStyles({
@@ -60,6 +62,7 @@ const CartItem = ({
 }) => {
   const classes = useStyle();
   const [isOpenDialog, setIsOpenDialog] = useState(false);
+  const history = useNavigate();
 
   const dialogClose = () => {
     setIsOpenDialog(false);
@@ -72,6 +75,7 @@ const CartItem = ({
   const remove = (isAuthenticate, userInfo, item) => {
     removeFromCart(isAuthenticate, userInfo, item._id);
     updateCart();
+    history("/cart");
   };
 
   return (
