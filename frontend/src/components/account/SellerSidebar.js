@@ -1,6 +1,5 @@
 import { React, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-// import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import {
   Avatar,
@@ -19,9 +18,6 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 
 import { maleAvatarUrl, femaleAvatarUrl } from "../../constants/data";
 import toastMessage from "../../utils/toastMessage";
-
-// import { setIsAuthenticate, setUserInfo } from "../../actions/userActions";
-// import { clearCart } from "../../actions/cartActions";
 
 const useStyles = makeStyles((theme) => ({
   component: {
@@ -103,7 +99,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function Sidebar({ userInfo, updateUserInfo, updateIsAuthenticate }) {
+
+function SellerSidebar({ userInfo, updateUserInfo, updateIsAuthenticate }) {
   const classes = useStyles();
   const location = useLocation();
   const currentPath = location.pathname;
@@ -145,17 +142,17 @@ function Sidebar({ userInfo, updateUserInfo, updateIsAuthenticate }) {
         </Box>
       </Box>
       <Box className={classes.bottom}>
-        <Link to="/orders">
+        {/* <Link to="/orders">
           <Box className={clsx(classes.sideBarLink, classes.hoverTab)}>
             <img src="/order-icon.svg" className={classes.sideBarLinkIcon} />
             <p>MY ORDERS</p>
             <ChevronRightIcon style={{ marginLeft: "auto" }} />
           </Box>
-        </Link>
+        </Link> */}
         <Divider className={classes.divider} style={{ marginTop: 5 }} />
         <Box className={classes.sideBarLink}>
           <PersonIcon className={classes.sideBarLinkIcon} />
-          <p>ACCOUNT SETTINGS</p>
+          <p>Products</p>
         </Box>
         <Box className={classes.subMenu}>
           <Link to="/account">
@@ -163,41 +160,20 @@ function Sidebar({ userInfo, updateUserInfo, updateIsAuthenticate }) {
               className={clsx(classes.subLink, classes.hoverTab)}
               style={currentPath === "/account" ? activeStyle : {}}
             >
-              Profile Information
+              Create Product
             </Typography>
           </Link>
-          <Link to="/account/addresses" aria-disabled={true}>
+          <Link to="/account/products" aria-disabled={true}>
             <Typography
               className={clsx(classes.subLink, classes.hoverTab)}
-              style={currentPath === "/account/addresses" ? activeStyle : {}}
+              style={currentPath === "/account/products" ? activeStyle : {}}
             >
-              Manage Addresses
-            </Typography>
-          </Link>
-          <Link to="/account">
-            <Typography className={clsx(classes.subLink, classes.hoverTab)}>
-              PAN Card Information
+              Your Products
             </Typography>
           </Link>
         </Box>
         <Divider className={classes.divider} />
 
-        <Box className={classes.sideBarLink}>
-          <AccountBalanceWalletIcon className={classes.sideBarLinkIcon} />
-          <p>PAYMENTS</p>
-        </Box>
-        <Box className={classes.subMenu}>
-          <Link to="/account">
-            <Typography className={clsx(classes.subLink, classes.hoverTab)}>
-              Saved UPI
-            </Typography>
-          </Link>
-          <Link to="/account">
-            <Typography className={clsx(classes.subLink, classes.hoverTab)}>
-              Saved Cards
-            </Typography>
-          </Link>
-        </Box>
         <Divider className={classes.divider} />
         <Box
           className={clsx(classes.sideBarLink, classes.hoverTab)}
@@ -212,4 +188,4 @@ function Sidebar({ userInfo, updateUserInfo, updateIsAuthenticate }) {
   );
 }
 
-export default Sidebar;
+export default SellerSidebar;

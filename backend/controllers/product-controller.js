@@ -12,11 +12,39 @@ const getProducts = async (req, res) => {
         $options: "i",
       },
     });
-    res.json(result);
+    res.status(201).json(result);
   } catch (error) {
     res.status(500).json({ error: error });
   }
 };
+
+const getSellersProducts = async (req,res) =>{
+  const token = req.cookies.auth_token;
+  try {
+    if (token) {
+        const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+        const userInfo = await User.findOne(
+          { _id: verifyToken._id, "tokens.token": token },
+          { password: 0, tokens: 0 }
+        );
+
+        //get Result
+        const user = userInfo._doc;
+        if (user.role != "seller") {
+          throw new error();
+        }
+        const result = await Product.find({
+          "sellerId":  user._id
+        })
+        console.log("products");
+        res.status(201).json(result);
+      }else{
+        throw new error();
+      }
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+}
 
 const addProducts = async (req, res) => {
   const token = req.cookies.auth_token;
@@ -34,12 +62,14 @@ const addProducts = async (req, res) => {
         if (user.role != "seller") {
           throw new error();
         }
+        const product = new Product(req.body);
+        product.sellerId = user._id;
+        await product.save();
+        res.status(201).json({ code: 201, productAdded: true });
       }else{
         throw new error();
       }
-        const product = new Product(req.body);
-        await product.save();
-        res.status(201).json({ code: 201, productAdded: true });
+        
     }catch(error){
         console.log(error);
         res
@@ -74,5 +104,6 @@ module.exports = {
   addProducts,
   getProductById,
   getProductByCategory,
+  getSellersProducts,
 };
 

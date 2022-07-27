@@ -5,7 +5,7 @@ import Sidebar from "../components/account/Sidebar";
 import LoaderSpinner from "../components/LoaderSpinner";
 import ToastMessageContainer from "../components/ToastMessageContainer";
 import authentication from "../adapters/authentication";
-import PersonalInfo from "../components/account/PersonalInfo";
+// import PersonalInfo from "../components/account/PersonalInfo";
 
 const useStyles = makeStyles((theme) => ({
   component: {
