@@ -2,8 +2,14 @@ var mongoose = require("mongoose");
 
 const productSchema = mongoose.Schema({
   title: {
-    shortTitle: String,
-    longTitle: String,
+    shortTitle: {
+      type: String,
+      required: true,
+    },
+    longTitle: {
+      type: String,
+      required: true,
+    },
   },
   price: {
     mrp: Number,
@@ -16,6 +22,11 @@ const productSchema = mongoose.Schema({
   tagline: String,
   sellerId: {
     type: mongoose.Schema.ObjectId,
+    required: true,
+  },
+  sellerWalletAddress: String,
+  img: {
+    type: String,
     required: true,
   },
   // url: String,

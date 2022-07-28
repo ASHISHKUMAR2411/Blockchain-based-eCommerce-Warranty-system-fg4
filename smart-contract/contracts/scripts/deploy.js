@@ -12,6 +12,8 @@ async function main() {
   const product = await Product.deploy();
 
   await product.deployed();
+  //call getmetadata
+  //main funciton 
 
   console.log("Product purchased", product.address);
 }

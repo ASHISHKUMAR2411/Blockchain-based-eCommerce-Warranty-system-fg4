@@ -73,7 +73,7 @@ const pinJSONToIPFS = (body) => {
 
 
 // function for image ipfs hash link
-const getMetadata = async () => {
+const getMetadata = async (shortTitle, longTitle, price, category, tagline) => {
     // we can also get the timestamps from the metadata of the file
     const imageIpfsLink = await pinFileToIPFS();
     console.log(imageIpfsLink);
@@ -84,16 +84,14 @@ const getMetadata = async () => {
     // it is json format
     //TODO change body of the json file
     const body = {
-        name: '100 White Diamond Earings',
-        description: 'One of the most beautiful earning in the world with more than 100 white polished certified diamonds with a elegant design and with the finest quality.',
-        image: imageIpfsLink,
-        properties: {
-            price: '$823000',
-            weight: '24gm',
-            quality: 'AGA certified',
-            material: 'Diamonds and Gold',
-            color: 'Golden white'
-        }
+      name: shortTitle,
+      description: longTitle,
+      image: imageIpfsLink,
+      properties: {
+        price: price,
+        category: category,
+        tagline: tagline,
+      },
     };
 
     // options for the json file and geting the hash of the file

@@ -86,42 +86,72 @@ function Header({
 
   return (
     <div className="header">
-      <AppBar className={classes.header}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            className={classes.menuButton}
-            onClick={handleOpen}
-          >
-            <Menu />
-          </IconButton>
+      {walletAddress != "" ? (
+        <AppBar className={classes.header}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              className={classes.menuButton}
+              onClick={handleOpen}
+            >
+              <Menu />
+            </IconButton>
 
-          <Link to="/">
-            <Box className={classes.logo_Container}>
-              {/* logo */}
-              <img
-                className={classes.header_logo}
-                src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
-                alt="Flipkart"
-              />
-              {/* Explore plus part  */}
-            </Box>
-          </Link>
-          <SearchBar />
-          <HeaderMenu
-            updateIsAuthenticate={updateIsAuthenticate}
-            isAuthenticate={isAuthenticate}
-            updateUserInfo={updateUserInfo}
-            cartItems={cartItems}
-            updateIsUser={updateIsUser}
-            userInfo={userInfo}
-            updateCartItems={updateCartItems}
-            cartLength={cartLength}
-            updateCartLength={updateCartLength}
-            walletAddress={walletAddress}
-          />
-        </Toolbar>
-      </AppBar>
+            <Link to="/">
+              <Box className={classes.logo_Container}>
+                {/* logo */}
+                <img
+                  className={classes.header_logo}
+                  src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+                  alt="Flipkart"
+                />
+                {/* Explore plus part  */}
+              </Box>
+            </Link>
+            <SearchBar />
+            <HeaderMenu
+              updateIsAuthenticate={updateIsAuthenticate}
+              isAuthenticate={isAuthenticate}
+              updateUserInfo={updateUserInfo}
+              cartItems={cartItems}
+              updateIsUser={updateIsUser}
+              userInfo={userInfo}
+              updateCartItems={updateCartItems}
+              cartLength={cartLength}
+              updateCartLength={updateCartLength}
+              walletAddress={walletAddress}
+            />
+          </Toolbar>
+        </AppBar>
+      ) : (
+        <AppBar className={classes.header}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              className={classes.menuButton}
+              onClick={handleOpen}
+            >
+              <Menu />
+            </IconButton>
+
+            <Link to="/">
+              <Box className={classes.logo_Container}>
+                {/* logo */}
+                <img
+                  className={classes.header_logo}
+                  src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_8d85f4.png"
+                  alt="Flipkart"
+                />
+                {/* Explore plus part  */}
+              </Box>
+            </Link>
+            <SearchBar />
+            <a href="https://metamask.io/download/">
+              <h2>Install Metamask Extension First</h2>
+            </a>
+          </Toolbar>
+        </AppBar>
+      )}
     </div>
   );
 }

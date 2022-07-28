@@ -17,23 +17,31 @@ function HomePage() {
   const classes = useStyles();
   
   return (
+    // <div>
+    //   <h2>
+    //     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique eum, iure provident non aperiam illum modi possimus expedita quidem atque voluptas adipisci iusto voluptate et necessitatibus consequuntur! Error corporis voluptatum odio sed ea ut. Alias minima perferendis itaque pariatur inventore excepturi, exercitationem facere necessitatibus saepe possimus magni ea quas aperiam quos perspiciatis maiores natus minus ex nulla sunt ipsam totam doloremque cupiditate vitae! Corrupti voluptas neque id, hic non impedit nisi dolorum minus quisquam at natus repellendus molestiae temporibus nobis blanditiis velit eum quidem in fugit illo commodi aspernatur qui placeat. Quidem, dolorem debitis voluptatibus nihil assumenda repellat recusandae unde.
+    //   </h2>
+
+    //   <img src="http://localhost:3001/images/anurag.jpg" alt="No Image" />
+    // </div>
     <Box className={classes.homePage}>
       <Navbar />
+      {/* <img src="http://localhost:3001/images/anurag.jpg" alt="No Image" /> */}
       <ProductRow
         // isFirstRow={true}
-        categoryName="mobile"
+        categoryName="phone"
         title="Mobile"
         subTitle="Deals Refresh Every 24 Hours"
       />
       <ProductRow
         // isFirstRow={true}
-        categoryName="phone"
+        categoryName="laptop"
         title="Laptop"
         subTitle="Deals Refresh Every 24 Hours"
       />
       <ProductRow
         title="Top Deals"
-        categoryName="moblie"
+        categoryName="phone"
         subTitle="Daily crazy deals"
       />
       <Footer />

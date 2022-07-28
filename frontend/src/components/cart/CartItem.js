@@ -82,8 +82,7 @@ const CartItem = ({
     <>
       <Card className={classes.component}>
         <Box className={classes.leftComponent}>
-          <img src={item.url} className={classes.image} />
-          <h1>{item.qty}</h1>
+          <img src={item.img} className={classes.image} />
           <GroupButton product={item} />
         </Box>
         <Box className={classes.mid}>

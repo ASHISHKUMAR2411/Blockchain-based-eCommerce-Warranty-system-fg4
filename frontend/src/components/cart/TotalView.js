@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Box, makeStyles, Typography } from "@material-ui/core";
-import { useDispatch, useSelector } from "react-redux";
 import clsx from "clsx";
-import { setTotalAmount } from "../../actions/orderActions";
 
 const useStyle = makeStyles({
   header: {
@@ -30,34 +28,35 @@ const useStyle = makeStyles({
   },
 });
 
-const TotalView = ({ page = "cart" }) => {
+const TotalView = ({
+  page = "checkout",
+  cartItems,
+  totalAmount,
+  updateTotalAmount,
+}) => {
   const classes = useStyle();
   const [price, setPrice] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [deliveryCharges, setDeliveryCharges] = useState(0);
-  const { cartItems, stateChangeNotifyCounter } = useSelector(
-    (state) => state.cartReducer
-  );
-  const dispatch = useDispatch();
 
   useEffect(() => {
-    totalAmount();
-  }, [cartItems, stateChangeNotifyCounter]);
+    TotalAmount();
+  }, [cartItems]);
 
-  const totalAmount = () => {
+  const TotalAmount = () => {
     let price = 0,
       discount = 0;
     cartItems.map((item) => {
       price += item.price.mrp * item.qty;
       discount += (item.price.mrp - item.price.cost) * item.qty;
     });
-
     setPrice(price);
     setDiscount(discount);
+    updateTotalAmount(price);
     setDeliveryCharges(price - discount > 500 ? 0 : 40);
 
     if (page === "checkout") {
-      dispatch(setTotalAmount(price - discount + deliveryCharges));
+      updateTotalAmount(price - discount + deliveryCharges);
     }
   };
 

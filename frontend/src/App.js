@@ -9,15 +9,15 @@ import SellersPage from "./pages/SellersPage";
 import PersonalInfo from "./components/account/PersonalInfo";
 import GamePage from "./pages/GamePage";
 import CartPage from "./pages/CartPage";
+import OrdersPage from "./pages/OrdersPage";
 import Header from "./components/header/Header";
 import authentication from "./adapters/authentication";
 import { getCartItems } from "./actions/cartActions";
 import toastMessage from "./utils/toastMessage";
 import ToastMessageContainer from "./components/ToastMessageContainer";
+import { ethers } from "ethers";
 //css
 import "./App.css";
-
-
 function App() { 
   
   const [isAuthenticate, setIsAuthenticate] = useState(false);
@@ -26,6 +26,7 @@ function App() {
   const [userInfo, setUserInfo] = useState({});
   const [cartLength, setCartLength] = useState(0);
   const [walletAddress, setWallet] = useState("");
+  const [walletBalance, setWalletBalance] = useState(null);
 
   function updateIsAuthenticate(value) {
     setIsAuthenticate(value);
@@ -74,18 +75,30 @@ function App() {
       toastMessage("install metamask extension!!");
     }
   }
+
+   const getbalance = (address) => {
+     // Requesting balance method
+     window.ethereum
+       .request({
+         method: "eth_getBalance",
+         params: [address, "latest"],
+       })
+       .then((balance) => {
+           setWalletBalance(ethers.utils.formatEther(balance));
+       });
+   };
   
   useEffect(() => {
     connectWallet().then((data)=>{
       if(data.status == true){
         setWallet(data.address);
+        getbalance(data.address);
       }else{
         toastMessage("Create Metamask account first!!");
       }
     })
     if (!isAuthenticate) {
       authentication().then((res) => {
-        console.log(res.role);
         if(res.role == "user"){
           setIsUser(true);
         }else{
@@ -115,6 +128,7 @@ function App() {
                 updateCartLength={updateCartLength}
                 walletAddress={walletAddress}
               />
+
               <Routes>
                 <Route exact path="/" element={<HomePage />} />
                 <Route
@@ -129,19 +143,6 @@ function App() {
                     />
                   }
                 />
-                {/* <Route
-                  exact
-                  path="/account"
-                  element={
-                    <AccountPage
-                      isAuthenticate={isAuthenticate}
-                      userInfo={userInfo}
-                      updateIsAuthenticate={updateIsAuthenticate}
-                      updateUserInfo={updateUserInfo}
-                      cartItems={cartItems}
-                    />
-                  }
-                /> */}
                 <Route
                   exact
                   path="/cart"
@@ -151,6 +152,8 @@ function App() {
                       cartItems={cartItems}
                       userInfo={userInfo}
                       updateCart={updateCart}
+                      walletAddress={walletAddress}
+                      walletBalance={walletBalance}
                     />
                   }
                 />
@@ -163,6 +166,16 @@ function App() {
                     // cartItems={cartItems}
                     // userInfo={userInfo}
                     // updateCart={updateCart}
+                    />
+                  }
+                />
+                <Route
+                  exact
+                  path="/orders"
+                  element={
+                    <OrdersPage
+                      isAuthenticate={isAuthenticate}
+                      userInfo={userInfo}
                     />
                   }
                 />
@@ -183,6 +196,7 @@ function App() {
                     userInfo={userInfo}
                     updateUserInfo={updateUserInfo}
                     updateIsAuthenticate={updateIsAuthenticate}
+                    walletAddress={walletAddress}
                   />
                 }
               />

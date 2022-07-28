@@ -20,21 +20,16 @@ export const setOrderItems = (cartItems) => {
   };
 };
 
-export const getOrderDetails = () => async (dispatch, getState) => {
-  const { isAuthenticate, user } = getState().userReducer;
+export const getOrderDetails = async (isAuthenticate, user) => {
   if (isAuthenticate) {
     try {
       const { data } = await axios.post("/orders/get-order-details", {
         userId: user._id,
       });
-      dispatch({
-        type: actionType.GET_ORDER_DETAILS,
-        payload: {
-          details: data,
-        },
-      });
+      return data;
     } catch (error) {
       console.log(error);
+      return [];
     }
   }
 };

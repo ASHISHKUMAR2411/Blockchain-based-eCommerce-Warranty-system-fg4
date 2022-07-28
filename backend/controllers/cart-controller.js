@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 
 const addItems = async (req, res) =>{
     try {
+       const userId = mongoose.Types.ObjectId(req.body.userId);
+       await Cart.deleteOne({ userId: userId });
         const cart = new Cart(req.body);
         await cart.save();
         res.status(201).send();
