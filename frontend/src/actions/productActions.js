@@ -11,6 +11,17 @@ export const getProducts = async (key) => {
   }
 };
 
+export const getSellersProducts = async () => {
+  try {
+    const { data } = await axios.get("/products/get-products/");
+    return data;
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+};
+
+
 export const getProductById = async (id) => {
   try {
     const { data } = await axios.get(`/products/get-product/${id}`);

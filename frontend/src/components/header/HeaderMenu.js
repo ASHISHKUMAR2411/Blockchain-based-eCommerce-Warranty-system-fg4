@@ -148,10 +148,10 @@ function HeaderMenu({
         </Button>
       )}
 
-      <Link to="/more">
+      <Link to="/games">
         <Box className={classes.menu_link}>
-          <Typography className={classes.menu_more}>More</Typography>
-          <ExpandMoreIcon />
+          <Typography className={classes.menu_more}>Games</Typography>
+          {/* <ExpandMoreIcon /> */}
         </Box>
       </Link>
       <Link to="/cart">

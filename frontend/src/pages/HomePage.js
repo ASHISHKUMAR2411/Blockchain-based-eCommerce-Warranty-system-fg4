@@ -27,7 +27,7 @@ function HomePage() {
       />
       <ProductRow
         // isFirstRow={true}
-        categoryName="Laptop"
+        categoryName="phone"
         title="Laptop"
         subTitle="Deals Refresh Every 24 Hours"
       />

@@ -12,145 +12,138 @@ import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
-
-// import { updateEmail, updateUserInfo } from "../../actions/userActions";
 import toastMessage from "../../utils/toastMessage";
 
 // import { makeCapitalizeText } from "../../utils/makeCapitalizeText";
 
-const useStyles = makeStyles((theme) => ({
-  component: {
-    padding: "30px 40px 0 40px",
-  },
-  form: {
-    display: "flex",
-    alignItems: "flex-start",
-    margin: "20px 0",
-  },
-  saveBtn: {
-    width: "150px",
-    padding: "12px",
-    color: "rgb(255, 255, 255)",
-    borderRadius: "3px",
-    fontSize: "16px",
-    boxShadow: "none",
-  },
-  input: {
-    width: "270px",
-    fontSize: "14px",
-    outline: "none",
-    borderRadius: "2px",
-    boxShadow: "none",
-    marginRight: 10,
-  },
-  title: {
-    fontSize: "18px",
-    fontWeight: 600,
-    paddingRight: "24px",
-    display: "inline-block",
-  },
-  editLink: {
-    display: "inline-block",
-    fontSize: "14px",
-    fontWeight: 500,
-    color: "#2874f0",
-    cursor: "pointer",
-  },
-}));
+    const useStyles = makeStyles((theme) => ({
+    component: {
+        padding: "30px 40px 0 40px",
+    },
+    form: {
+        display: "flex",
+        alignItems: "flex-start",
+        margin: "10px 0",
+    },
+    saveBtn: {
+        width: "150px",
+        padding: "12px",
+        color: "rgb(255, 255, 255)",
+        borderRadius: "3px",
+        fontSize: "16px",
+        boxShadow: "none",
+    },
+    input: {
+        width: "270px",
+        fontSize: "14px",
+        outline: "none",
+        borderRadius: "2px",
+        boxShadow: "none",
+        marginRight: 10,
+    },
+    title: {
+        fontSize: "18px",
+        fontWeight: 600,
+        paddingRight: "24px",
+        display: "inline-block",
+    },
+    editLink: {
+        display: "inline-block",
+        fontSize: "14px",
+        fontWeight: 500,
+        color: "#2874f0",
+        cursor: "pointer",
+    },
+    }));
 
-function PersonalInfo() {
-  const [isEditPInfo, setIsEditPInfo] = useState(false);
-  const [isEditEmail, setIsEditEmail] = useState(false);
-//   const { user } = useSelector((state) => state.userReducer);
-
+function PersonalInfo({userInfo}) {
+  const [isEditProduct, setIsEditProduct] = useState(false);
   const [values, setValues] = useState({
-    fname: user.fname,
-    lname: user.lname,
-    gender: user.gender,
-    phone: user.phone,
-    email: user.email,
+    shortTitle: null,
+    longTitle: null,
+    mrp: null,
+    cost: null,
+    discount: null,
+    qty: null,
+    category: null,
+    tagline: null,
   });
-
   const [errors, setErrors] = useState({
-    fname: false,
-    lname: false,
-    email: false,
-    phone: false,
+    
+    shortTitle: false,
+    longTitle: false,
+    mrp: false,
+    cost: false,
+    discount: false,
+    qty: false,
+    category: false,
+    tagline: false,
   });
 
   const [errorMsg, setErrorMsg] = useState({
-    fName: "",
-    lName: "",
-    phone: "",
-    email: "",
+      shortTitle: "",
+      longTitle: "",
+      mrp: "",
+      cost: "",
+      discount: "",
+    qty: "",
+    category: "",
+    tagline: "",
   });
 
-  //hooks
+//   //hooks
   const classes = useStyles();
-  const initial = useRef(true);
-  const dispatch = useDispatch();
 
-  //Save Counter
-  const [saveCountPInfo, setSaveCountPInfo] = useState(0);
-  const [saveCountEmail, setSaveCountEmail] = useState(0);
+//   //Save Counter
+  const [saveProduct, setSaveProduct] = useState(0);
 
   useEffect(() => {
-    if (initial.current === false) {
-      if (!errors.fname && !errors.lname) {
+      if (
+        values.shortTitle != null &&
+        values.longTitle != null &&
+        values.mrp != null &&
+        values.cost != null &&
+        values.discount != null &&
+        values.qty != null &&
+        values.category != null &&
+        values.tagline != null
+      ) {
         axios
-          .patch("/accounts/update-user-info", {
-            id: user._id,
-            fname: makeCapitalizeText(values.fname),
-            lname: makeCapitalizeText(values.lname),
-            gender: values.gender,
+          .post("/products/add-products", {
+            title: {
+              shortTitle: values.shortTitle,
+              longTitle: values.longTitle,
+            },
+            price: {
+              mrp: values.mrp,
+              cost: values.cost,
+              discount: values.discount,
+            },
+            qty: values.qty,
+            category: values.category,
+            tagline: values.tagline,
           })
           .then(() => {
-            dispatch(
-              updateUserInfo(
-                makeCapitalizeText(values.fname),
-                makeCapitalizeText(values.lname),
-                values.gender
-              )
-            );
-            toastMessage("Account details updated !", "success");
+            toastMessage("Product Added !", "success");
+            setValues({ shortTitle: null });
           })
           .catch((e) => {
             toastMessage("Something went wrong.", "error");
           });
-        setIsEditPInfo(false);
+        setIsEditProduct(false);
+      }else{
+        toastMessage("Please fill all the fields", "error");
       }
-    }
-  }, [saveCountPInfo]);
+  }, [saveProduct]);
 
-  useEffect(() => {
-    if (initial.current === true) {
-      initial.current = false;
-    } else {
-      if (!errors.email) {
-        axios
-          .patch("/accounts/update-email", {
-            id: user._id,
-            email: values.email,
-          })
-          .then(() => {
-            dispatch(updateEmail(values.email));
-            toastMessage("Email Address updated !", "success");
-          })
-          .catch((e) => {
-            toastMessage("Something went wrong.", "error");
-          });
-        setIsEditEmail(false);
-      }
-    }
-  }, [saveCountEmail]);
-
-  //reg for name
+//   //reg for name
 
   const regName = /^[a-zA-Z]+$/;
-  const regEmail =
-    /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+  const regEmail =/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
 
-  const validateName = (name, fieldName) => {
+  const regPrice = /^[0-9]/;
+
+  const validateField = (name, fieldName) => {
     if (name === "") {
       return {
         isError: true,
@@ -161,7 +154,7 @@ function PersonalInfo() {
         isError: true,
         errorMsg: "Minimum 3 charterers required",
       };
-    } else if (name.length > 20) {
+    } else if (name.length > 50) {
       return {
         isError: true,
         errorMsg: "Maximum 20 charterers allowed",
@@ -179,254 +172,162 @@ function PersonalInfo() {
     }
   };
 
-  const validateEmail = (email) => {
-    if (email === "") {
-      return {
-        isError: true,
-        errorMsg: `Email address can not be empty`,
-      };
-    } else if (!regEmail.test(email)) {
-      return {
-        isError: true,
-        errorMsg: `Please enter valid email`,
-      };
-    } else {
-      return {
-        isError: false,
-        errorMsg: "",
-      };
-    }
-  };
-
   const handleChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
   const savePersonalInfo = () => {
-    const validatedFName = validateName(values.fname, "First Name");
-    const validatedLName = validateName(values.lname, "Last Name");
+    // const validatedShortTitle = validateField(values.title.shortTitle, "First Name");
+    // const validatedLongTitle = validateField(
+    //   values.title.longTitle,
+    //   "Last Name"
+    // );
+    // const validatedCategory = validateField(values.category, "Last Name");
+    // const validatedTagline = validateField(values.tagline, "Last Name");
 
     //Set Error
-    setErrorMsg({
-      ...errorMsg,
-      fname: validatedFName.errorMsg,
-      lname: validatedLName.errorMsg,
-    });
+    // setErrorMsg({
+    //   ...errorMsg,
+    //   title: {
+    //     shortTitle: validatedShortTitle.errorMsg,
+    //     longTitle: validatedLongTitle.errorMsg,
+    //   },
+    //   category: validatedCategory.errorMsg,
+    //   tagline: validatedTagline.errorMsg,
+    // });
 
-    setErrors({
-      ...errors,
-      fname: validatedFName.isError,
-      lname: validatedLName.isError,
-    });
-    setSaveCountPInfo((cnt) => cnt + 1);
-    //checkout useEffect
-  };
-
-  const saveEmail = () => {
-    const validatedEmail = validateEmail(values.email);
-
-    //Set Error
-    setErrorMsg({
-      ...errorMsg,
-      email: validatedEmail.errorMsg,
-    });
-
-    setErrors({
-      ...errors,
-      email: validatedEmail.isError,
-    });
-    setSaveCountEmail((cnt) => cnt + 1);
-    //checkout useEffect
+    // setErrors({
+    //   ...errors,
+    //   title: {
+    //     shortTitle: validatedShortTitle.isError,
+    //     longTitle: validatedLongTitle.isError,
+    //   },
+    //   category: validatedCategory.isError,
+    //   tagline: validatedTagline.isError,
+    // });
+    console.log(values);
+    setSaveProduct((cnt) => cnt + 1);
+    //     //checkout useEffect
   };
 
   return (
     <>
       <Box className={classes.component}>
-        <Typography className={classes.title}>Personal Information</Typography>
-        <span
-          className={classes.editLink}
-          onClick={() => setIsEditPInfo(!isEditPInfo)}
-        >
-          {isEditPInfo ? "Cancel" : "Edit"}
-        </span>
+        <Typography className={classes.title}>Title</Typography>
         <Box className={classes.form}>
           <TextField
-            label={isEditPInfo ? "First Name" : ""}
-            placeholder="First Name"
+            label="Short Title"
+            placeholder="Short Title"
             variant="outlined"
             className={classes.input}
-            value={values.fname}
-            name="fname"
-            disabled={!isEditPInfo}
+            // value={values.fname}
+            name="shortTitle"
             onChange={handleChange}
-            error={errors.fname}
-            helperText={errors.fname && isEditPInfo && `${errorMsg.fname}`}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.shortTitle}`}
           />
           <TextField
-            label={isEditPInfo ? "Last Name" : ""}
-            placeholder="Last Name"
+            label="Long Title"
+            placeholder="Long Title"
             variant="outlined"
             className={classes.input}
-            value={values.lname}
-            name="lname"
-            disabled={!isEditPInfo}
+            // value={values.fname}
+            name="longTitle"
             onChange={handleChange}
-            error={errors.lname}
-            helperText={errors.lname && isEditPInfo && `${errorMsg.lname}`}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
           />
-          {isEditPInfo && (
-            <Button
-              variant="contained"
-              className={classes.saveBtn}
-              style={{ background: "#2874f0" }}
-              onClick={savePersonalInfo}
-            >
-              SAVE
-            </Button>
-          )}
         </Box>
-        <FormControl component="fieldset">
-          <Typography style={{ fontSize: 14 }}>Your Gender</Typography>
-          <RadioGroup
-            row
-            aria-label="gender"
-            name="gender"
-            value={values.gender}
-            onChange={handleChange}
-          >
-            <FormControlLabel
-              value="M"
-              control={<Radio style={{ color: "#2874f0" }} />}
-              label="Male"
-              disabled={!isEditPInfo}
-            />
-            <FormControlLabel
-              value="F"
-              control={<Radio style={{ color: "#2874f0" }} />}
-              label="Female"
-              disabled={!isEditPInfo}
-            />
-          </RadioGroup>
-        </FormControl>
-        <br />
         <Typography className={classes.title} style={{ marginTop: 50 }}>
-          Email Address
+          Price
         </Typography>
-        <span
-          className={classes.editLink}
-          onClick={() => setIsEditEmail(!isEditEmail)}
-        >
-          {isEditEmail ? "Cancel" : "Edit"}
-        </span>
-
         <Box className={classes.form}>
           <TextField
-            label={isEditEmail ? "Email Address" : ""}
+            label="MRP"
+            placeholder="MRP"
             variant="outlined"
             className={classes.input}
-            value={values.email}
-            name="email"
-            placeholder="Email Address"
-            disabled={!isEditEmail}
+            // value={values.fname}
+            name="mrp"
             onChange={handleChange}
-            error={errors.email}
-            helperText={errors.email && isEditEmail && `${errorMsg.email}`}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
           />
-          {isEditEmail && (
-            <Button
-              variant="contained"
-              className={classes.saveBtn}
-              style={{ background: "#2874f0" }}
-              onClick={saveEmail}
-            >
-              SAVE
-            </Button>
-          )}
+          <TextField
+            label="Cost"
+            placeholder="Cost"
+            variant="outlined"
+            className={classes.input}
+            // value={values.fname}
+            name="cost"
+            onChange={handleChange}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+          />
+          <TextField
+            label="Discount"
+            placeholder="Discount"
+            variant="outlined"
+            className={classes.input}
+            // value={values.fname}
+            name="discount"
+            onChange={handleChange}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+          />
         </Box>
-        <br />
-        <Typography className={classes.title} style={{ marginTop: 10 }}>
-          Mobile Number
+        <Typography className={classes.title} style={{ marginTop: 50 }}>
+          Other details
         </Typography>
-        {/* <span
-          className={classes.editLink}
-          onClick={() => setIsEditEmail(!isEditEmail)}
-        >
-          {isEditEmail ? "Cancel" : "Edit"}
-        </span> */}
-
         <Box className={classes.form}>
           <TextField
-            /*  label={isEditEmail ? "Email Address" : ""} */
+            label="Quantity"
+            placeholder="Quantity"
             variant="outlined"
-            disabled
             className={classes.input}
-            name="phone"
-            value={values.phone}
-            /*    disabled={!isEditEmail} */
+            // value={values.fname}
+            name="qty"
+            onChange={handleChange}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
           />
-          {/*  {isEditEmail && (
-            <Button
-              variant="contained"
-              className={classes.saveBtn}
-              style={{ background: "#2874f0" }}
-            >
-              SAVE
-            </Button>
-          )} */}
+          <br />
+          <TextField
+            label="Category"
+            placeholder="Category"
+            variant="outlined"
+            className={classes.input}
+            // value={values.fname}
+            name="category"
+            onChange={handleChange}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+          />
+          <TextField
+            label="Tagline"
+            placeholder="Tagline"
+            variant="outlined"
+            className={classes.input}
+            // value={values.fname}
+            name="tagline"
+            onChange={handleChange}
+            // error={errors.fname}
+            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+          />
         </Box>
-        <Box>
-          <div style={{ margin: "50px 0" }}>
-            <div style={{ fontSize: 20, fontWeight: 600, marginBottom: 20 }}>
-              FAQs
-            </div>
-            <div>
-              <h4>
-                What happens when I update my email address (or mobile number)?
-              </h4>
-              <p>
-                Your login email id (or mobile number) changes, likewise. You'll
-                receive all your account related communication on your updated
-                email address (or mobile number).
-              </p>
-              <br />
-              <h4>
-                When will my Flipkart account be updated with the new email
-                address (or mobile number)?
-              </h4>
-              <p>
-                It happens as soon as you confirm the verification code sent to
-                your email (or mobile) and save the changes.
-              </p>
-              <br />
-              <h4>
-                What happens to my existing Flipkart account when I update my
-                email address (or mobile number)?
-              </h4>
-              <p>
-                Updating your email address (or mobile number) doesn't
-                invalidate your account. Your account remains fully functional.
-                You'll continue seeing your Order history, saved information and
-                personal details.
-              </p>
-              <br />
-              <h4>
-                Does my Seller account get affected when I update my email
-                address?
-              </h4>
-              <p>
-                Flipkart has a 'single sign-on' policy. Any changes will reflect
-                in your Seller account also.
-              </p>
-            </div>
-          </div>
-        </Box>
+
+        <br />
+
+        <br />
+        <Button
+          variant="contained"
+          className={classes.saveBtn}
+          style={{ background: "#2874f0" }}
+          onClick={savePersonalInfo}
+        >
+          SAVE
+        </Button>
       </Box>
-      <img
-        width="100%"
-        height="auto"
-        style={{ verticalAlign: "middle" }}
-        src="/myProfileFooter.png"
-      />
     </>
   );
 }

@@ -5,6 +5,9 @@ import HomePage from "./pages/HomePage";
 import ErrorPage from "./pages/ErrorPage";
 import ProductPage from "./pages/ProductPage";
 import AccountPage from "./pages/MyAccountsPage";
+import SellersPage from "./pages/SellersPage";
+import PersonalInfo from "./components/account/PersonalInfo";
+import GamePage from "./pages/GamePage";
 import CartPage from "./pages/CartPage";
 import Header from "./components/header/Header";
 import authentication from "./adapters/authentication";
@@ -92,7 +95,7 @@ function App() {
                     />
                   }
                 />
-                <Route
+                {/* <Route
                   exact
                   path="/account"
                   element={
@@ -104,7 +107,7 @@ function App() {
                       cartItems={cartItems}
                     />
                   }
-                />
+                /> */}
                 <Route
                   exact
                   path="/cart"
@@ -117,18 +120,40 @@ function App() {
                     />
                   }
                 />
+                <Route
+                  exact
+                  path="/games"
+                  element={
+                    <GamePage
+                    // isAuthenticate={isAuthenticate}
+                    // cartItems={cartItems}
+                    // userInfo={userInfo}
+                    // updateCart={updateCart}
+                    />
+                  }
+                />
                 <Route component={ErrorPage} />
               </Routes>
             </BrowserRouter>
           }
         </>
       ) : (
-        <div className="container">
-          {/* <img className="img" src="/monitors-laptop.png" alt="Mobile Laptop" /> */}
-          <div className="text-container">
-            <h2 className="heading">Please login as user</h2>
-            <p className="para">We are building sellers page</p>
-          </div>
+        <div className="con">
+          <BrowserRouter>
+            <Routes>
+              <Route
+                exact
+                path="/*"
+                element={
+                  <SellersPage
+                    userInfo={userInfo}
+                    updateUserInfo={updateUserInfo}
+                    updateIsAuthenticate={updateIsAuthenticate}
+                  />
+                }
+              />
+            </Routes>
+          </BrowserRouter>
         </div>
       )}
     </div>
