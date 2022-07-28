@@ -69,6 +69,7 @@ function Header({
   updateCartItems,
   cartLength,
   updateCartLength,
+  walletAddress,
 }) {
   const classes = useStyle();
 
@@ -104,18 +105,6 @@ function Header({
                 alt="Flipkart"
               />
               {/* Explore plus part  */}
-              <Box className={classes.header_container}>
-                <Typography className={classes.header_subtitle}>
-                  <Link to="/plus">
-                    Explore <span style={{ color: "#ffe500" }}>Plus</span>
-                  </Link>
-                </Typography>
-                <img
-                  className={classes.header_icon}
-                  src="https://static-assets-web.flixcart.com/www/linchpin/fk-cp-zion/img/plus_aef861.png"
-                  alt=""
-                />
-              </Box>
             </Box>
           </Link>
           <SearchBar />
@@ -129,6 +118,7 @@ function Header({
             updateCartItems={updateCartItems}
             cartLength={cartLength}
             updateCartLength={updateCartLength}
+            walletAddress={walletAddress}
           />
         </Toolbar>
       </AppBar>

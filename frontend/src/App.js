@@ -12,8 +12,8 @@ import CartPage from "./pages/CartPage";
 import Header from "./components/header/Header";
 import authentication from "./adapters/authentication";
 import { getCartItems } from "./actions/cartActions";
-
-
+import toastMessage from "./utils/toastMessage";
+import ToastMessageContainer from "./components/ToastMessageContainer";
 //css
 import "./App.css";
 
@@ -25,6 +25,7 @@ function App() {
   const [cartItems, setcartItems] = useState([]);
   const [userInfo, setUserInfo] = useState({});
   const [cartLength, setCartLength] = useState(0);
+  const [walletAddress, setWallet] = useState("");
 
   function updateIsAuthenticate(value) {
     setIsAuthenticate(value);
@@ -48,8 +49,40 @@ function App() {
       setCartLength(data.length);
     });
   }
+
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
+        const addressArray = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        if(addressArray.length >0){
+          return {
+          address: addressArray[0],
+          status: true
+        };
+        }else{
+          return {
+          address: "",
+          status: false
+        };
+        }
+      } catch (err) {
+          alert(err)
+      }
+    } else {
+      toastMessage("install metamask extension!!");
+    }
+  }
   
   useEffect(() => {
+    connectWallet().then((data)=>{
+      if(data.status == true){
+        setWallet(data.address);
+      }else{
+        toastMessage("Create Metamask account first!!");
+      }
+    })
     if (!isAuthenticate) {
       authentication().then((res) => {
         console.log(res.role);
@@ -80,6 +113,7 @@ function App() {
                 updateCartItems={updateCartItems}
                 cartLength={cartLength}
                 updateCartLength={updateCartLength}
+                walletAddress={walletAddress}
               />
               <Routes>
                 <Route exact path="/" element={<HomePage />} />
@@ -156,6 +190,7 @@ function App() {
           </BrowserRouter>
         </div>
       )}
+      <ToastMessageContainer />
     </div>
   );
 }
