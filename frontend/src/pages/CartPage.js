@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Box, makeStyles, Typography, Button, Grid } from "@material-ui/core";
-// import { useSelector, useDispatch } from "react-redux";
+import axios from "axios";
 
 import { getCartItems } from "../actions/cartActions";
 import { Route, Switch, useNavigate } from "react-router";
 import CartItem from "../components/cart/CartItem";
-// import TotalView from "../components/cart/TotalView";
-// import EmptyCart from "../components/cart/EmptyCart";
+import TotalView from "../components/cart/TotalView";
 import LoaderSpinner from "../components/LoaderSpinner";
 import Footer from "../components/footer/Footer";
 import ToastMessageContainer from "../components/ToastMessageContainer";
 import authentication from "../adapters/authentication";
+import toastMessage from "../utils/toastMessage";
 
 const useStyle = makeStyles((theme) => ({
   component: {
@@ -51,19 +51,58 @@ const Cart = ({
   cartItems,
   userInfo,
   updateCart,
+  walletAddress,
+  walletBalance,
 }) => {
   const classes = useStyle();
   const [isLoading, setIsLoading] = useState(true);
+  const [orderItems, setorderItems] = useState();
+  const [TotalAmount, settotalAmount] = useState(0);
   const history = useNavigate();
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
     }, 500);
+    // updateCart();
+    console.log(cartItems);
+    // cartItems.map((item) => {
+    //   setorderItems({
+    //     productId: item._id,
+    //     price: item.mrp
+    //   });
+    // });
   }, [isAuthenticate]);
-
-  const placeOrder = () => {
-    window.location.replace("/checkout?init=true");
+  function updateTotalAmount(value) {
+    settotalAmount(value);
+  }
+  const placeOrder = async () => {
+    if (walletBalance < 0.01) {
+      toastMessage("Insufficient Metamask Balance!");
+    } else {
+      try {
+        await axios.post("/orders/complete-order", {
+          items: {
+            productId: cartItems[0]._id,
+            price: cartItems[0].price.cost,
+          },
+          userId: userInfo._id,
+          totalAmount: cartItems[0].price.cost,
+          paymentStatus: "Completed",
+        });
+        clearCart();
+        window.location.replace("/");
+        toastMessage("Order Placed!");
+      } catch (error) {
+        toastMessage("Order Failed! Please Try again");
+      }
+    }
   };
+
+  const clearCart = async () => {
+    await axios.delete("/cart/clear-cart", {
+      userId: userInfo._id,
+    });
+  }
 
   return isLoading ? (
     <LoaderSpinner />
@@ -104,7 +143,11 @@ const Cart = ({
             </Box>
           </Grid>
           <Grid item lg={3} md={3} sm={12} xs={12}>
-            {/* <TotalView /> */}
+            <TotalView
+              cartItems={cartItems}
+              totalAmount={TotalAmount}
+              updateTotalAmount={updateTotalAmount}
+            />
           </Grid>
         </Grid>
       ) : (

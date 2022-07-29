@@ -7,6 +7,7 @@ import ToastMessageContainer from "../components/ToastMessageContainer";
 import authentication from "../adapters/authentication";
 import PersonalInfo from "../components/account/PersonalInfo";
 import ProductList from "../components/account/ProductList";
+
 const useStyles = makeStyles((theme) => ({
   component: {
     marginTop: 55,
@@ -22,7 +23,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SellersPage({ userInfo, updateUserInfo, updateIsAuthenticate }) {
+function SellersPage({
+  userInfo,
+  updateUserInfo,
+  updateIsAuthenticate,
+  walletAddress,
+}) {
   const classes = useStyles();
   return (
     <>
@@ -50,11 +56,16 @@ function SellersPage({ userInfo, updateUserInfo, updateIsAuthenticate }) {
           xs={12}
         >
           <Routes>
-            <Route exact path="/account" element={<PersonalInfo />} />
+            <Route
+              exact
+              path="/account"
+              element={<PersonalInfo walletAddress={walletAddress} />}
+            />
             <Route exact path="/account/products" element={<ProductList />} />
           </Routes>
         </Grid>
       </Grid>
+      
       <ToastMessageContainer />
     </>
   );

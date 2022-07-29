@@ -70,6 +70,7 @@ function HeaderMenu({
   updateCartItems,
   cartLength,
   updateCartLength,
+  walletAddress,
 }) {
   const [open, setOpen] = useState(false);
   const [popupLogin, setPopupLogin] = useState(true);
@@ -177,6 +178,7 @@ function HeaderMenu({
             userInfo={userInfo}
             updateCartItems={updateCartItems}
             cartItems={cartItems}
+            walletAddress={walletAddress}
           />
         </DialogContent>
       </Dialog>

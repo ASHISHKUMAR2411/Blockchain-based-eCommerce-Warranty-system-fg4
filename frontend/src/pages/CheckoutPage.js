@@ -15,7 +15,7 @@ import { shieldIcon, superCoin } from "../constants/data";
 // import useQuery from "../hooks/useQuery";
 
 import TotalView from "../components/cart/TotalView";
-import AddressCard from "../components/address/AddressCard";
+// import AddressCard from "../components/address/AddressCard";
 import LoaderSpinner from "../components/LoaderSpinner";
 import ToastMessageContainer from "../components/ToastMessageContainer";
 

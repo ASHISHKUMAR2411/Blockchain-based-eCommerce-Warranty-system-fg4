@@ -75,6 +75,7 @@ function ProductPage({
   window.scrollTo(0, 0);
 
   useEffect(() => {
+    // console.log(isAuthenticate);
     getProductById(id).then((data) => {
       setProducts(data);
       setIsLoading(false);

@@ -92,7 +92,7 @@ const ProductImageSlider = ({
     <Box className={classes.leftContainer}>
       <Box className={classes.imageBox}>
         <img
-          src={product.detailUrl}
+          src={product.img}
           className={classes.image}
           alt={product.title.longTitle}
         />

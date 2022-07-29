@@ -56,7 +56,7 @@ import toastMessage from "../../utils/toastMessage";
     },
     }));
 
-function PersonalInfo({userInfo}) {
+function PersonalInfo({userInfo,walletAddress}) {
   const [isEditProduct, setIsEditProduct] = useState(false);
   const [values, setValues] = useState({
     shortTitle: null,
@@ -64,31 +64,30 @@ function PersonalInfo({userInfo}) {
     mrp: null,
     cost: null,
     discount: null,
-    qty: null,
     category: null,
     tagline: null,
+    img: null,
   });
   const [errors, setErrors] = useState({
-    
     shortTitle: false,
     longTitle: false,
     mrp: false,
     cost: false,
     discount: false,
-    qty: false,
     category: false,
     tagline: false,
+    img: false,
   });
 
   const [errorMsg, setErrorMsg] = useState({
-      shortTitle: "",
-      longTitle: "",
-      mrp: "",
-      cost: "",
-      discount: "",
-    qty: "",
+    shortTitle: "",
+    longTitle: "",
+    mrp: "",
+    cost: "",
+    discount: "",
     category: "",
     tagline: "",
+    img: "",
   });
 
 //   //hooks
@@ -104,10 +103,16 @@ function PersonalInfo({userInfo}) {
         values.mrp != null &&
         values.cost != null &&
         values.discount != null &&
-        values.qty != null &&
         values.category != null &&
         values.tagline != null
       ) {
+        // const formData = new FormData();
+        // formData.append("file", values.img);
+        const config = {
+          headers: {
+            "content-type": "multipart/form-data",
+          },
+        };
         axios
           .post("/products/add-products", {
             title: {
@@ -122,7 +127,9 @@ function PersonalInfo({userInfo}) {
             qty: values.qty,
             category: values.category,
             tagline: values.tagline,
-          })
+            sellerWalletAddress: walletAddress,
+            file:values.img,
+          },config)
           .then(() => {
             toastMessage("Product Added !", "success");
             setValues({ shortTitle: null });
@@ -176,6 +183,10 @@ function PersonalInfo({userInfo}) {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const handleChangeimg = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.files[0] });
+  };
+
   const savePersonalInfo = () => {
     // const validatedShortTitle = validateField(values.title.shortTitle, "First Name");
     // const validatedLongTitle = validateField(
@@ -205,7 +216,6 @@ function PersonalInfo({userInfo}) {
     //   category: validatedCategory.isError,
     //   tagline: validatedTagline.isError,
     // });
-    console.log(values);
     setSaveProduct((cnt) => cnt + 1);
     //     //checkout useEffect
   };
@@ -213,120 +223,124 @@ function PersonalInfo({userInfo}) {
   return (
     <>
       <Box className={classes.component}>
-        <Typography className={classes.title}>Title</Typography>
-        <Box className={classes.form}>
-          <TextField
-            label="Short Title"
-            placeholder="Short Title"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="shortTitle"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.shortTitle}`}
-          />
-          <TextField
-            label="Long Title"
-            placeholder="Long Title"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="longTitle"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
-        </Box>
-        <Typography className={classes.title} style={{ marginTop: 50 }}>
-          Price
-        </Typography>
-        <Box className={classes.form}>
-          <TextField
-            label="MRP"
-            placeholder="MRP"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="mrp"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
-          <TextField
-            label="Cost"
-            placeholder="Cost"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="cost"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
-          <TextField
-            label="Discount"
-            placeholder="Discount"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="discount"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
-        </Box>
-        <Typography className={classes.title} style={{ marginTop: 50 }}>
-          Other details
-        </Typography>
-        <Box className={classes.form}>
-          <TextField
-            label="Quantity"
-            placeholder="Quantity"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="qty"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
+        <FormControl component="fieldset" enctype="multipart/form-data">
+          <Typography className={classes.title}>Title</Typography>
+          <Box className={classes.form}>
+            <TextField
+              label="Short Title"
+              placeholder="Short Title"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="shortTitle"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.shortTitle}`}
+            />
+            <TextField
+              label="Long Title"
+              placeholder="Long Title"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="longTitle"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+          </Box>
+          <Typography className={classes.title} style={{ marginTop: 50 }}>
+            Price
+          </Typography>
+          <Box className={classes.form}>
+            <TextField
+              label="MRP"
+              placeholder="MRP"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="mrp"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+            <TextField
+              label="Cost"
+              placeholder="Cost"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="cost"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+            <TextField
+              label="Discount"
+              placeholder="Discount"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="discount"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+          </Box>
+          <Typography className={classes.title} style={{ marginTop: 50 }}>
+            Other details
+          </Typography>
+          <Box className={classes.form}>
+            <TextField
+              label="Image"
+              variant="outlined"
+              placeholder=""
+              className={classes.input}
+              // value={values.fname}
+              name="img"
+              onChange={handleChangeimg}
+              type="file"
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+            <br />
+            <TextField
+              label="Category"
+              placeholder="Category"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="category"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+            <TextField
+              label="Tagline"
+              placeholder="Tagline"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="tagline"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
+          </Box>
+
           <br />
-          <TextField
-            label="Category"
-            placeholder="Category"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="category"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
-          <TextField
-            label="Tagline"
-            placeholder="Tagline"
-            variant="outlined"
-            className={classes.input}
-            // value={values.fname}
-            name="tagline"
-            onChange={handleChange}
-            // error={errors.fname}
-            // helperText={errors.fname && `${errorMsg.title.longTitle}`}
-          />
-        </Box>
 
-        <br />
-
-        <br />
-        <Button
-          variant="contained"
-          className={classes.saveBtn}
-          style={{ background: "#2874f0" }}
-          onClick={savePersonalInfo}
-        >
-          SAVE
-        </Button>
+          <br />
+          <Button
+            variant="contained"
+            className={classes.saveBtn}
+            style={{ background: "#2874f0" }}
+            onClick={savePersonalInfo}
+          >
+            SAVE
+          </Button>
+        </FormControl>
+        
       </Box>
     </>
   );

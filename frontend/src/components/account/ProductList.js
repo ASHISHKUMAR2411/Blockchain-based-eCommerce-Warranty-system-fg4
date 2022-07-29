@@ -60,7 +60,8 @@ const [products, setproducts] = useState([])
             return (
               <ListItem className={classes.listItem}>
                 <ListItemAvatar className={classes.listAvatar}>
-                  <img className={classes.productAvatar} src={product.url} />
+                  <img className={classes.productAvatar} src={product.img} />
+                  {console.log(product.img)}
                 </ListItemAvatar>
                 <ListItemText>
                   <Typography className={classes.listText}>

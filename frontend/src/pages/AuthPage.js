@@ -28,6 +28,7 @@ function AuthPage({
   isAuthenticate,
   updateUserInfo,
   updateIsUser,
+  walletAddress,
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [isLogin, setIsLogin] = useState(true);
