@@ -14,7 +14,7 @@ const web3 = createAlchemyWeb3(
   "https://eth-rinkeby.alchemyapi.io/v2/PXrsxQyIQmScZ1CekyuaAkZ1MnbRHytk"
 );
 const contract = require("../artifacts/contracts/Product.sol/Product.json");
-// const contractAddress = "0x271dd0f273e65013f023390882c0b64582ae0451"
+const contractAddress = "0x52Cb1fDdf12dC4fC1E1d587E25597EDcb9b298d3";
 
 
 // const transaction  = ""; 
@@ -24,11 +24,12 @@ async function mintNFT(tokenURI,toAddress) {
         const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
         const nftContract = new web3.eth.Contract(contract.abi, toAddress);
         //the transaction
+        console.log("MintNFT2");
         const tx = {
           //seller address
           from: PUBLIC_KEY,
           //buyer
-          to: toAddress,
+          to: contractAddress,
           //description
           nonce: nonce,
           gas: 500000,
@@ -36,6 +37,7 @@ async function mintNFT(tokenURI,toAddress) {
             .safeMint(toAddress, PUBLIC_KEY, tokenURI)
             .encodeABI(),
         };
+        
 
         const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
         signPromise

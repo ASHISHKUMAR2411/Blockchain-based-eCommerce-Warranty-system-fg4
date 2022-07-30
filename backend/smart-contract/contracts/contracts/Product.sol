@@ -9,7 +9,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     uint deployDate;
-    uint deployDate2;
     constructor() ERC721("Product", "PDT") {
         // uint256 tokenId = id;
         // _safeMint(from, tokenId);
