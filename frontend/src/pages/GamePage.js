@@ -5,13 +5,13 @@ import WheelComponent from "react-wheel-of-prizes";
 function GamePage() {
     const segments = [
       "better luck next time",
-      "won 70",
-      "won 10",
+      "won 10 flipkart super coin",
+      "won 1 month prime subscription of flipkart",
       "better luck next time",
-      "won 2",
-      "won uber pass",
+      "won 2 flipkart super coin",
+      "won 20% cashback on next order from flipkart grocerry",
       "better luck next time",
-      "won a voucher",
+      "won a 10% cashback on next purchase from flipkart",
     ];
     const segColors = [
       "#EE4040",

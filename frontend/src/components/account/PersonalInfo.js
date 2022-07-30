@@ -67,6 +67,7 @@ function PersonalInfo({userInfo,walletAddress}) {
     category: null,
     tagline: null,
     img: null,
+    waranty:null,
   });
   const [errors, setErrors] = useState({
     shortTitle: false,
@@ -77,6 +78,7 @@ function PersonalInfo({userInfo,walletAddress}) {
     category: false,
     tagline: false,
     img: false,
+    waranty: false,
   });
 
   const [errorMsg, setErrorMsg] = useState({
@@ -88,6 +90,7 @@ function PersonalInfo({userInfo,walletAddress}) {
     category: "",
     tagline: "",
     img: "",
+    waranty: "",
   });
 
 //   //hooks
@@ -104,7 +107,8 @@ function PersonalInfo({userInfo,walletAddress}) {
         values.cost != null &&
         values.discount != null &&
         values.category != null &&
-        values.tagline != null
+        values.tagline != null &&
+        values.waranty != null
       ) {
         // const formData = new FormData();
         // formData.append("file", values.img);
@@ -114,22 +118,27 @@ function PersonalInfo({userInfo,walletAddress}) {
           },
         };
         axios
-          .post("/products/add-products", {
-            title: {
-              shortTitle: values.shortTitle,
-              longTitle: values.longTitle,
+          .post(
+            "/products/add-products",
+            {
+              title: {
+                shortTitle: values.shortTitle,
+                longTitle: values.longTitle,
+              },
+              price: {
+                mrp: values.mrp,
+                cost: values.cost,
+                discount: values.discount,
+              },
+              qty: values.qty,
+              category: values.category,
+              tagline: values.tagline,
+              sellerWalletAddress: walletAddress,
+              file: values.img,
+              waranty: values.waranty,
             },
-            price: {
-              mrp: values.mrp,
-              cost: values.cost,
-              discount: values.discount,
-            },
-            qty: values.qty,
-            category: values.category,
-            tagline: values.tagline,
-            sellerWalletAddress: walletAddress,
-            file:values.img,
-          },config)
+            config
+          )
           .then(() => {
             toastMessage("Product Added !", "success");
             setValues({ shortTitle: null });
@@ -138,7 +147,7 @@ function PersonalInfo({userInfo,walletAddress}) {
             toastMessage("Something went wrong.", "error");
           });
         setIsEditProduct(false);
-      }else{
+      } else {
         toastMessage("Please fill all the fields", "error");
       }
   }, [saveProduct]);
@@ -254,7 +263,7 @@ function PersonalInfo({userInfo,walletAddress}) {
           </Typography>
           <Box className={classes.form}>
             <TextField
-              label="MRP"
+              label="MRP in INR"
               placeholder="MRP"
               variant="outlined"
               className={classes.input}
@@ -265,7 +274,7 @@ function PersonalInfo({userInfo,walletAddress}) {
               // helperText={errors.fname && `${errorMsg.title.longTitle}`}
             />
             <TextField
-              label="Cost"
+              label="Cost in INR"
               placeholder="Cost"
               variant="outlined"
               className={classes.input}
@@ -276,7 +285,7 @@ function PersonalInfo({userInfo,walletAddress}) {
               // helperText={errors.fname && `${errorMsg.title.longTitle}`}
             />
             <TextField
-              label="Discount"
+              label="Discount (in INR)"
               placeholder="Discount"
               variant="outlined"
               className={classes.input}
@@ -326,6 +335,17 @@ function PersonalInfo({userInfo,walletAddress}) {
               // error={errors.fname}
               // helperText={errors.fname && `${errorMsg.title.longTitle}`}
             />
+            <TextField
+              label="Waranty (in month)"
+              placeholder="Waranty"
+              variant="outlined"
+              className={classes.input}
+              // value={values.fname}
+              name="waranty"
+              onChange={handleChange}
+              // error={errors.fname}
+              // helperText={errors.fname && `${errorMsg.title.longTitle}`}
+            />
           </Box>
 
           <br />
@@ -340,7 +360,6 @@ function PersonalInfo({userInfo,walletAddress}) {
             SAVE
           </Button>
         </FormControl>
-        
       </Box>
     </>
   );
