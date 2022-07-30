@@ -1,5 +1,5 @@
 require("@nomiclabs/hardhat-etherscan");
-
+require("@nomiclabs/hardhat-ethers");
 // using alchemy to api to deploy the smart contract
 require("dotenv").config();
 

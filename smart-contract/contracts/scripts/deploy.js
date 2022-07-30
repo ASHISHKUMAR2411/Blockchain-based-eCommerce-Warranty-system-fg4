@@ -16,6 +16,8 @@ async function main() {
   //main funciton 
 
   console.log("Product purchased", product.address);
+  console.log(product);
+  console.log(Product);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

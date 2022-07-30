@@ -10,7 +10,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract Product is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
     // we have to get rid of this Counter once we create our nfts decaying
     using Counters for Counters.Counter;
-    bytes32 public constant BURNER_ROLE  = keccak256("BURNER_ROLE ");
     // we can set the product prize by default, but we more will pass inside the safemint function
     // uint256 public productPrize = 0.01 ether;
     Counters.Counter private _tokenIdCounter;
@@ -37,19 +36,20 @@ contract Product is ERC721, ERC721Enumerable, ERC721Burnable, Ownable {
         }
     }
    
-    function safeMint(address from, string memory tokenURI, uint256 time, uint256 ethers) public onlyOwner payable returns(uint256 tokenId, address to) {
+    function safeMint(address from,address to, string memory tokenURI) public payable returns(uint256 tokenId) {
         // currently we need to change the tokenId and set it to the timestam i.e block.timestamp + warrantyPeriod
         // we require atleast the price of the product to be paid first before creating nft
         // for that -
-        require(msg.value >= ethers, "-1");
-        deployDate = block.timestamp + (time * 30 days);
+        // require(address(this).balance > 0.0001 ether, "not enough balance to refund");
+        // require(msg.value >= ethers /(10**18), "-1");
+        // deployDate = block.timestamp + (12 * 30 days);
         // _tokenIdCounter.increment();
         uint256 tokenId = block.timestamp;
         _mint(from, tokenId);
-        _transfer(from,msg.sender,tokenId);
-        payable(from).transfer(msg.value);
-        transferOwnership(msg.sender);
-        address to = msg.sender;
+        _transfer(from, to,tokenId);
+        // payable(from).transfer(0.0001 ether);
+        transferOwnership(to);
+        // address to = msg.sender;
         // return tokenId;
         //  
         // 
