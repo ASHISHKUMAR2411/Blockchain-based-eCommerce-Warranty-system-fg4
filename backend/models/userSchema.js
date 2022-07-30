@@ -23,10 +23,11 @@ const userSchema = mongoose.Schema(
     },
     gender: String,
     email: String,
-    role:{
+    role: {
       type: String,
-      enum:["user","seller"]
+      enum: ["user", "seller"],
     },
+    WalletAddress: String,
     tokens: [
       {
         token: {
@@ -35,7 +36,7 @@ const userSchema = mongoose.Schema(
       },
     ],
   },
-  {collection: "users" }
+  { collection: "users" }
 );
 
 userSchema.pre("save", async function (next) {

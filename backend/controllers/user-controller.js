@@ -43,6 +43,8 @@ const login = async (req, res) => {
           message: "login/invalid-not-user",
         });
       }
+      userLogin.WalletAddress = req.body.walletAddress;
+      await userLogin.save();
       res.json({ isLogin: true, message: "User Login Successfully" });
     } else {
       res

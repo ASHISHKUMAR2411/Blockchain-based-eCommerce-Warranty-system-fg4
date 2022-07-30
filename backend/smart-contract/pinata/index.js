@@ -18,43 +18,48 @@ const pinata = pinataSDK(process.env.PINATA_API_KEY, process.env.PINATA_API_SECR
 
 // now to pin file to ipfs and get the hash
 //TODO change path of the file of the images.
-const readableStreamForFile = fs.createReadStream('./images/images.png');
+
 // pinata metadata
+
 const options = {
-    //TODO change the metadata of the file
-    pinataMetadata: {
-        name: "My NFT Collection",
-        keyvalues: {
-            customKey: 'customValue',
-            customKey2: 'customValue2'
-        }
+  //TODO change the metadata of the file
+  pinataMetadata: {
+    name: "My NFT Collection",
+    keyvalues: {
+      customKey: "customValue",
+      customKey2: "customValue2",
     },
-    pinataOptions: {
-        cidVersion: 0
-    }
+  },
+  pinataOptions: {
+    cidVersion: 0,
+  },
 };
 
-const pinFileToIPFS = () => {
-    // as the below function is returning a promise, we need a async function to call it.
-    // function to pin file to ipfs and get the hash
-    return pinata.pinFileToIPFS(readableStreamForFile, options).then((result) => {
-        //handle results here
-        // we get result as a json format like - 
-        // {
-        //        IpfsHash: 'QmbPsaZxrGzKYtrdNKkxqqCoZr4eTv6YjYfV9AiLRJr1HJ',
-        //        PinSize: 6221,
-        //        Timestamp: '2022-07-25T08:14:45.529Z'
-        // }
-        // this is called cid(content identifier) of the file which is a hash of the file.
 
-        // we will return the image ipfs link 
-        return `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`;
-        // console.log(result);
-    }).catch((err) => {
-        //handle error here
-        console.log(err);
+const pinFileToIPFS = (readableStreamForFile, options) => {
+  // as the below function is returning a promise, we need a async function to call it.
+  // function to pin file to ipfs and get the hash
+  return pinata
+    .pinFileToIPFS(readableStreamForFile, options)
+    .then((result) => {
+      //handle results here
+      // we get result as a json format like -
+      // {
+      //        IpfsHash: 'QmbPsaZxrGzKYtrdNKkxqqCoZr4eTv6YjYfV9AiLRJr1HJ',
+      //        PinSize: 6221,
+      //        Timestamp: '2022-07-25T08:14:45.529Z'
+      // }
+      // this is called cid(content identifier) of the file which is a hash of the file.
+
+      // we will return the image ipfs link
+      return `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`;
+      // console.log(result);
+    })
+    .catch((err) => {
+      //handle error here
+      console.log(err);
     });
-}
+};
 
 // to pin json file to ipfs and get the hash of the file, we try a function 
 const pinJSONToIPFS = (body) => {
@@ -73,9 +78,16 @@ const pinJSONToIPFS = (body) => {
 
 
 // function for image ipfs hash link
-const getMetadata = async (shortTitle, longTitle, price, category, tagline) => {
+const getMetadata = async (shortTitle, longTitle, price, category, tagline,waranty,imgname) => {
+
+    const readableStreamForFile = fs.createReadStream(
+      "./public/" + imgname
+    );
+
+    
+
     // we can also get the timestamps from the metadata of the file
-    const imageIpfsLink = await pinFileToIPFS();
+    const imageIpfsLink = await pinFileToIPFS(readableStreamForFile, options);
     console.log(imageIpfsLink);
 
     // Now creating a json file which contain the image url and metadata of the NFT
@@ -91,11 +103,12 @@ const getMetadata = async (shortTitle, longTitle, price, category, tagline) => {
         price: price,
         category: category,
         tagline: tagline,
+        waranty: waranty,
       },
     };
 
     // options for the json file and geting the hash of the file
-    const jsonFileLink = await pinJSONToIPFS(body);
+    const jsonFileLink = await pinJSONToIPFS(body, options);
     console.log(jsonFileLink);
     // TODO return the json file link
     // return jsonFileLink;
@@ -104,6 +117,6 @@ const getMetadata = async (shortTitle, longTitle, price, category, tagline) => {
 // https://gateway.pinata.cloud/ipfs/QmePQKquwcUCcsa195u1pSFBCy1FMWQjJL1zXfdLB6QmWc
 
 // TODO call this function from the file to create ipfs object.
-getMetadata();
+// getMetadata();
 
-
+module.exports = { getMetadata };

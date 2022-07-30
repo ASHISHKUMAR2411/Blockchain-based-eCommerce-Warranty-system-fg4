@@ -61,6 +61,7 @@ function Login({
   userInfo,
   updateCartItems,
   cartItems,
+  walletAddress,
 }) {
   const [showPassword, setShowPassword] = useState(false);
   const [values, setValues] = useState({
@@ -170,6 +171,7 @@ function Login({
         const { data } = await axios.post("/users/login", {
           phone: values.phone,
           password: values.password,
+          walletAddress: walletAddress,
         });
         console.log(data);
         const { isAuth, user } = await authentication(false);

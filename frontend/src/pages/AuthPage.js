@@ -86,6 +86,7 @@ function AuthPage({
             updateIsLogin={updateIsLogin}
             updateUserInfo={updateUserInfo}
             updateIsUser={updateIsUser}
+            walletAddress={walletAddress}
           />
         ) : (
           <h1>Sign up</h1>

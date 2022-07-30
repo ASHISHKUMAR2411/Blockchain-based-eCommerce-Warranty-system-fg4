@@ -1,14 +1,39 @@
 const Order = require("../models/orderSchema");
 const mongoose = require("mongoose");
+// const mintNFT = require("../smart-contract/contracts/scripts/mintNFT.js")
+const {getMetadata} = require("../smart-contract/pinata/index.js");
+const Product = require("../models/productSchema");
+const User = require("../models/userSchema");
 
 const completeOrder = async (req, res) => {
+  // try {
+    
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(400).send();
+  // }
   try {
-    const order = new Order({ ...req.body, orderDate: Date.now() });
-    const result = await order.save();
+
     const itemId = req.body.items.productId;
     const userId = req.body.userId;
+    const product = await Product.findById(itemId);
+    const user = await UserfindById(userId);
+
+    const tokenURI = getMetadata(
+      product.title.shortTitle,
+      product.title.longTitle,
+      product.price.cost,
+      product.category,
+      product.tagline,
+      product.waranty,
+      product.img.substring(22)
+    );
+    
+    // const order = new Order({ ...req.body, orderDate: Date.now() });
+    // const result = await order.save();
+    
     //Backend work for smart contract
-    res.json({ orderId: result._id });
+    // res.json({ orderId: result._id });
   } catch (error) {
     console.log(error);
     res.status(400).send();

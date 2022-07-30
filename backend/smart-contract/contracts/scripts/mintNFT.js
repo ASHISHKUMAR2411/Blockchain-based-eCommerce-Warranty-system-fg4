@@ -1,11 +1,12 @@
 require("dotenv").config()
+const ethers = require("ethers")
 const API_URL = process.env.RINKEBY_API
 const PUBLIC_KEY = "0x04957297B19a707eB949CdB9bbd0765B18314D30"
 const PRIVATE_KEY = process.env.PRIVATE_KEY
 
-const { createAlchemyWeb3 } = require("@alch/alchemy-web3")
-const web3 = createAlchemyWeb3(API_URL)
-
+// const { createAlchemyWeb3 } = require("@alch/alchemy-web3")
+// const web3 = createAlchemyWeb3(API_URL)
+const web3 = new ethers.providers.AlchemyProvider(API_URL);
 const contract = require("../artifacts/contracts/Product.sol/Product.json")
 const contractAddress = "0x271dd0f273e65013f023390882c0b64582ae0451"
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress)
@@ -52,5 +53,7 @@ async function mintNFT(tokenURI) {
         })
 }
 
-var vari = mintNFT("https://gateway.pinata.cloud/ipfs/QmQtaanBVZjp9t52iuEczkmPTF5eBdYqguRHe6ByLEMeJB")
-console.log(vari);
+// var vari = mintNFT("https://gateway.pinata.cloud/ipfs/QmQtaanBVZjp9t52iuEczkmPTF5eBdYqguRHe6ByLEMeJB")
+// console.log(vari);
+
+module.exports = {mintNFT};
