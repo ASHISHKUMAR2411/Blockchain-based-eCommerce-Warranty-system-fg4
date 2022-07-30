@@ -2,7 +2,8 @@ require("dotenv").config()
 const ethers = require("ethers")
 const API_URL = process.env.RINKEBY_API
 const PUBLIC_KEY = "0x04957297B19a707eB949CdB9bbd0765B18314D30"
-const PRIVATE_KEY = process.env.PRIVATE_KEY
+const PRIVATE_KEY =
+  "33462a2e4cbd0a6267b869b8d9c853c13956949400828205afa818455390c8a2";
 // const AbiItem  = require("web3-utils");
 var fs = require("fs");
 var path = require("path");
@@ -20,11 +21,13 @@ const contractAddress = "0x52Cb1fDdf12dC4fC1E1d587E25597EDcb9b298d3";
 // const transaction  = ""; 
 async function mintNFT(tokenURI,toAddress) {
     try {
-        console.log("MintNFT");
+        console.log("MintNFT " + tokenURI);
         const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
         const nftContract = new web3.eth.Contract(contract.abi, toAddress);
         //the transaction
-        console.log("MintNFT2");
+        
+        // const d = nftContract.methods.safeMint(toAddress, PUBLIC_KEY, tokenURI);
+        // const tx = d.encodeABI();
         const tx = {
           //seller address
           from: PUBLIC_KEY,
@@ -34,8 +37,7 @@ async function mintNFT(tokenURI,toAddress) {
           nonce: nonce,
           gas: 500000,
           data: nftContract.methods
-            .safeMint(toAddress, PUBLIC_KEY, tokenURI)
-            .encodeABI(),
+            .safeMint(toAddress, PUBLIC_KEY, tokenURI).encodeABI(),
         };
         
 

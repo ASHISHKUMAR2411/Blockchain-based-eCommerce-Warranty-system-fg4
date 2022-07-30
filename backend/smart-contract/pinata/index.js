@@ -93,7 +93,7 @@ const getMetadata = async (
 
     // we can also get the timestamps from the metadata of the file
     const imageIpfsLink = await pinFileToIPFS(readableStreamForFile, options);
-    console.log(imageIpfsLink);
+    // console.log(imageIpfsLink);
 
     // Now creating a json file which contain the image url and metadata of the NFT
     // object body , option , pin
@@ -117,7 +117,7 @@ const getMetadata = async (
     const jsonFileLink = await pinJSONToIPFS(body, options);
     console.log(jsonFileLink);
     // TODO return the json file link
-    // return jsonFileLink;
+    return jsonFileLink;
   } catch (error) {
     console.log("GetMetaData");
     console.log(error);
