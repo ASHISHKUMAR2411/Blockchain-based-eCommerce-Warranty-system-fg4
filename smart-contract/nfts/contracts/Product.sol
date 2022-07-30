@@ -20,13 +20,14 @@ contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         }
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to, string memory uri) public onlyOwner returns (uint256) {
         uint256 tokenId = block.timestamp;
         _mint(msg.sender, tokenId);
         _setTokenURI(tokenId, uri);
         _transfer(msg.sender, to ,tokenId);
         // payable(from).transfer(0.0001 ether);
         transferOwnership(to);
+        return tokenId;
     }
 
     // The following functions are overrides required by Solidity.
@@ -44,11 +45,3 @@ contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         return super.tokenURI(tokenId);
     }
 }
-
-    // for refund
-    // function refund(address _to, uint256 _tokenId, uint256 _price) public payable {
-    //     require(address(this).balance > _price, "not enough balance to refund");
-    //     payable(_to).transfer(_price);
-    //     // Now delete the nft from the blockchain network
-    //     _burn(_tokenId);
-    // }
