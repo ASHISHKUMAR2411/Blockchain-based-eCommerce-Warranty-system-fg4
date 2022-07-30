@@ -25,6 +25,10 @@ const productSchema = mongoose.Schema({
     required: true,
   },
   sellerWalletAddress: String,
+  waranty: {
+    type: Number,
+    required: true,
+  },
   img: {
     type: String,
     required: true,
