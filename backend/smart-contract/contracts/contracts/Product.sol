@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     uint deployDate;
+    uint deployDate2;
     constructor() ERC721("Product", "PDT") {
         // uint256 tokenId = id;
         // _safeMint(from, tokenId);
@@ -20,11 +21,11 @@ contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         }
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
+    function safeMint(address to,address from, string memory uri) public onlyOwner {
         uint256 tokenId = block.timestamp;
-        _mint(msg.sender, tokenId);
+        _mint(from, tokenId);
         _setTokenURI(tokenId, uri);
-        _transfer(msg.sender, to ,tokenId);
+        _transfer(from, to ,tokenId);
         // payable(from).transfer(0.0001 ether);
         transferOwnership(to);
     }

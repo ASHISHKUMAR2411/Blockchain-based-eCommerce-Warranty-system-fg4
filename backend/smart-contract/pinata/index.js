@@ -78,13 +78,18 @@ const pinJSONToIPFS = (body) => {
 
 
 // function for image ipfs hash link
-const getMetadata = async (shortTitle, longTitle, price, category, tagline,waranty,imgname) => {
-
-    const readableStreamForFile = fs.createReadStream(
-      "./public/" + imgname
-    );
-
-    
+const getMetadata = async (
+  shortTitle,
+  longTitle,
+  price,
+  category,
+  tagline,
+  waranty,
+  imgname,
+  uniqueId
+) => {
+  try {
+    const readableStreamForFile = fs.createReadStream("./public/" + imgname);
 
     // we can also get the timestamps from the metadata of the file
     const imageIpfsLink = await pinFileToIPFS(readableStreamForFile, options);
@@ -104,6 +109,7 @@ const getMetadata = async (shortTitle, longTitle, price, category, tagline,waran
         category: category,
         tagline: tagline,
         waranty: waranty,
+        uniqueId: uniqueId,
       },
     };
 
@@ -112,7 +118,11 @@ const getMetadata = async (shortTitle, longTitle, price, category, tagline,waran
     console.log(jsonFileLink);
     // TODO return the json file link
     // return jsonFileLink;
-}
+  } catch (error) {
+    console.log("GetMetaData");
+    console.log(error);
+  }
+};
 
 // https://gateway.pinata.cloud/ipfs/QmePQKquwcUCcsa195u1pSFBCy1FMWQjJL1zXfdLB6QmWc
 
