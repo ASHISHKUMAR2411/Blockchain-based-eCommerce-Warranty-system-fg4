@@ -14,7 +14,6 @@ The objective is to replace the physical warranty and have block chain based war
 	  - [Step 1: Backend](#step-1-backend)
 	  - [Step 2: Frontend](#step-2-frontend)
 	  - [Step 3: Smart-contract](#step-2-smart-contract)
-	- [Part 3: Heading](#part-3-heading)
 - [Running the App](#running-the-app)
 - [Deployment](#deployment)
 - [Contributing](#contributing)
@@ -133,14 +132,14 @@ The following section deals with the development process, walkthrough and featur
 
 ## Authors
 
-#### Anurag 
-* [GitHub]
+#### Anurag Sharma
+* [GitHub](https://github.com/AnuragSharma122)
 * [LinkedIn]
 
 #### Ashish Kumar
-* [GitHub]
+* [GitHub](https://github.com/ASHISHKUMAR2411)
 * [LinkedIn]
 
-#### Dev Agarwal
-* [GitHub]
+#### Dev Agrawal
+* [GitHub](https://github.com/DevAgrawal1112)
 * [LinkedIn]
