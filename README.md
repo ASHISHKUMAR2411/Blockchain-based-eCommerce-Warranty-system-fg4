@@ -8,6 +8,7 @@ The objective is to replace the physical warranty and have block chain based war
 - [Problem Statement](#problem-statement)
 - [Use Cases](#use-cases)
 - [Tech Stack and tools](#tech-stack-and-tools)
+- [System Architecture](#system-architecture)
 - [Development](#development)
     - [Part 1: Gathering Information](#part-1-gathering-information)
     - [Part 2: Planning](#part-2-planning)
@@ -88,6 +89,9 @@ In order to install this application, follow the following steps carefully:
 * OpenSea
 * Pinata
 * Metamask
+
+## System Architecture
+![image](https://user-images.githubusercontent.com/77338386/182043722-586d221b-f238-45a8-82f9-e3d32dadd754.png)
 
 ## Development
 
