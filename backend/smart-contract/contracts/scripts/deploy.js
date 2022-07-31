@@ -9,7 +9,6 @@ async function main() {
     console.log(Product);
 }
 
-// 0x271Dd0f273E65013f023390882c0b64582Ae0451
 main()
     .then(() => process.exit(0))
     .catch((error) => {
