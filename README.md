@@ -131,13 +131,16 @@ The following section deals with the development process, walkthrough, and featu
 ## Running the App
 
 ### User
+
 ![image](https://user-images.githubusercontent.com/82510045/182043924-012b05d1-0e97-4812-8852-eb8c8cf236f9.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043952-5b49f19f-5e4b-4427-bf69-cee6641b8b2d.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043971-6afd7d0b-8b7f-4195-9b4f-1c2bcdb5b773.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043996-a80d47d2-6da1-42da-b616-6520657d0e2b.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044019-72e19188-3362-43d5-9fdf-4dfd00ca4332.png)
+![image](https://user-images.githubusercontent.com/82510045/182044131-71929d5c-9fdd-470d-9b3e-74b205f65493.png)
 
 ### Seller
+
 ![image](https://user-images.githubusercontent.com/82510045/182044062-2a31fb9d-7d6f-42ea-871e-d0cf064c5c5e.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044076-51375d2e-36e7-478f-b6e1-57aa5e19fb71.png)
 
