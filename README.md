@@ -3,22 +3,22 @@
 The objective is to replace the physical warranty and have block chain based warranty using NFT which will ensure authenticity and security.
 
 ## Table of Contents  ✨✨
-- [Getting Started](#getting-started)
-	- [Installation](#installation)
-- [Problem Statement](#problem-statement)
-- [Use Cases](#use-cases)
-- [Tech Stack and tools](#tech-stack-and-tools)
-- [System Architecture](#system-architecture)
-- [Development](#development)
+- [Getting Started](#getting-started-)
+	- [Installation](#installation-)
+- [Problem Statement](#problem-statement-)
+- [Use Cases](#use-cases-)
+- [Tech Stack and Tools](#tech-stack-and-tools-)
+- [System Architecture](#system-architecture-)
+- [Development](#development-)
     - [Part 1: Gathering Information](#part-1-gathering-information)
     - [Part 2: Planning](#part-2-planning)
 	  - [Step 1: Backend](#step-1-backend)
 	  - [Step 2: Frontend](#step-2-frontend)
-	  - [Step 3: Smart-contract](#step-2-smart-contract)
-- [Running the App](#running-the-app)
-- [Authors](#authors)
+	  - [Step 3: Smart-contract](#step-3-smart-contract)
+- [Running the App](#running-the-app-)
+- [Authors](#authors-)
 
-## Getting Started ⛹️‍♂️⛹️‍♂️
+## Getting Started 📦📦
 ```
   FG4
   ├── backend
@@ -53,11 +53,11 @@ In order to install this application, please follow the following steps carefull
 9. Run npx hardhat run --network rinkeby scripts/deploy.js command.
 10. You have successfully installed the project. 🎉🎉🎉
 
-## Problem Statement 💖💖
+## Problem Statement 🤞🤞
 
 As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype) that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens (NFTs) which will ensure the authenticity and security of the products.
 
-## Use Cases 🤩🤩
+## Use Cases 💪💪
 
 * Prove Authenticity
   * When Customers buy any product then they will receive NFT that will store the data of the product and all details of the sender and its product like serial number and purchase history that helps to prove the authenticity of the product.
@@ -75,7 +75,7 @@ As a part of this challenge, we were expected to build a blockchain-based eComme
 * Seamless GUI
   *The prototype itself shows the seamless experience for both customer and seller. The seller can list their products and sell without having previous knowledge of Blockchain or Web3. We have also introduced a loyalty program to engage and retain customers. 
   
-## Tech Stack and tools ❤️❤️
+## Tech Stack and Tools 💫💫
 * React.js
 * Node.js
 * Express.js
@@ -93,10 +93,10 @@ As a part of this challenge, we were expected to build a blockchain-based eComme
 * Pinata
 * Metamask
 
-## System Architecture 🧑‍💻🧑‍💻
+## System Architecture 📦📦
 ![image](https://user-images.githubusercontent.com/77338386/182043722-586d221b-f238-45a8-82f9-e3d32dadd754.png)
 
-## Development
+## Development 💫💫
 
 The following section deals with the development process, walkthrough, and features of this project.
 
@@ -131,7 +131,7 @@ The following section deals with the development process, walkthrough, and featu
 
 #### Step 3: Smart-contract
 
-## Running the App 😎😎
+## Running the App 📦📦
 
 ### User ✨✨
 
@@ -152,7 +152,7 @@ The following section deals with the development process, walkthrough, and featu
 ![image](https://user-images.githubusercontent.com/82510045/182044362-479e5950-d1b7-475c-bb77-d51dbebc1524.png)
 
 
-## Authors 🎉🎉🎉
+## Authors 😎😎
 
 #### Anurag Sharma
 * [GitHub](https://github.com/AnuragSharma122)
