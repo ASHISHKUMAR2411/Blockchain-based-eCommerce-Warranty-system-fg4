@@ -22,8 +22,8 @@ The objective is to replace the physical warranty and have block chain based war
 ## Getting Started
 
 ```
-	FG4
-	├── Backend
+  FG4
+  ├── Backend
   │   ├──controllers
   │   ├──models
   │   ├──node_modules
@@ -31,11 +31,11 @@ The objective is to replace the physical warranty and have block chain based war
   │   ├──routes
   │   ├──smart-contract
   │   └──app.js
-	├── frontend
-  │   ├──node_modules
-  │   ├──public
-  │   ├──src
-  │   └──.gitignore
+  └── frontend
+      ├──node_modules
+      ├──public
+      ├──src
+      └──.gitignore
 ```
 
 ### Tech Stack
@@ -44,21 +44,34 @@ The objective is to replace the physical warranty and have block chain based war
 
 ### Installation
 
-Please follow steps 
+In order to install this application , follow the following steps carefully:
+
+1. Download the code in your local system
+2. Open VS Code and open the project directory
+3. Now open console and type 'cd backend' and hit enter.
+4. You will move in backend directory. There in console type npm install and press enter
+5. This command will install all of the neccesary nodemodules in your project folder.(Make sure you have node      installed in your system)
+6. Do the same in frontend folder in another console.
+7. Now in bakend console type 'nodemon start' and start the server. In frontend console type 'npm start' and        start the frontend.
+8. You have sucessfully installed the project.
 
 ## Development
 
-This section is completely optional. For big projects, the developement strategies are not discussed. But for small projects, you can give some insight to people. It has 2 benefits in my opinion:
+The following section deals with the development process, walkthrough and features of this project.
 
-1. It's a way to give back to the community. People get to learn from you and appreciate your work
-2. You can refer the README in future as a quick refresher before an interview or for an old project to check if it can help you in your currect work
+### Development process
 
-### Part 1: Heading
+#### Step 1: Backend
 
-#### Step 1: Subheading
-
-* Mention the steps here
-  * You can also have nested steps to break a step into small tasks
+* We first came up with architecture of backend i.e MVC architecture
+* Now desiging the database was main step. We came up with following tables
+  * User
+  * Product
+  * Cart
+  * Order
+* We will discuss the fields of these tables later on
+* Controllers contains the functions that will be called on requests. We have separated each file by its           controller tpye i.e user-controller, product-controller etc.
+* 
   
 #### Step 2: Subheading
 
