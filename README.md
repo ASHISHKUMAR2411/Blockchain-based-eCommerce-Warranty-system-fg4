@@ -59,7 +59,14 @@ In order to install this application , follow the following steps carefully:
 
 The following section deals with the development process, walkthrough and features of this project.
 
-### Development process
+### Gathering Information
+
+* The most important task at this point is to get a clear understanding of our future website purposes, the main   goals wish to get.
+* A well-described and detailed plan based on this pre-development data protected us from spending extra       resources on solving the unexpected issues such as design changing or adding the functionality that wasn’t,     initially planned.
+
+### Planning
+
+* Based on the information that was gathered together in the previous phase, a map is created fro the project
 
 #### Step 1: Backend
 
@@ -71,18 +78,22 @@ The following section deals with the development process, walkthrough and featur
   * Order
 * We will discuss the fields of these tables later on
 * Controllers contains the functions that will be called on requests. We have separated each file by its           controller tpye i.e user-controller, product-controller etc.
-* 
+* Routes contains routes of different features. i.e user-routes, cart-routes, order-routes etc
   
-#### Step 2: Subheading
+#### Step 2: Frontend
 
-* Mention the steps here.
-  * You can also have nested steps to break a step into small tasks
+* During the frontend design phase, our website took shape
+* We came up with the design of flipkart website itself
+* Whole website was divided in componenets and those components were further divided so that we can reuse them.
+* Basic pages like homepage, login page product page were created first.
+* Then more complex functionlity like cart, order, seller page were added later on.
 
-For details now how everything has been implemented, refer the source code
+#### Step 3: Smart-contract
 
-### Part 2: Heading
+### Part 2: Features
 
-* Mention the steps here
+* We will discuss key features of this website
+
 
 ## Running the App
 
@@ -93,25 +104,9 @@ Steps and commands for running the app are to be included here
     Example command
   ```
 
-## Deployment
-
-This section is completely optional. Add additional notes about how to deploy this on a live system
-
-## Contributing
-
-Mention what you expect from the people who want to contribute
-
-We'd love to have your helping hand on `Project Title`! See [CONTRIBUTING.md] for more information on what we're looking for and how to get started.
-
-## Versioning
-
-If your project has multiple versions, include information about it here. 
-
-For the available versions, see the [tags on this repository][tags]
-
 ## Authors
 
-#### Madhur Taneja
+#### Anurag 
 * [GitHub]
 * [LinkedIn]
 
