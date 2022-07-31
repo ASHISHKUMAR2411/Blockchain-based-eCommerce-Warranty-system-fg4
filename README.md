@@ -2,7 +2,7 @@
 
 The objective is to replace the physical warranty and have block chain based warranty using NFT which will ensure authenticity and security.
 
-## Table of Contents  ✨✨
+## Table of Contents  😍😍
 - [Getting Started](#getting-started-)
 	- [Installation](#installation-)
 - [Problem Statement](#problem-statement-)
