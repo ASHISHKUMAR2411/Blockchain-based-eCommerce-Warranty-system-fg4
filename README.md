@@ -134,12 +134,12 @@ The following section deals with the development process, walkthrough and featur
 
 #### Anurag Sharma
 * [GitHub](https://github.com/AnuragSharma122)
-* [LinkedIn]
+* [LinkedIn](https://www.linkedin.com/in/anurag-sharma-77212b203/)
 
 #### Ashish Kumar
 * [GitHub](https://github.com/ASHISHKUMAR2411)
-* [LinkedIn]
+* [LinkedIn](https://www.linkedin.com/in/ashish-kumar-3100b3201/)
 
 #### Dev Agrawal
 * [GitHub](https://github.com/DevAgrawal1112)
-* [LinkedIn]
+* [LinkedIn](https://www.linkedin.com/in/dev-agrawal-223b211bb/)
