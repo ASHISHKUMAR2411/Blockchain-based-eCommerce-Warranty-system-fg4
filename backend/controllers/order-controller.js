@@ -29,7 +29,6 @@ const completeOrder = async (req, res) => {
     const order = new Order({ ...req.body, orderDate: Date.now() });
     const result = await order.save();
 
-    Backend work for smart contract
     res.json({ orderId: result._id });
   } catch (error) {
     console.log(error);

@@ -20,7 +20,6 @@ const contractAddress = "0x7f06c36140Bd23BC2C8d4cbC4ACEC5391f521A49";
 // const transaction  = ""; 
 async function mintNFT(tokenURI,toAddress) {
     try {
-        console.log("MintNFT " + tokenURI);
         const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
         const nftContract = new web3.eth.Contract(
           contract.abi,
@@ -42,7 +41,6 @@ async function mintNFT(tokenURI,toAddress) {
             .safeMint(toAddress, PUBLIC_KEY, tokenURI).encodeABI(),
         };
         
-        console.log(tx);
 
         const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
         signPromise
@@ -81,7 +79,7 @@ async function mintNFT(tokenURI,toAddress) {
     }
 }
 
-mintNFT("https://gateway.pinata.cloud/ipfs/Qmb7QwUWmotPbF594XC3wJRqh92BZJCvBSuboJ2ajamqhB", "0xf4B743D528f463325236FD5a87655F445A8D7be1")
+// var vari = mintNFT("https://gateway.pinata.cloud/ipfs/QmQtaanBVZjp9t52iuEczkmPTF5eBdYqguRHe6ByLEMeJB")
 // console.log(vari);
 
-// module.exports = {mintNFT};
+module.exports = {mintNFT};
