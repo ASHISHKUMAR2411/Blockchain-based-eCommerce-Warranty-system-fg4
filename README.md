@@ -40,7 +40,7 @@ The objective is to replace the physical warranty and have block chain based war
 
 ### Installation 💫💫
 
-In order to install this application, follow the following steps carefully:
+In order to install this application, please follow the following steps carefully:
 
 1. Download the code in your local system
 2. Open VS Code and open the project directory
@@ -49,7 +49,9 @@ In order to install this application, follow the following steps carefully:
 5. This command will install all of the necessary node modules in your project folder. (Make sure you have a node      installed in your system)
 6. Do the same in the frontend folder in another console.
 7. Now in the backend console type 'nodemon start' and start the server. In the frontend console type, 'npm start' and start the frontend.
-8. You have successfully installed the project.
+8. Now open smart contracts -> contracts -> product.sol and then npx hardhat run --network rinkeby scripts/deploy.js in terminal.
+9. Run npx hardhat run --network rinkeby scripts/deploy.js command.
+10. You have successfully installed the project. 🎉🎉🎉
 
 ## Problem Statement 💖💖
 
