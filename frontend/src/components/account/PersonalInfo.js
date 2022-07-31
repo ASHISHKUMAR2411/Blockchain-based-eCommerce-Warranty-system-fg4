@@ -274,7 +274,7 @@ function PersonalInfo({userInfo,walletAddress}) {
               // helperText={errors.fname && `${errorMsg.title.longTitle}`}
             />
             <TextField
-              label="Cost in INR"
+              label="Cost in Ether"
               placeholder="Cost"
               variant="outlined"
               className={classes.input}
@@ -312,7 +312,6 @@ function PersonalInfo({userInfo,walletAddress}) {
               // error={errors.fname}
               // helperText={errors.fname && `${errorMsg.title.longTitle}`}
             />
-            <br />
             <TextField
               label="Category"
               placeholder="Category"
@@ -335,6 +334,7 @@ function PersonalInfo({userInfo,walletAddress}) {
               // error={errors.fname}
               // helperText={errors.fname && `${errorMsg.title.longTitle}`}
             />
+            <br/>
             <TextField
               label="Waranty (in month)"
               placeholder="Waranty"

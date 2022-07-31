@@ -6,9 +6,11 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
     uint deployDate;
+    // uint256 tk;
     constructor() ERC721("Product", "PDT") {
         // uint256 tokenId = id;
         // _safeMint(from, tokenId);
@@ -20,13 +22,14 @@ contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         }
     }
 
-    function safeMint(address to,address from, string memory uri) public onlyOwner {
-        uint256 tokenId = block.timestamp;
+    function safeMint(address to,address from, string memory uri) public onlyOwner returns (string memory) {
+        uint tokenId = block.timestamp;
         _mint(from, tokenId);
         _setTokenURI(tokenId, uri);
         _transfer(from, to ,tokenId);
         // payable(from).transfer(0.0001 ether);
         transferOwnership(to);
+        return Strings.toString(tokenId);
     }
 
     // The following functions are overrides required by Solidity.

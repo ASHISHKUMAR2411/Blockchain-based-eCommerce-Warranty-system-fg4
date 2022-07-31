@@ -14,7 +14,11 @@ const web3 = createAlchemyWeb3(
   "https://eth-rinkeby.alchemyapi.io/v2/PXrsxQyIQmScZ1CekyuaAkZ1MnbRHytk"
 );
 const contract = require("../artifacts/contracts/Product.sol/Product.json");
+<<<<<<< HEAD
 const contractAddress = "0x7f06c36140Bd23BC2C8d4cbC4ACEC5391f521A49";
+=======
+const contractAddress = "0x0580ca5c552cFCdEFC9Bd565e962758De91C529a";
+>>>>>>> c3e850d0d86d529993f9814bfdf92429bb15e05c
 
 
 // const transaction  = ""; 
@@ -22,10 +26,14 @@ async function mintNFT(tokenURI,toAddress) {
     try {
         console.log("MintNFT " + tokenURI);
         const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
+<<<<<<< HEAD
         const nftContract = new web3.eth.Contract(
           contract.abi,
           contractAddress
         );
+=======
+        const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
+>>>>>>> c3e850d0d86d529993f9814bfdf92429bb15e05c
         //the transaction
         
         // const d = nftContract.methods.safeMint(toAddress, PUBLIC_KEY, tokenURI);
@@ -42,6 +50,7 @@ async function mintNFT(tokenURI,toAddress) {
             .safeMint(toAddress, PUBLIC_KEY, tokenURI).encodeABI(),
         };
         
+        console.log(tx);
 
         const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
         signPromise
@@ -55,11 +64,17 @@ async function mintNFT(tokenURI,toAddress) {
                     hash,
                     "\nCheck Alchemy's Mempool to view the status of your transaction!"
                   );
+<<<<<<< HEAD
 
                   var transaction = web3.eth.getTransactionReceipt(hash);
                   console.log(
                     `https://testnets.opensea.io/assets/rinkeby/${transaction.contractAddress}/${tx.data}`
                   );
+=======
+                  // return hash;
+                //   var transaction = web3.eth.getTransactionReceipt(hash);
+                    console.log(`https://testnets.opensea.io/assets/rinkeby/0x0580ca5c552cFCdEFC9Bd565e962758De91C529a/${tx.data}`);
+>>>>>>> c3e850d0d86d529993f9814bfdf92429bb15e05c
                 } else {
                   console.log(
                     "Something went wrong when submitting your transaction:",
@@ -80,7 +95,7 @@ async function mintNFT(tokenURI,toAddress) {
     }
 }
 
-// var vari = mintNFT("https://gateway.pinata.cloud/ipfs/QmQtaanBVZjp9t52iuEczkmPTF5eBdYqguRHe6ByLEMeJB")
+mintNFT("https://gateway.pinata.cloud/ipfs/Qmb7QwUWmotPbF594XC3wJRqh92BZJCvBSuboJ2ajamqhB", "0xf4B743D528f463325236FD5a87655F445A8D7be1")
 // console.log(vari);
 
-module.exports = {mintNFT};
+// module.exports = {mintNFT};

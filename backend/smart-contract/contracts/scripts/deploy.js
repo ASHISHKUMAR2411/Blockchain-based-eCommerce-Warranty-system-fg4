@@ -5,6 +5,8 @@ async function main() {
     const product = await Product.deploy()
     await product.deployed();
     console.log("Contract deployed to address:", product.address)
+    console.log(product);
+    console.log(Product);
 }
 
 // 0x271Dd0f273E65013f023390882c0b64582Ae0451
