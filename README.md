@@ -24,6 +24,7 @@ The objective is to replace the physical warranty and have block chain based war
 
 ## Getting Started
 
+
 ```
   FG4
   ├── Backend
@@ -43,16 +44,16 @@ The objective is to replace the physical warranty and have block chain based war
 
 ### Installation
 
-In order to install this application , follow the following steps carefully:
+In order to install this application, follow the following steps carefully:
 
 1. Download the code in your local system
 2. Open VS Code and open the project directory
-3. Now open console and type 'cd backend' and hit enter.
-4. You will move in backend directory. There in console type npm install and press enter
-5. This command will install all of the neccesary nodemodules in your project folder.(Make sure you have node      installed in your system)
-6. Do the same in frontend folder in another console.
-7. Now in bakend console type 'nodemon start' and start the server. In frontend console type 'npm start' and        start the frontend.
-8. You have sucessfully installed the project.
+3. Now open the console and type 'cd backend' and hit enter.
+4. You will move to the backend directory. There is the console type npm install and press enter
+5. This command will install all of the necessary node modules in your project folder. (Make sure you have a node      installed in your system)
+6. Do the same in the frontend folder in another console.
+7. Now in the backend console type 'nodemon start' and start the server. In the frontend console type, 'npm start' and start the frontend.
+8. You have successfully installed the project.
 
 ## Problem Statement
 
@@ -62,20 +63,20 @@ In order to install this application , follow the following steps carefully:
 ## Use Cases
 
 * Prove Authenticity
-  * When Customer buy any product then they will receive NFT that will store the data of product and all details     of sender and its product like serial number and purchase history that helps to prove the authenticity of       the product.
+  * When Customers buy any product then they will receive NFT that will store the data of the product and all details of the sender and its product like serial number and purchase history that helps to prove the authenticity of the product.
 
 * Secured Transactions
-  * For providing secured environment we had used openzeppelin security library that helps to.
+  * For providing a secured environment we used the openzeppelin security library that helps.
   *  Pull Payment(avoid reentrancy attack) 
   *  Reentrancy Guard 
   *  Pausable
  
 * Decaying NFT
   * The user will receive an NFT token in the form of a digital warranty card that will carry its warranty
-    period also and when the warranty gets over the NFT will automatically get removed.
+    the period also and when the warranty gets over the NFT will automatically get removed.
     
 * Seamless GUI
-  *The prototype itself shows the seamless experience for both customer and seller. The seller can list their      products and sell without having previous knowledge of Blockchain or Web3. We have also introduced a loyalty    program to engage and retain customers. 
+  *The prototype itself shows the seamless experience for both customer and seller. The seller can list their products and sell without having previous knowledge of Blockchain or Web3. We have also introduced a loyalty program to engage and retain customers. 
   
 ## Tech Stack and tools
 * React.js
@@ -97,36 +98,36 @@ In order to install this application , follow the following steps carefully:
 
 ## Development
 
-The following section deals with the development process, walkthrough and features of this project.
+The following section deals with the development process, walkthrough, and features of this project.
 
 ### Part 1: Gathering Information
 
-* The most important task at this point is to get a clear understanding of our future website purposes, the main   goals wish to get.
-* A well-described and detailed plan based on this pre-development data protected us from spending extra       resources on solving the unexpected issues such as design changing or adding the functionality that wasn’t,     initially planned.
+* The most important task at this point is to get a clear understanding of our future website purposes, and the main goals wish to get.
+* A well-described and detailed plan based on this pre-development data protected us from spending extra resources on solving unexpected issues such as design changing or adding functionality that wasn’t, initially planned.
 
 ### Part 2: Planning
 
-* Based on the information that was gathered together in the previous phase, a map is created fro the project
+* Based on the information that was gathered together in the previous phase, a map is created for the project
 
 #### Step 1: Backend
 
-* We first came up with architecture of backend i.e MVC architecture
-* Now desiging the database was main step. We came up with following tables
+* We first came up with the architecture of the backend i.e MVC architecture
+* Now designing the database was the main step. We came up with the following tables
   * User
   * Product
   * Cart
   * Order
 * We will discuss the fields of these tables later on
-* Controllers contains the functions that will be called on requests. We have separated each file by its           controller tpye i.e user-controller, product-controller etc.
-* Routes contains routes of different features. i.e user-routes, cart-routes, order-routes etc
+* Controllers contain the functions that will be called on requests. We have separated each file by its controller type i.e user-controller, product-controller, etc.
+* Routes contain routes of different features. i.e user-routes, cart-routes, order-routes etc
   
 #### Step 2: Frontend
 
 * During the frontend design phase, our website took shape
-* We came up with the design of flipkart website itself
-* Whole website was divided in componenets and those components were further divided so that we can reuse them.
-* Basic pages like homepage, login page product page were created first.
-* Then more complex functionlity like cart, order, seller page were added later on.
+* We came up with the design of the Flipkart website itself
+* The Whole website was divided into components and those components were further divided so that we can reuse them.
+* Basic pages like homepage, and login page product page was created first.
+* Then more complex functionality like cart, order, and seller pages were added later on.
 
 #### Step 3: Smart-contract
 
