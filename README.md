@@ -105,6 +105,9 @@ We came up with the solution:
 
 ## System Architecture 📦📦
 ![image](https://user-images.githubusercontent.com/77338386/182043722-586d221b-f238-45a8-82f9-e3d32dadd754.png)
+![image](https://user-images.githubusercontent.com/82510045/182049258-80254b28-397d-48b2-8f3a-fb3179578303.png)
+![image](https://user-images.githubusercontent.com/82510045/182049276-915c8137-d135-4a79-bd50-04b0445b5ba4.png)
+
 
 ## Development 💫💫
 
