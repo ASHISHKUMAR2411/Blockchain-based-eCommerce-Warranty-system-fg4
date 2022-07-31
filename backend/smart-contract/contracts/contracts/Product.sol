@@ -22,12 +22,12 @@ contract Product is ERC721, ERC721URIStorage, ERC721Burnable, Ownable {
         }
     }
 
-    function safeMint(address to,address from, string memory uri) public onlyOwner returns (string memory) {
+    function safeMint(address to,address from, string memory uri) public payable onlyOwner returns (string memory) {
         uint tokenId = block.timestamp;
         _mint(from, tokenId);
         _setTokenURI(tokenId, uri);
         _transfer(from, to ,tokenId);
-        // payable(from).transfer(0.0001 ether);
+        payable(from).transfer(0.0001 ether);
         transferOwnership(to);
         return Strings.toString(tokenId);
     }
