@@ -60,12 +60,12 @@ As a part of this challenge, we were expected to build a blockchain-based eComme
 
 ## Solution 💥💥
 
-We came up with the solution that we will create:
-* There we will be two side interface in which user and seller both can login and signup with their details and then there metamask wallet mill automatically connect with our site.
-* The seller can list their product and buyer can buy the product.
-* After placing order the order will reflected in the order page and the nft token with the product detail will create on market place.
-* One .json file will consist the data of the item and etherscan will have the transaction history of the product.
-* And the product also be showen in metamask wallet of user.
+We came up with the solution:
+* There we will be two side interface in which user and seller both can login and signup with their details and then there metamask wallet will automatically connect with our site.
+* The seller can list their products and buyer can buy the products.
+* After placing order the order will be reflected in the order page and the nft token with product details will be created on market place.
+* The json file will consist the data of the item and etherscan will have the transaction history of the product.
+* The product also be listed in the metamask wallet of user.
 
 ## Use Cases 💞💞
 
