@@ -144,6 +144,9 @@ The following section deals with the development process, walkthrough, and featu
 ![image](https://user-images.githubusercontent.com/82510045/182044062-2a31fb9d-7d6f-42ea-871e-d0cf064c5c5e.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044076-51375d2e-36e7-478f-b6e1-57aa5e19fb71.png)
 
+### NFT Generated
+
+![image](https://user-images.githubusercontent.com/82510045/182044362-479e5950-d1b7-475c-bb77-d51dbebc1524.png)
 
 
 ## Authors 🎉
