@@ -14,7 +14,7 @@ const web3 = createAlchemyWeb3(
   "https://eth-rinkeby.alchemyapi.io/v2/PXrsxQyIQmScZ1CekyuaAkZ1MnbRHytk"
 );
 const contract = require("../artifacts/contracts/Product.sol/Product.json");
-const contractAddress = "0x52Cb1fDdf12dC4fC1E1d587E25597EDcb9b298d3";
+const contractAddress = "0x0580ca5c552cFCdEFC9Bd565e962758De91C529a";
 
 
 // const transaction  = ""; 
@@ -22,7 +22,7 @@ async function mintNFT(tokenURI,toAddress) {
     try {
         console.log("MintNFT");
         const nonce = await web3.eth.getTransactionCount(PUBLIC_KEY, "latest"); //get latest nonce
-        const nftContract = new web3.eth.Contract(contract.abi, toAddress);
+        const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
         //the transaction
         console.log("MintNFT2");
         const tx = {
@@ -38,6 +38,7 @@ async function mintNFT(tokenURI,toAddress) {
             .encodeABI(),
         };
         
+        console.log(tx);
 
         const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
         signPromise
@@ -52,8 +53,8 @@ async function mintNFT(tokenURI,toAddress) {
                     "\nCheck Alchemy's Mempool to view the status of your transaction!"
                   );
                   // return hash;
-                  var transaction = web3.eth.getTransactionReceipt(hash);
-                  console.log(`https://testnets.opensea.io/assets/rinkeby/${transaction.contractAddress}/${tx.data}`);
+                //   var transaction = web3.eth.getTransactionReceipt(hash);
+                    console.log(`https://testnets.opensea.io/assets/rinkeby/0x0580ca5c552cFCdEFC9Bd565e962758De91C529a/${tx.data}`);
                 } else {
                   console.log(
                     "Something went wrong when submitting your transaction:",
@@ -71,7 +72,7 @@ async function mintNFT(tokenURI,toAddress) {
     }
 }
 
-// var vari = mintNFT("https://gateway.pinata.cloud/ipfs/QmQtaanBVZjp9t52iuEczkmPTF5eBdYqguRHe6ByLEMeJB")
+mintNFT("https://gateway.pinata.cloud/ipfs/Qmb7QwUWmotPbF594XC3wJRqh92BZJCvBSuboJ2ajamqhB", "0xf4B743D528f463325236FD5a87655F445A8D7be1")
 // console.log(vari);
 
-module.exports = {mintNFT};
+// module.exports = {mintNFT};
