@@ -6,6 +6,7 @@ The objective is to replace the physical warranty and have block chain based war
 - [Getting Started](#getting-started-)
 	- [Installation](#installation-)
 - [Problem Statement](#problem-statement-)
+- [Solution](#solution-)
 - [Use Cases](#use-cases-)
 - [Tech Stack and Tools](#tech-stack-and-tools-)
 - [System Architecture](#system-architecture-)
@@ -56,6 +57,15 @@ In order to install this application, please follow the following steps carefull
 ## Problem Statement 🤞🤞
 
 As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype) that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens (NFTs) which will ensure the authenticity and security of the products.
+
+## Solution 💥💥
+
+We came up with the solution that we will create:
+* There we will be two side interface in which user and seller both can login and signup with their details and then there metamask wallet mill automatically connect with our site.
+* The seller can list their product and buyer can buy the product.
+* After placing order the order will reflected in the order page and the nft token with the product detail will create on market place.
+* One .json file will consist the data of the item and etherscan will have the transaction history of the product.
+* And the product also be showen in metamask wallet of user.
 
 ## Use Cases 💞💞
 
@@ -125,13 +135,18 @@ The following section deals with the development process, walkthrough, and featu
 
 * During the frontend design phase, our website took shape
 * We came up with the design of the Flipkart website itself
-* The Whole website was divided into components and those components were further divided so that we can reuse them.
+* The whole website was divided into components and those components were further divided so that we can reuse them.
 * Basic pages like homepage, and login page product page was created first.
 * Then more complex functionality like cart, order, and seller pages were added later on.
 
 #### Step 3: Smart-contract
 
-## Running the App 📦📦
+* Contract will provide to mint Nft.
+* The Nft might be a decaying nft if there will be any warranty in the product.
+* Nft will have the serial number and other product details.
+* You can resale your product and the owner in the digital waranty card will also change.
+
+## Running the App 🧠🧠
 
 ### User ✨✨
 
