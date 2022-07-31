@@ -57,7 +57,7 @@ In order to install this application, please follow the following steps carefull
 
 As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype) that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens (NFTs) which will ensure the authenticity and security of the products.
 
-## Use Cases 💪💪
+## Use Cases 💞💞
 
 * Prove Authenticity
   * When Customers buy any product then they will receive NFT that will store the data of the product and all details of the sender and its product like serial number and purchase history that helps to prove the authenticity of the product.
