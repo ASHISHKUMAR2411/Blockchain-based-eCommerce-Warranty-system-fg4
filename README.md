@@ -18,7 +18,7 @@ The objective is to replace the physical warranty and have block chain based war
 - [Running the App](#running-the-app)
 - [Authors](#authors)
 
-## Getting Started ⛹️‍♂️⛹️‍♂️
+## Getting Started "https://github.githubassets.com/images/icons/emoji/unicode/1f4ab.png?v8"
 ```
   FG4
   ├── backend
