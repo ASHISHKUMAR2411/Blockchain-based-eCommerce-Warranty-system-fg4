@@ -55,8 +55,7 @@ In order to install this application, please follow the following steps carefull
 
 ## Problem Statement 💖💖
 
-* Blockchain-based eCommerce warranty system using NFTs
-  * As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype)     that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens         (NFTs) which will ensure the authenticity and security of the products.
+As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype) that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens (NFTs) which will ensure the authenticity and security of the products.
 
 ## Use Cases 🤩🤩
 
