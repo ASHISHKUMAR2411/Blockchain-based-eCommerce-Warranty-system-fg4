@@ -11,8 +11,9 @@ The objective is to replace the physical warranty and have block chain based war
 - [Development](#development)
     - [Part 1: Gathering Information](#part-1-gathering-information)
     - [Part 2: Planning](#part-2-planning)
-	  - [Step 1: Subheading](#step-1-subheading)
-	  - [Step 2: Subheading](#step-2-subheading)
+	  - [Step 1: Backend](#step-1-backend)
+	  - [Step 2: Frontend](#step-2-frontend)
+	  - [Step 3: Smart-contract](#step-2-smart-contract)
 	- [Part 3: Heading](#part-3-heading)
 - [Running the App](#running-the-app)
 - [Deployment](#deployment)
@@ -95,17 +96,16 @@ In order to install this application , follow the following steps carefully:
 * Pinata
 * Metamask
 
-
 ## Development
 
 The following section deals with the development process, walkthrough and features of this project.
 
-### Gathering Information
+### Part 1: Gathering Information
 
 * The most important task at this point is to get a clear understanding of our future website purposes, the main   goals wish to get.
 * A well-described and detailed plan based on this pre-development data protected us from spending extra       resources on solving the unexpected issues such as design changing or adding the functionality that wasn’t,     initially planned.
 
-### Planning
+### Part 2: Planning
 
 * Based on the information that was gathered together in the previous phase, a map is created fro the project
 
