@@ -139,7 +139,6 @@ The following section deals with the development process, walkthrough, and featu
 
 ### Seller
 ![image](https://user-images.githubusercontent.com/82510045/182044062-2a31fb9d-7d6f-42ea-871e-d0cf064c5c5e.png)
-![image](https://user-images.githubusercontent.com/82510045/182043466-ef88ce15-668a-474a-a691-b91bca53742e.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044076-51375d2e-36e7-478f-b6e1-57aa5e19fb71.png)
 
 
