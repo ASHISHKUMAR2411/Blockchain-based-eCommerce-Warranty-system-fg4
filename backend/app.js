@@ -22,8 +22,7 @@ app.use(
 );
 //Set up mongoose connection
 var mongoose = require("mongoose");
-var mongoDB =
-  "mongodb://database_anurag:Anu122504@ac-m6cvwyv-shard-00-00.mjtdslt.mongodb.net:27017,ac-m6cvwyv-shard-00-01.mjtdslt.mongodb.net:27017,ac-m6cvwyv-shard-00-02.mjtdslt.mongodb.net:27017/?ssl=true&replicaSet=atlas-qa2kl6-shard-0&authSource=admin&retryWrites=true&w=majority";
+var mongoDB = process.env.MONGO;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
