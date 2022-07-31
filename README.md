@@ -126,7 +126,8 @@ The following section deals with the development process, walkthrough, and featu
 
 ## Running the App
 
-![image](https://user-images.githubusercontent.com/82510045/182042995-2baeca98-0d18-4a6c-bbed-4656a7fc1bac.png)![image](https://user-images.githubusercontent.com/82510045/182043088-6a1549e0-80e0-46d3-9a51-accd6e842cbd.png)
+![image](https://user-images.githubusercontent.com/82510045/182042995-2baeca98-0d18-4a6c-bbed-4656a7fc1bac.png)
+![image](https://user-images.githubusercontent.com/82510045/182043088-6a1549e0-80e0-46d3-9a51-accd6e842cbd.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043112-81838f69-3932-4c07-84ce-ecabba3d7128.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043141-40e9c3f0-ede7-4369-af84-27d45413a53c.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043171-8bab5cb4-2416-4076-8dd6-b02b1f20846b.png)
