@@ -131,51 +131,16 @@ The following section deals with the development process, walkthrough and featur
 
 #### Step 3: Smart-contract
 
-### Part 2: Features
-
-* We will discuss key features of this website
-
-
-## Running the App
-
-Steps and commands for running the app are to be included here
-
-* Example steps:
-  ```
-    Example command
-  ```
-
 ## Authors
 
 #### Anurag 
 * [GitHub]
 * [LinkedIn]
 
-You can also see the complete [list of contributors][contributors] who participated in this project.
+#### Ashish Kumar
+* [GitHub]
+* [LinkedIn]
 
-## License
-
-`Project Title` is open source software [licensed as MIT][license].
-
-## Acknowledgments
-
-This section can also be called as `Resources` or `References`
-
-* Code Honor if someone's work was referred to
-* Tutorials followed
-* Articles that helped
-* Inspiration
-* etc
-
-[//]: # (HyperLinks)
-
-[GitHub Repository]: https://github.com/madhur-taneja/README-Template
-[GitHub Pages]: https://madhur-taneja.github.io/README-Template
-[CONTRIBUTING.md]: https://github.com/madhur-taneja/README-template/blob/master/CONTRIBUTING.md
-[tags]: https://github.com/madhur-taneja/README-template/tags
-
-[GitHub]: https://github.com/madhur-taneja
-[LinkedIn]: https://www.linkedin.com/in/madhur-taneja/
-
-[contributors]: https://github.com/madhur-taneja/README-template/contributors
-[license]: https://github.com/madhur-taneja/README-template/blob/master/LICENSE.md
+#### Dev Agarwal
+* [GitHub]
+* [LinkedIn]
