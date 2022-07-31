@@ -21,19 +21,21 @@ The objective is to replace the physical warranty and have block chain based war
 ## Getting Started ⛹️‍♂️⛹️‍♂️
 ```
   FG4
-  ├── Backend
+  ├── backend
   │   ├──controllers
   │   ├──models
-  │   ├──node_modules
-  │   ├──public
   │   ├──routes
   │   ├──smart-contract
+  |   |		      ├──contracts
+  |   |		      └──pinata
   │   └──app.js
   └── frontend
-      ├──node_modules
-      ├──public
-      ├──src
-      └──.gitignore
+      └──src
+      	 ├──actions.js
+         ├──components
+	 ├──pages
+	 ├──index.js
+	 └──app.js
 ```
 
 ### Installation 💫💫
