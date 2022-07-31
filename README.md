@@ -2,7 +2,7 @@
 
 The objective is to replace the physical warranty and have block chain based warranty using NFT which will ensure authenticity and security.
 
-## Table of Contents ⛹️‍♂️
+## Table of Contents  ✨✨
 - [Getting Started](#getting-started)
 	- [Installation](#installation)
 - [Problem Statement](#problem-statement)
@@ -18,7 +18,7 @@ The objective is to replace the physical warranty and have block chain based war
 - [Running the App](#running-the-app)
 - [Authors](#authors)
 
-## Getting Started ✨
+## Getting Started ⛹️‍♂️⛹️‍♂️
 ```
   FG4
   ├── Backend
@@ -36,7 +36,7 @@ The objective is to replace the physical warranty and have block chain based war
       └──.gitignore
 ```
 
-### Installation 💖
+### Installation 💫💫
 
 In order to install this application, follow the following steps carefully:
 
@@ -49,12 +49,12 @@ In order to install this application, follow the following steps carefully:
 7. Now in the backend console type 'nodemon start' and start the server. In the frontend console type, 'npm start' and start the frontend.
 8. You have successfully installed the project.
 
-## Problem Statement 💫
+## Problem Statement 💖💖
 
 * Blockchain-based eCommerce warranty system using NFTs
   * As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype)     that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens         (NFTs) which will ensure the authenticity and security of the products.
 
-## Use Cases 🤩
+## Use Cases 🤩🤩
 
 * Prove Authenticity
   * When Customers buy any product then they will receive NFT that will store the data of the product and all details of the sender and its product like serial number and purchase history that helps to prove the authenticity of the product.
@@ -72,7 +72,7 @@ In order to install this application, follow the following steps carefully:
 * Seamless GUI
   *The prototype itself shows the seamless experience for both customer and seller. The seller can list their products and sell without having previous knowledge of Blockchain or Web3. We have also introduced a loyalty program to engage and retain customers. 
   
-## Tech Stack and tools ❤️
+## Tech Stack and tools ❤️❤️
 * React.js
 * Node.js
 * Express.js
@@ -90,7 +90,7 @@ In order to install this application, follow the following steps carefully:
 * Pinata
 * Metamask
 
-## System Architecture 🧑‍💻
+## System Architecture 🧑‍💻🧑‍💻
 ![image](https://user-images.githubusercontent.com/77338386/182043722-586d221b-f238-45a8-82f9-e3d32dadd754.png)
 
 ## Development
@@ -128,9 +128,9 @@ The following section deals with the development process, walkthrough, and featu
 
 #### Step 3: Smart-contract
 
-## Running the App 😎
+## Running the App 😎😎
 
-### User
+### User ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182043924-012b05d1-0e97-4812-8852-eb8c8cf236f9.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043952-5b49f19f-5e4b-4427-bf69-cee6641b8b2d.png)
@@ -139,17 +139,17 @@ The following section deals with the development process, walkthrough, and featu
 ![image](https://user-images.githubusercontent.com/82510045/182044019-72e19188-3362-43d5-9fdf-4dfd00ca4332.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044131-71929d5c-9fdd-470d-9b3e-74b205f65493.png)
 
-### Seller
+### Seller ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182044062-2a31fb9d-7d6f-42ea-871e-d0cf064c5c5e.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044076-51375d2e-36e7-478f-b6e1-57aa5e19fb71.png)
 
-### NFT Generated
+### NFT Generated ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182044362-479e5950-d1b7-475c-bb77-d51dbebc1524.png)
 
 
-## Authors 🎉
+## Authors 🎉🎉🎉
 
 #### Anurag Sharma
 * [GitHub](https://github.com/AnuragSharma122)
