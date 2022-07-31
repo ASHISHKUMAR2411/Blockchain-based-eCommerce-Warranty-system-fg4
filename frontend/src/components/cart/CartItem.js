@@ -101,7 +101,7 @@ const CartItem = ({
               </span>
             </Typography>
             <Typography style={{ margin: "20px 0", color: "#000" }}>
-              <span className={classes.price}>₹{item.price.cost}</span>
+              <span className={classes.price}>{item.price.cost} ETH /₹{item.price.mrp - item.price.discount} </span>
               &nbsp;&nbsp;&nbsp;
               <span className={classes.greyTextColor}>
                 <strike>₹{item.price.mrp}</strike>

@@ -27,6 +27,7 @@ function GamePage() {
     //   alert(winner);
     };
     return (
+      <div>
       <div
         style={{
           display: "flex",
@@ -46,11 +47,13 @@ function GamePage() {
           contrastColor="white"
           buttonText="Spin"
           isOnlyOnce={false}
-          size={290}
+          size={250}
           upDuration={1000}
           downDuration={1000}
           fontFamily="Arial"
         />
+      </div>
+        <button onCLick="">Redeem Prizes</button>
       </div>
     );
 }

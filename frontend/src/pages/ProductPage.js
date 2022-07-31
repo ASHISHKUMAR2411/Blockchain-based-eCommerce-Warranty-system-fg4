@@ -118,7 +118,7 @@ function ProductPage({
               </span>
             </Box>
             <Typography>
-              <span className={classes.price}>₹{product.price.cost}</span>
+                <span className={classes.price}>{product.price.cost} ETH / ₹{product.price.mrp - product.price.discount} </span>
               &nbsp;&nbsp;&nbsp;
               <span className={classes.greyTextColor}>
                 <strike>₹{product.price.mrp}</strike>
