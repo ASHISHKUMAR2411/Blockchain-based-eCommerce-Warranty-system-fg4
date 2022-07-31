@@ -2,6 +2,32 @@
 
 The objective is to replace the physical warranty and have block chain based warranty using NFT which will ensure authenticity and security.
 
+## Problem Statement
+
+* Blockchain-based eCommerce warranty system using NFTs
+  * As a part of this challenge, we were expected to build a blockchain-based eCommerce system (a web prototype)     that will replace the physical warranty of the product with a digital version using Non-Fungible Tokens         (NFTs) which will ensure the authenticity and security of the products.
+
+## Use Cases
+
+* Prove Authenticity
+  * When Customer buy any product then they will receive NFT that will store the data of product and all details     of sender and its product like serial number and purchase history that helps to prove the authenticity of       the product.
+
+* Secured Transactions
+  * For providing secured environment we had used openzeppelin security library that helps to.
+  *  Pull Payment(avoid reentrancy attack) 
+  *  Reentrancy Guard 
+  *  Pausable
+ 
+* Decaying NFT
+  * The user will receive an NFT token in the form of a digital warranty card that will carry its warranty
+    period also and when the warranty gets over the NFT will automatically get removed.
+    
+* Seamless GUI
+  *The prototype itself shows the seamless experience for both customer and seller. The seller can list their      products and sell without having previous knowledge of Blockchain or Web3. We have also introduced a loyalty    program to engage and retain customers. 
+  
+## Tech Stack and tools
+
+
 ## Table of Contents
 - [Getting Started](#getting-started)
 	- [Tech Stack](#tech-stack)
