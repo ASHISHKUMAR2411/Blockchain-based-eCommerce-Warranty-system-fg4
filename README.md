@@ -4,7 +4,7 @@ The objective is to replace the physical warranty and have block chain based war
 
 ## Table of Contents  😍😍
 - [Getting Started](#getting-started-)
-	- [Installation](#installation-)
+	- [Installation Guide](#installation-guide-)
 - [Problem Statement](#problem-statement-)
 - [Solution](#solution-)
 - [Use Cases](#use-cases-)
@@ -39,20 +39,29 @@ The objective is to replace the physical warranty and have block chain based war
 	 └──app.js
 ```
 
-### Installation 💫💫
+### Installation Guide 💫💫
 
 In order to install this application, please follow the following steps carefully:
 
-1. Download the code in your local system
-2. Open VS Code and open the project directory
-3. Now open the console and type 'cd backend' and hit enter.
-4. You will move to the backend directory. There is the console type npm install and press enter
-5. This command will install all of the necessary node modules in your project folder. (Make sure you have a node      installed in your system)
-6. Do the same in the frontend folder in another console.
-7. Now in the backend console type 'nodemon start' and start the server. In the frontend console type, 'npm start' and start the frontend.
-8. Now open smart contracts -> contracts -> product.sol and then npx hardhat run --network rinkeby scripts/deploy.js in terminal.
-9. Run npx hardhat run --network rinkeby scripts/deploy.js command.
-10. You have successfully installed the project. 🎉🎉🎉
+1. Clone the project to your local system.
+2. Open the project directory in your IDE.
+3. `Now in the terminal go to the 'backend' folder`
+4. Then `npm install`  
+5. This command will install all of the necessary node modules in your project folder. (Make sure you have a node installed in your system).
+6. Do the same in the frontend folder.
+7. Now in the terminal go to the backend folder type `nodemon start` then this will start the server. In the frontend console type, `npm start` then this will start the frontend.
+8. Now be on the `smart-contracts` folder on the terminal and then `npx hardhat compile`
+9. Then run `npx hardhat run --network rinkeby scripts/deploy.js command`  to get your smart contract address.
+10. Create an `.env` file inside your backend folder to keep your API keys.
+* Structure of .env file
+  * `SECRET_KEY` = '[Your wallet secret key](https://metamask.zendesk.com/hc/en-us/articles/360015289632-How-to-export-an-account-s-private-key)'
+  * `PINATA_API_KEY` = '[Your Pinata account API key](https://docs.pinata.cloud/#your-api-keys)'
+  * `PINATA_API_SECRET` = '[Pinata secret key](https://docs.pinata.cloud/#your-api-keys)'
+  * `MONGO` = '[Connection URL of Mongo](https://www.mongodb.com/docs/manual/reference/connection-string/)'
+  * `RINKEBY_API` = '[Alchemy Rinkeby network API url](https://docs.alchemy.com/alchemy/introduction/getting-started#1.create-an-alchemy-key)'
+  * `PUBLIC_KEY` = '[Your wallet public address](https://metamask.zendesk.com/hc/en-us/articles/4702972178459-The-Ethereum-address-format-and-why-it-matters-when-using-MetaMask)'
+  * `CONTRACT_ADDRESS` = 'Smart Contract deployed address from point 9 of Installation Guide'
+11. You have successfully installed the project. 🎉🎉🎉
 
 ## Problem Statement 🤞🤞
 
