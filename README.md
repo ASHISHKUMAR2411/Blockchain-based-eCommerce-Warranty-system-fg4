@@ -179,7 +179,7 @@ The following section deals with the development process, walkthrough, and featu
 ### Product created in MetaMask Wallet 🎉🎉🎉
 
          
-<img src="https://user-images.githubusercontent.com/77338386/182227555-0514e88c-c20d-485e-b623-48091482790b.jpg" height="600" width="450" ><img src="https://user-images.githubusercontent.com/77338386/182219031-040a0c8c-dccd-405b-9713-1dec59198b1d.jpeg" height="600" width="450"> 
+<img src="https://user-images.githubusercontent.com/77338386/182227555-0514e88c-c20d-485e-b623-48091482790b.jpg" height="600" width="400" ><img src="https://user-images.githubusercontent.com/77338386/182219031-040a0c8c-dccd-405b-9713-1dec59198b1d.jpeg" height="600" width="400"> 
 
 ## Authors 😎😎
 
