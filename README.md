@@ -45,7 +45,7 @@ In order to install this application, please follow the following steps carefull
 
 1. Clone the project to your local system.
 2. Open the project directory in your IDE.
-3. `Now in the terminal go to the 'backend' folder`
+3. Now in the terminal go to the `backend` folder.
 4. Then `npm install`  
 5. This command will install all of the necessary node modules in your project folder. (Make sure you have a node installed in your system).
 6. Do the same in the frontend folder.
