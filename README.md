@@ -176,7 +176,6 @@ The following section deals with the development process, walkthrough, and featu
 
 ![image](https://user-images.githubusercontent.com/82510045/182044362-479e5950-d1b7-475c-bb77-d51dbebc1524.png)
 
-
 ## Authors 😎😎
 
 #### Anurag Sharma
