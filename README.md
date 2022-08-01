@@ -154,6 +154,10 @@ The following section deals with the development process, walkthrough, and featu
 
 ## Running the App 🧠🧠
 
+### Before MetaMask Installation 😎😎
+![image](https://user-images.githubusercontent.com/82510045/182141101-cb206f14-63f4-4153-873d-da590a188bc7.png)
+
+
 ### User ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182043924-012b05d1-0e97-4812-8852-eb8c8cf236f9.png)
