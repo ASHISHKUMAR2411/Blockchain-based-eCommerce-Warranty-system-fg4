@@ -1,17 +1,20 @@
+// package import
 require("dotenv").config()
 const ethers = require("ethers")
-const API_URL = process.env.RINKEBY_API
-const PUBLIC_KEY = "0x04957297B19a707eB949CdB9bbd0765B18314D30"
-const PRIVATE_KEY = process.env.PRIVATE_KEY
 var fs = require("fs");
 var path = require("path");
 const Web3 = require("web3");
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3")
-const web3 = createAlchemyWeb3(
-  API_URL
-);
 const contract = require("../artifacts/contracts/Product.sol/Product.json");
-const contractAddress = "0x7f06c36140Bd23BC2C8d4cbC4ACEC5391f521A49";
+
+// API keys
+const API_URL = process.env.RINKEBY_API;
+const PUBLIC_KEY = process.env.PUBLIC_KEY;
+const web3 = createAlchemyWeb3(API_URL);
+const contractAddress = process.env.CONTRACT_ADDRESS;
+const PRIVATE_KEY = process.env.PRIVATE_KEY;
+
+
 
 //Function to mint NFT Token while placing order
 async function mintNFT(tokenURI,toAddress) {
@@ -22,7 +25,7 @@ async function mintNFT(tokenURI,toAddress) {
           contract.abi,
           contractAddress
         );
-        //the transaction data
+        // the transaction data
         const tx = {
           //seller address
           from: PUBLIC_KEY,
@@ -32,10 +35,10 @@ async function mintNFT(tokenURI,toAddress) {
           nonce: nonce,
           gas: 500000,
           data: nftContract.methods
-            .safeMint(toAddress, PUBLIC_KEY, tokenURI).encodeABI(),
+            .safeMint(toAddress, PUBLIC_KEY, tokenURI, 12).encodeABI(),
         };
         
-        //Siginig transaction details
+        //Signing transaction details
         const signPromise = web3.eth.accounts.signTransaction(tx, PRIVATE_KEY);
         signPromise
           .then((signedTx) => {
@@ -48,7 +51,6 @@ async function mintNFT(tokenURI,toAddress) {
                     hash,
                     "\nCheck Alchemy's Mempool to view the status of your transaction!"
                   );
-
                   var transaction = web3.eth.getTransactionReceipt(hash);
                   console.log(
                     `https://testnets.opensea.io/assets/rinkeby/${transaction.contractAddress}/${tx.data}`

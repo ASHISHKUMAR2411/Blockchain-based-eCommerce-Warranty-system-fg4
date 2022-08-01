@@ -1,6 +1,6 @@
+// function to deploy the smart contract
 async function main() {
     const Product = await ethers.getContractFactory("Product")
-
     // Start deployment, returning a promise that resolves to a contract object
     const product = await Product.deploy()
     await product.deployed();
