@@ -130,6 +130,9 @@ The following section deals with the development process, walkthrough, and featu
 * Then more complex functionality like cart, order, and seller pages were added later on.
 
 #### Step 3: Smart-contract
+* The smart contract is the code that will be used to interact with the blockchain.
+* The smart contract is written in Solidity.
+* Pinata is used to store the metadata of the products and the json.
 
 ## Authors
 
