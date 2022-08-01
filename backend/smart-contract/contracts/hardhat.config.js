@@ -1,6 +1,8 @@
 /** @type import('hardhat/config').HardhatUserConfig */
 require('dotenv').config();
 require("@nomiclabs/hardhat-ethers");
+
+// HARDHAT CONFIGURATION
 module.exports = {
   solidity: "0.8.9",
   networks: {

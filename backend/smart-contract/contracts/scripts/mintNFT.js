@@ -7,7 +7,8 @@ const Web3 = require("web3");
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3")
 const contract = require("../artifacts/contracts/Product.sol/Product.json");
 
-// API keys
+// API keys which includes RINKEBY_API for rinkeby testnet account from ALCHEMY, 
+// and we have address of smart contract, metamask account and private key of metamask account
 const API_URL = process.env.RINKEBY_API;
 const PUBLIC_KEY = process.env.PUBLIC_KEY;
 const web3 = createAlchemyWeb3(API_URL);
@@ -52,6 +53,7 @@ async function mintNFT(tokenURI,toAddress) {
                     "\nCheck Alchemy's Mempool to view the status of your transaction!"
                   );
                   var transaction = web3.eth.getTransactionReceipt(hash);
+                  //  rinkeby account
                   console.log(
                     `https://testnets.opensea.io/assets/rinkeby/${transaction.contractAddress}/${tx.data}`
                   );
