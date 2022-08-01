@@ -175,6 +175,7 @@ The following section deals with the development process, walkthrough, and featu
 ### NFT Generated ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182044362-479e5950-d1b7-475c-bb77-d51dbebc1524.png)
+![instance6](https://user-images.githubusercontent.com/77338386/182228904-0066098f-ce2e-459f-9d8a-48bbcef7011a.jpg)
 
 ### Product created in MetaMask Wallet 🎉🎉🎉
 
