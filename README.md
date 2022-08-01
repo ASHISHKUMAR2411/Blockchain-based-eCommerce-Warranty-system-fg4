@@ -161,7 +161,7 @@ The following section deals with the development process, walkthrough, and featu
 ### User ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182043924-012b05d1-0e97-4812-8852-eb8c8cf236f9.png)
-![image](https://user-images.githubusercontent.com/82510045/182043952-5b49f19f-5e4b-4427-bf69-cee6641b8b2d.png)
+<img src="https://user-images.githubusercontent.com/82510045/182043952-5b49f19f-5e4b-4427-bf69-cee6641b8b2d.png" height="600" width="981">
 ![image](https://user-images.githubusercontent.com/82510045/182043971-6afd7d0b-8b7f-4195-9b4f-1c2bcdb5b773.png)
 ![image](https://user-images.githubusercontent.com/82510045/182043996-a80d47d2-6da1-42da-b616-6520657d0e2b.png)
 ![image](https://user-images.githubusercontent.com/82510045/182044019-72e19188-3362-43d5-9fdf-4dfd00ca4332.png)
@@ -175,6 +175,11 @@ The following section deals with the development process, walkthrough, and featu
 ### NFT Generated ✨✨
 
 ![image](https://user-images.githubusercontent.com/82510045/182044362-479e5950-d1b7-475c-bb77-d51dbebc1524.png)
+
+### Product created in MetaMask Wallet 🎉🎉🎉
+
+         
+<img src="https://user-images.githubusercontent.com/77338386/182227555-0514e88c-c20d-485e-b623-48091482790b.jpg" height="600" width="450" ><img src="https://user-images.githubusercontent.com/77338386/182219031-040a0c8c-dccd-405b-9713-1dec59198b1d.jpeg" height="600" width="450"> 
 
 ## Authors 😎😎
 
