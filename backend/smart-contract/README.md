@@ -1,5 +1,6 @@
 ## Getting Started 📦📦
-  ...
+
+```
   smart-contract
   ├──contracts
   |  ├── contracts
@@ -9,3 +10,4 @@
   └──pinata
      ├── images
      └──index.js
+```
